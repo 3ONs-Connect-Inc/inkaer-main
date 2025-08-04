@@ -10,6 +10,7 @@ import StepViewer from "@/components/portfolio/StepViewer";
 import Seo from "@/components/Seo";
 import { PageLoader } from "@/components/ui/Spinner";
 import { usePortfolioProject } from "@/hooks/usePortfolioProject";
+import ProjectDescription from "@/components/portfolio/ProjectDescription";
 
 const PortfolioProject = () => {
   const { id } = useParams<{ id: string }>();
@@ -150,7 +151,7 @@ const { project, isLoading, authorName, submissionDate } = usePortfolioProject(i
                 )}
               </div>
 
-              {/* <ProjectDescription description={project.explanation} /> */}
+              <ProjectDescription project={project} />
 
               <GradeComponent
                 grades={grades}
