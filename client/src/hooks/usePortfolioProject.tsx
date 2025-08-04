@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, getDocs, query, where, orderBy, limit } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+} from "firebase/firestore";
 import { formatDistanceToNow } from "date-fns";
 import { toast } from "sonner";
 import type { Project } from "@/types/types";
@@ -34,6 +43,11 @@ export const usePortfolioProject = (userId?: string) => {
           const docSnap = querySnapshot.docs[0];
           const data = docSnap.data() as Project;
           setProject(data);
+
+          // Guard: make sure userId exists in data
+          if (!data.userId) {
+            throw new Error("Project is missing userId.");
+          }
 
           // Fetch user
           const userRef = doc(db, "users", data.userId);

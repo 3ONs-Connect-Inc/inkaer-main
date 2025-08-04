@@ -49,10 +49,10 @@ const PortfolioProject = () => {
   const [voteType, setVoteType] = useState<"upvote" | "downvote">("upvote");
   const [selectedGradeId, setSelectedGradeId] = useState<string>("");
   // Calculate the average grade
-  const averageGrade =
-    grades.length > 0
-      ? grades.reduce((sum, grade) => sum + grade.rating, 0) / grades.length
-      : 0;
+  // const averageGrade =
+  //   grades.length > 0
+  //     ? grades.reduce((sum, grade) => sum + grade.rating, 0) / grades.length
+  //     : 0;
 const { project, isLoading, authorName, submissionDate } = usePortfolioProject(id);
 
   if (isLoading || !project) return <PageLoader />;

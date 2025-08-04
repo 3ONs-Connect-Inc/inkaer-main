@@ -4,7 +4,7 @@ import type { Grade, Project } from '@/types/types';
 
 
 const ProjectHeader = ({
-  project,
+//  project,
   averageGrade,
   grades,
   author,

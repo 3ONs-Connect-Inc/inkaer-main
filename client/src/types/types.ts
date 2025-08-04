@@ -1,16 +1,16 @@
 export interface Project {
-    id: string;
+    id?: string;
    title: string;
   category?: string;
   difficulty: string;
   duration: string;
   participants: number;
- userId: string;
-  stepFileUrl: string; 
-  pdfFileUrl: string; 
-  explanation: string;
+ userId?: string;
+  stepFileUrl?: string; 
+  pdfFileUrl?: string; 
+  explanation?: string;
    submissionDate?: string;
-   timestamp: any;
+   timestamp?: any;
   rating: number;
  description: string;
   tags: string[];
