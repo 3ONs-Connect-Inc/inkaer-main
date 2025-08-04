@@ -6,6 +6,8 @@ import { heroImage } from "@/assets";
 import BackgroundDecor from "@/components/auth/BackgroundDecor";
 import FlickeringGridWrapper from "@/components/auth/FlickeringGridWrapper";
 import { type Variants, motion } from "framer-motion";
+import { useState } from "react";
+import YoutubeModal from "@/components/modals/YoutubeModal";
 
 const fadeInUp: Variants = {
   hidden: {
@@ -24,6 +26,15 @@ const fadeInUp: Variants = {
 
 
 const HeroSection = () => {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
+  const extractVideoId = (url: string) => {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+)/);
+    return match ? match[1] : '';
+  };
+
+  const videoId = extractVideoId('https://youtu.be/g9GKzkO2rgU?si=DmZh7wOvzzWWsmz3');
+
   return (
     <section className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
       <FlickeringGridWrapper />
@@ -72,6 +83,7 @@ const HeroSection = () => {
 
               <Button
                 variant="outline"
+                  onClick={() => setIsVideoModalOpen(true)}
                 className="btn-outline w-full xs:w-auto h-12 border-2 border-inkaer-blue text-inkaer-blue hover:bg-inkaer-blue hover:text-white rounded-full group flex items-center justify-center transition-all duration-300"
               >
                 <Play className="w-5 h-5 mr-2 group-hover:animate-bounce-gentle" />
@@ -114,6 +126,12 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+       <YoutubeModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoId={videoId}
+        title="Inkaer Platform Demo"
+      />
     </section>
   );
 };

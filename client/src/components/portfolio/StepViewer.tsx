@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Canvas } from '@react-three/fiber'
+import { OrbitControls, ContactShadows } from '@react-three/drei'
 import Loader  from './Loader'
 
 
@@ -27,7 +28,7 @@ const StepViewer = ({ file, fileType }: { file: string; fileType: string }) => {
          
           camera={{ position: [5, 5, 5], fov: 45 }} 
           shadows>
-            
+           
           </Canvas>
         </div>
       </CardContent>
