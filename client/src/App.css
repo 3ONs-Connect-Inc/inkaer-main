@@ -1,0 +1,128 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  #root {
+    padding: 20px;   
+  }
+}
+@media (max-width: 368px) {
+  #root {
+    padding: 10px;   
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* HEADER */
+.nav-text{
+  @apply  text-gray-700 hover:text-inkaer-blue transition-colors duration-200 font-sora font-medium;
+}
+.section-header {
+  @apply text-center mb-12 xs:mb-16 animate-fade-in;
+}
+
+.section-title {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl  font-sora font-bold text-gray-900 ;
+}
+.section-title2 {
+  @apply text-lg  sm:text-2xl lg:text-3xl font-sora font-bold text-gray-900 ;
+}
+.section-subtitle2 {
+  @apply text-base  sm:text-xl lg:text-2xl font-sora font-bold text-gray-900 ;
+}
+
+.section-subtitle {
+  @apply text-sm xs:text-xl text-gray-600 font-sora max-w-3xl mx-auto;
+}
+.label {
+ @apply font-sora font-medium text-gray-700;
+}
+
+
+/* comments */
+.section-comment {
+  @apply text-sm  sm:text-base lg:text-lg  text-gray-700 font-sora  mx-auto;
+}
+.author {
+  @apply text-xs  sm:text-sm lg:text-base  text-gray-900 font-sora font-medium mx-auto;
+}
+.date {
+  @apply text-[12px] xs:text-xs text-gray-600 font-sora ;
+}
+.section-p {
+  @apply text-xs xs:text-sm text-gray-600 font-sora ;
+}
+
+
+/* BUTTON RESPONSIVENESS */
+.btn-responsive {
+  @apply   px-2 py-2 text-xs xs:px-8 xs:py-4 xs:text-base text-center font-sora font-semibold transition-all duration-200;
+}
+.btn-with-icon {
+  @apply   px-2 py-2 text-[12px] xs:px-8 xs:py-4 sm:text-base text-center font-sora font-semibold transition-all duration-200;
+}
+.btn-outline {
+  @apply px-2 py-2 text-[12px] xs:px-8 xs:py-4 xs:text-base md:text-lg rounded-full font-sora font-semibold transition-all duration-200 hover:scale-105;
+}
+.icon {
+  @apply  sm:ml-2 ml-0 h-4 w-4 sm:h-5 sm:w-5;
+}
+
+/* w-full xs:w-auto flex items-center justify-center */
+
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) { 
+  .container {
+    padding-left: 1.5rem;   
+    padding-right: 1.5rem;  
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;   
+    padding-right: 2rem;  
+  }
+}
