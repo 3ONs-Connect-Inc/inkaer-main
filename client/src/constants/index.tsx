@@ -353,7 +353,7 @@ export const projects = [
       rating: 4.8,
       description: "Complete mechanical design of an automated assembly line with robotic integration and quality control systems.",
       tags: ["CAD", "Automation", "Robotics"],
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop",
+      image: img1,
       author: "Sarah Mitchell",
       comments: 3,
       type: "portfolio" as const
@@ -367,7 +367,7 @@ export const projects = [
       rating: 4.9,
       description: "Aerodynamic optimization of wind turbine blades using computational fluid dynamics and structural analysis.",
       tags: ["CFD", "Optimization", "Renewable Energy"],
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&h=400&fit=crop",
+      image: img2,
       author: "Marcus Chen",
       comments: 7,
       type: "portfolio" as const
@@ -381,7 +381,7 @@ export const projects = [
       rating: 4.8,
       description: "Complete mechanical design of an automated assembly line with robotic integration and quality control systems.",
       tags: ["CAD", "Automation", "Robotics"],
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop",
+      image: img3,
       author: "Sarah Mitchell",
       comments: 3,
       type: "portfolio" as const
@@ -395,7 +395,7 @@ export const projects = [
       rating: 4.9,
       description: "Aerodynamic optimization of wind turbine blades using computational fluid dynamics and structural analysis.",
       tags: ["CFD", "Optimization", "Renewable Energy"],
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&h=400&fit=crop",
+      image: img1,
       author: "Marcus Chen",
       comments: 7,
       type: "portfolio" as const
@@ -409,7 +409,7 @@ export const projects = [
       rating: 4.8,
       description: "Complete mechanical design of an automated assembly line with robotic integration and quality control systems.",
       tags: ["CAD", "Automation", "Robotics"],
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop",
+      image: img2,
       author: "Sarah Mitchell",
       comments: 3,
       type: "portfolio" as const
@@ -423,7 +423,7 @@ export const projects = [
       rating: 4.9,
       description: "Aerodynamic optimization of wind turbine blades using computational fluid dynamics and structural analysis.",
       tags: ["CFD", "Optimization", "Renewable Energy"],
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&h=400&fit=crop",
+      image: img3,
       author: "Marcus Chen",
       comments: 7,
       type: "portfolio" as const

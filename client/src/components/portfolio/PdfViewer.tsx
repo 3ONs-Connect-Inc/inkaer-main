@@ -82,25 +82,28 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ file, fileType }) => {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-center items-center xs:gap-4 gap-2">
-            <button
-              onClick={goToPrevPage}
-              disabled={pageNumber <= 1}
-              className="xs:p-2 p-0 rounded-full bg-white border shadow hover:bg-gray-50 disabled:opacity-30"
-            >
-              <ChevronLeft className="w-3 h-3 xs:w-5 xs:h-5" />
-            </button>
-            <span className="section-p">
-              Page {pageNumber} / {numPages}
-            </span>
-            <button
-              onClick={goToNextPage}
-              disabled={pageNumber >= numPages}
-              className="xs:p-2 p-0 rounded-full bg-white border shadow hover:bg-gray-50 disabled:opacity-30"
-            >
-              <ChevronRight className="w-3 h-3 xs:w-5 xs:h-5" />
-            </button>
-          </div>
+      {numPages > 1 && (
+  <div className="flex justify-center items-center xs:gap-4 gap-2">
+    <button
+      onClick={goToPrevPage}
+      disabled={pageNumber <= 1}
+      className="xs:p-2 p-0 rounded-full bg-white border shadow hover:bg-gray-50 disabled:opacity-30"
+    >
+      <ChevronLeft className="w-3 h-3 xs:w-5 xs:h-5" />
+    </button>
+    <span className="section-p">
+      Page {pageNumber} / {numPages}
+    </span>
+    <button
+      onClick={goToNextPage}
+      disabled={pageNumber >= numPages}
+      className="xs:p-2 p-0 rounded-full bg-white border shadow hover:bg-gray-50 disabled:opacity-30"
+    >
+      <ChevronRight className="w-3 h-3 xs:w-5 xs:h-5" />
+    </button>
+  </div>
+)}
+
         </div>
       </CardContent>
     </Card>

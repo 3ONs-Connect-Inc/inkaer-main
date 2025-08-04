@@ -9,13 +9,11 @@ import {
 import { ArrowRight, Clock, Star, Users } from "lucide-react";
 import Button from "@/components/ui/button";
 import type { Project } from "@/types/types";
-import { Image } from "@/components/ui/Image";
-
 
 
 const ProjectCard = ({
   title,
-  category,
+  category,  
   difficulty,
   duration,
   participants,
@@ -43,8 +41,9 @@ const ProjectCard = ({
     <Card className="flex flex-col h-full w-full max-w-sm mx-auto rounded-2xl group shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden  flex-shrink-0">
       {/* Image */}
       <div className="relative h-48 w-full overflow-hidden">
-        <Image
-          src={image}
+        <img
+       //   src={image}
+       src={image}
           alt={`${title} project`}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
