@@ -5,8 +5,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 //@ts-ignore
 import 'swiper/css';
 
+
+export type ProjectCardProps = Project & {
+  view?: "grid" | "list";
+};
+
 interface ProjectSwiperProps {
-  projects: Project[];
+  projects:  ProjectCardProps[];
 }
 
 const ProjectSwiper = ({ projects }: ProjectSwiperProps) => {

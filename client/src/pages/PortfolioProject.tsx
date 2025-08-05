@@ -1,16 +1,19 @@
 import { useState } from "react";
 import BackgroundDecor from "@/components/auth/BackgroundDecor";
 import { useParams } from "react-router-dom";
-import ProjectHeader from "@/components/portfolio/ProjectHeader";
-import PdfViewer from "@/components/portfolio/PdfViewer";
-import GradeComponent from "@/components/portfolio/GradeComponent";
+import ProjectHeader from "@/components/uploadPortfolio/ProjectHeader";
+import PdfViewer from "@/components/uploadPortfolio/PdfViewer";
 import type { Grade,  Vote } from "@/types/types";
 import { toast } from "sonner";
-import StepViewer from "@/components/portfolio/StepViewer";
+import StepViewer from "@/components/uploadPortfolio/StepViewer";
 import Seo from "@/components/Seo";
 import { PageLoader } from "@/components/ui/Spinner";
 import { usePortfolioProject } from "@/hooks/usePortfolioProject";
-import ProjectDescription from "@/components/portfolio/ProjectDescription";
+import ProjectDescription from "@/components/uploadPortfolio/ProjectDescription";
+import type { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import Grades from "@/components/uploadPortfolio/Grades";
+
 
 const PortfolioProject = () => {
   const { id } = useParams<{ id: string }>();
@@ -49,15 +52,18 @@ const PortfolioProject = () => {
   const [isVoteDialogOpen, setIsVoteDialogOpen] = useState(false);
   const [voteType, setVoteType] = useState<"upvote" | "downvote">("upvote");
   const [selectedGradeId, setSelectedGradeId] = useState<string>("");
+
+  const userId = useSelector((state: RootState) => state.session.user?.uid);
+  const { project, isLoading, authorName, submissionDate } = usePortfolioProject(id);
+  const isOwner = userId === id;
+  const isReady = userId !== undefined && !isLoading && project !== null;
+
+  if (!isReady || !isOwner) return <PageLoader />;
   // Calculate the average grade
-  // const averageGrade =
-  //   grades.length > 0
-  //     ? grades.reduce((sum, grade) => sum + grade.rating, 0) / grades.length
-  //     : 0;
-const { project, isLoading, authorName, submissionDate } = usePortfolioProject(id);
-
-  if (isLoading || !project) return <PageLoader />;
-
+  const averageGrade =
+    grades.length > 0
+      ? grades.reduce((sum, grade) => sum + grade.rating, 0) / grades.length
+      : 0;
 
   const handleGradeSubmit = () => {
     if (!newGrade.comment.trim()) {
@@ -128,32 +134,31 @@ const { project, isLoading, authorName, submissionDate } = usePortfolioProject(i
         <div className="relative z-10">
           <section className="py-8">
             <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-              <ProjectHeader
+                  <ProjectHeader
                 project={project}
-                averageGrade={4.5}
+                averageGrade={averageGrade}
                 grades={[]}
                 author={authorName}
                 submissionDate={submissionDate}
               />
-              <div className="grid md:grid-cols-2 gap-4 xs:gap-6 mb-8">
-                {project.stepFileUrl && (
-                  <div className="w-full min-w-0">
-                    <StepViewer
-                      file={project.stepFileUrl}
-                      fileType="3D Model"
-                    />
-                  </div>
-                )}
-                {project.pdfFileUrl && (
-                  <div className="w-full min-w-0">
-                    <PdfViewer file={project.pdfFileUrl} fileType="PDF" />
-                  </div>
-                )}
-              </div>
+            
+                <div className="grid md:grid-cols-2 gap-4 xs:gap-6 mb-8">
+                  {project.stepFileUrl && (
+                    <div className="w-full min-w-0">
+                      <StepViewer file={project.stepFileUrl} fileType="3D Model" />
+                    </div>
+                  )}
+                  {project.pdfFileUrl && (
+                    <div className="w-full min-w-0">
+                      <PdfViewer file={project.pdfFileUrl} fileType="PDF" />
+                    </div>
+                  )}
+                </div>
+            
 
               <ProjectDescription project={project} />
 
-              <GradeComponent
+              <Grades
                 grades={grades}
                 voteType={voteType}
                 handleVoteSubmit={handleVoteSubmit}

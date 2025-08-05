@@ -5,12 +5,14 @@ import ProjectSwiper from "./ProjectSwiper";
 
 interface ProjectSectionProps {
   title: string;
+  subtitle?: string;
   projects: Project[];
   showSeeAll?: boolean;
 }
 
 const ProjectSection = ({
   title,
+ // subtitle,
   projects,
   showSeeAll = true,
 }: ProjectSectionProps) => {

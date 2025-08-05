@@ -1,13 +1,8 @@
+import Button from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 import { ThumbsDown, ThumbsUp } from "lucide-react";
-import Button from "../ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
-import { Textarea } from "../ui/textarea";
+
 
 export const VoteButtons = ({
   gradeId,
@@ -21,7 +16,7 @@ export const VoteButtons = ({
   voteComment,
   setVoteComment,
 }: {
-  gradeId: string;
+  gradeId: string;  
   isVoteDialogOpen: boolean;
   setIsVoteDialogOpen: (state: boolean) => void;
   upvotes: number;

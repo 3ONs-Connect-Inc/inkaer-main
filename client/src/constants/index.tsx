@@ -1,14 +1,11 @@
 import { heroImage, img1, img2, img3 } from "@/assets";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { CheckCircle, Users, Trophy, Award, Briefcase } from 'lucide-react';
+import type { Project } from "@/types/types";
 
 
 
-
-
-
-
-
-
+ 
 
 //upload projects
  export  const engineeringDomains = [
@@ -23,15 +20,36 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
     { value: 'aerospace', label: 'Aerospace', available: false },
   ];
 
+  //tags
+  export const predefinedTags = [
+    'CAD Design', 'Simulation', 'Prototyping', 'Manufacturing', 'Assembly',
+    'Analysis', 'Testing', 'Optimization', 'Materials', 'Thermal',
+    'Structural', 'Mechanical', 'Innovation', 'Automation', 'Robotics',
+    'Product Design', 'Research', 'Development', 'Engineering'
+  ];
+
 
 //HOME FEATURED SECTION
+  export const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case 'Beginner': return 'text-green-600 bg-green-100';
+      case 'Intermediate': return 'text-yellow-600 bg-yellow-100';
+      case 'Advanced': return 'text-orange-600 bg-orange-100';
+      case 'Elite': return 'text-red-600 bg-red-100';
+      default: return 'text-gray-600 bg-gray-100';
+    }
+  };
  export  const featuredProjects = [
     {
       title: "Project Alpha",
       category: "Backend Engineering",  
       difficulty: "Intermediate",
-      duration: "4-5 hrs",
-      participants: 34,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.5,
       description: "Advanced backend system with microservices architecture and real-time data processing capabilities.",
       tags: ["Python", "Docker", "PostgreSQL"],
@@ -44,8 +62,12 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
       title: "Heat Exchanger Redesign", 
       category: "CAD Design",
       difficulty: "Advanced",
-      duration: "6-8 hrs",
-      participants: 56,
+        stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.6,
       description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements.",
       tags: ["CAD", "Thermal", "Engineering"],
@@ -58,8 +80,12 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
       title: "Project Alpha",
       category: "Backend Engineering",
       difficulty: "Intermediate",
-      duration: "4-5 hrs",
-      participants: 34,
+        stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.5,
       description: "Advanced backend system with microservices architecture and real-time data processing capabilities.",
       tags: ["Python", "Docker", "PostgreSQL"],
@@ -72,8 +98,12 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
       title: "Heat Exchanger Redesign", 
       category: "CAD Design",
       difficulty: "Advanced",
-      duration: "6-8 hrs",
-      participants: 56,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.6,
       description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements.",
       tags: ["CAD", "Thermal", "Engineering"],
@@ -89,8 +119,12 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
       title: "Modular Drone Frame",
       category: "Mechanical Design",
       difficulty: "Beginner",
-      duration: "2-3 hrs", 
-      participants: 23,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.2,
       description: "Design and prototype a modular drone frame system with interchangeable components.",
       tags: ["CAD", "Drone", "Modular"],
@@ -103,8 +137,12 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
       title: "Project Alpha",
       category: "Backend Engineering",
       difficulty: "Intermediate",
-      duration: "4-5 hrs",
-      participants: 34,
+          stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.5,
       description: "Advanced backend system with microservices architecture and real-time data processing capabilities.",
       tags: ["Python", "Docker", "PostgreSQL"],
@@ -117,8 +155,12 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
       title: "Heat Exchanger Redesign", 
       category: "CAD Design",
       difficulty: "Advanced",
-      duration: "6-8 hrs",
-      participants: 56,
+          stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.6,
       description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements.",
       tags: ["CAD", "Thermal", "Engineering"],
@@ -131,8 +173,12 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
       title: "Project Alpha",
       category: "Backend Engineering",
       difficulty: "Intermediate",
-      duration: "4-5 hrs",
-      participants: 34,
+          stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.5,
       description: "Advanced backend system with microservices architecture and real-time data processing capabilities.",
       tags: ["Python", "Docker", "PostgreSQL"],
@@ -145,8 +191,12 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
       title: "Heat Exchanger Redesign", 
       category: "CAD Design",
       difficulty: "Advanced",
-      duration: "6-8 hrs",
-      participants: 56,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.6,
       description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements.",
       tags: ["CAD", "Thermal", "Engineering"],
@@ -162,8 +212,12 @@ export const myProjects = [
       title: "Cooling Plate Simulation",
       category: "Thermal Analysis", 
       difficulty: "Elite",
-      duration: "8-10 hrs",
-      participants: 78,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.9,
       description: "Advanced computational fluid dynamics simulation for cooling plate optimization.",
       tags: ["CFD", "Simulation", "Thermal"],
@@ -176,8 +230,12 @@ export const myProjects = [
       title: "Project Alpha",
       category: "Backend Engineering",
       difficulty: "Intermediate",
-      duration: "4-5 hrs",
-      participants: 34,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.5,
       description: "Advanced backend system with microservices architecture and real-time data processing capabilities.",
       tags: ["Python", "Docker", "PostgreSQL"],
@@ -190,8 +248,12 @@ export const myProjects = [
       title: "Heat Exchanger Redesign", 
       category: "CAD Design",
       difficulty: "Advanced",
-      duration: "6-8 hrs",
-      participants: 56,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.6,
       description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements.",
       tags: ["CAD", "Thermal", "Engineering"],
@@ -204,8 +266,12 @@ export const myProjects = [
       title: "Project Alpha",
       category: "Backend Engineering",
       difficulty: "Intermediate",
-      duration: "4-5 hrs",
-      participants: 34,
+          stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.5,
       description: "Advanced backend system with microservices architecture and real-time data processing capabilities.",
       tags: ["Python", "Docker", "PostgreSQL"],
@@ -218,8 +284,12 @@ export const myProjects = [
       title: "Heat Exchanger Redesign", 
       category: "CAD Design",
       difficulty: "Advanced",
-      duration: "6-8 hrs",
-      participants: 56,
+        stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.6,
       description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements.",
       tags: ["CAD", "Thermal", "Engineering"],
@@ -236,8 +306,12 @@ export const myProjects = [
       title: "Bracket Fatigue Test",
       category: "Structural Analysis",
       difficulty: "Intermediate", 
-      duration: "5-7 hrs",
-      participants: 45,
+        stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.4,
       description: "Comprehensive fatigue analysis and testing protocol for structural bracket components.",
       tags: ["FEA", "Testing", "Structural"],
@@ -250,8 +324,12 @@ export const myProjects = [
       title: "Project Alpha",
       category: "Backend Engineering",
       difficulty: "Intermediate",
-      duration: "4-5 hrs",
-      participants: 34,
+          stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.5,
       description: "Advanced backend system with microservices architecture and real-time data processing capabilities.",
       tags: ["Python", "Docker", "PostgreSQL"],
@@ -264,8 +342,12 @@ export const myProjects = [
       title: "Heat Exchanger Redesign", 
       category: "CAD Design",
       difficulty: "Advanced",
-      duration: "6-8 hrs",
-      participants: 56,
+          stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.6,
       description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements.",
       tags: ["CAD", "Thermal", "Engineering"],
@@ -279,8 +361,12 @@ export const myProjects = [
       title: "Project Alpha",
       category: "Backend Engineering",
       difficulty: "Intermediate",
-      duration: "4-5 hrs",
-      participants: 34,
+          stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.5,
       description: "Advanced backend system with microservices architecture and real-time data processing capabilities.",
       tags: ["Python", "Docker", "PostgreSQL"],
@@ -293,8 +379,12 @@ export const myProjects = [
       title: "Heat Exchanger Redesign", 
       category: "CAD Design",
       difficulty: "Advanced",
-      duration: "6-8 hrs",
-      participants: 56,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.6,
       description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements.",
       tags: ["CAD", "Thermal", "Engineering"],
@@ -310,8 +400,12 @@ export const projects = [
       title: "Real-Time Data Pipeline",
       category: "Backend Engineering",
       difficulty: "Advanced",
-      duration: "3-5 hours",
-      participants: 1247,
+          stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.8,
       description: "Build a scalable data processing pipeline that handles millions of events per minute using modern streaming technologies.",
       tags: ["Kafka", "Redis", "PostgreSQL", "Docker"],
@@ -322,8 +416,12 @@ export const projects = [
       title: "Mobile Banking Interface",
       category: "Frontend Development", 
       difficulty: "Intermediate",
-      duration: "4-6 hours",
-      participants: 892,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.9,
       description: "Design and implement a secure, responsive banking interface with advanced UX patterns and accessibility features.",
       tags: ["React", "TypeScript", "Security", "UX"],
@@ -334,8 +432,12 @@ export const projects = [
       title: "ML Recommendation Engine",
       category: "Machine Learning",
       difficulty: "Expert",
-      duration: "6-8 hours", 
-      participants: 634,
+         stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.7,
       description: "Create an intelligent recommendation system that adapts to user behavior and preferences in real-time.",
       tags: ["Python", "TensorFlow", "APIs", "Analytics"],
@@ -348,8 +450,12 @@ export const projects = [
       title: "Automated Assembly Line Design",
       category: "Mechanical Engineering",
       difficulty: "Advanced",
-      duration: "Submitted 2 days ago",
-      participants: 1,
+        stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.8,
       description: "Complete mechanical design of an automated assembly line with robotic integration and quality control systems.",
       tags: ["CAD", "Automation", "Robotics"],
@@ -362,8 +468,12 @@ export const projects = [
       title: "Wind Turbine Blade Optimization", 
       category: "Aerospace Engineering",
       difficulty: "Expert",
-      duration: "Submitted 1 week ago",
-      participants: 1,
+    stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.9,
       description: "Aerodynamic optimization of wind turbine blades using computational fluid dynamics and structural analysis.",
       tags: ["CFD", "Optimization", "Renewable Energy"],
@@ -376,8 +486,12 @@ export const projects = [
       title: "Automated Assembly Line Design",
       category: "Mechanical Engineering",
       difficulty: "Advanced",
-      duration: "Submitted 2 days ago",
-      participants: 1,
+     stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.8,
       description: "Complete mechanical design of an automated assembly line with robotic integration and quality control systems.",
       tags: ["CAD", "Automation", "Robotics"],
@@ -390,8 +504,12 @@ export const projects = [
       title: "Wind Turbine Blade Optimization", 
       category: "Aerospace Engineering",
       difficulty: "Expert",
-      duration: "Submitted 1 week ago",
-      participants: 1,
+       stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.9,
       description: "Aerodynamic optimization of wind turbine blades using computational fluid dynamics and structural analysis.",
       tags: ["CFD", "Optimization", "Renewable Energy"],
@@ -404,8 +522,12 @@ export const projects = [
       title: "Automated Assembly Line Design",
       category: "Mechanical Engineering",
       difficulty: "Advanced",
-      duration: "Submitted 2 days ago",
-      participants: 1,
+    stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.8,
       description: "Complete mechanical design of an automated assembly line with robotic integration and quality control systems.",
       tags: ["CAD", "Automation", "Robotics"],
@@ -418,8 +540,12 @@ export const projects = [
       title: "Wind Turbine Blade Optimization", 
       category: "Aerospace Engineering",
       difficulty: "Expert",
-      duration: "Submitted 1 week ago",
-      participants: 1,
+    stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+      }
+    ],
       rating: 4.9,
       description: "Aerodynamic optimization of wind turbine blades using computational fluid dynamics and structural analysis.",
       tags: ["CFD", "Optimization", "Renewable Energy"],
@@ -429,6 +555,134 @@ export const projects = [
       type: "portfolio" as const
     },
   ];  
+   export const allProjects: Project[]  = [
+    {
+      title: "Modular Drone Frame",
+      category: "MECHANICAL ENGINEERING",
+      difficulty: "Beginner",
+    stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+        submissions: 5
+      }
+    ],
+      rating: 4.2,
+      description: "Design and prototype a modular drone frame system with interchangeable components for enhanced flexibility and performance.",
+      tags: ["CAD", "Drone", "Modular"],
+      image: img1,
+      author: "Daniel Brown",
+      type: "challenge"
+    },
+    {
+      title: "Smart Home IoT Dashboard", 
+      category: "SOFTWARE (BACKEND)",
+      difficulty: "Intermediate",
+      stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+        submissions: 5
+      }
+    ],
+      rating: 4.5,
+      description: "Full-stack web application for monitoring and controlling IoT devices in a smart home environment with real-time data visualization.",
+      tags: ["React", "Node.js", "IoT"],
+      image: img3,
+      author: "Sarah Chen",
+      type: "portfolio"
+    },
+    {
+      title: "Heat Exchanger Redesign", 
+      category: "MECHANICAL ENGINEERING",
+      difficulty: "Advanced",
+       stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+        submissions: 5
+      }
+    ],
+      rating: 4.6,
+      description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements through advanced computational methods.",
+      tags: ["CAD", "Thermal", "Engineering"],
+      image: img1,
+      author: "Cathy Lee",
+      type: "challenge"
+    },
+    {
+      title: "Cooling Plate Simulation",
+      category: "MECHANICAL ENGINEERING", 
+      difficulty: "Elite",
+      stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+        submissions: 5
+      }
+    ],
+      rating: 4.9,
+      description: "Advanced computational fluid dynamics simulation for cooling plate optimization in high-performance computing systems.",
+      tags: ["CFD", "Simulation", "Thermal"],
+      image: img2,
+      author: "Ivy Timmons",
+      type: "portfolio"
+    },
+    {
+      title: "Bracket Fatigue Test",
+      category: "CIVIL / STRUCTURAL",
+      difficulty: "Intermediate", 
+       stats: [   
+      {
+        duration: "2-3 hrs",
+        participants: 23,
+        submissions: 5
+      }
+    ],
+      rating: 4.4,
+      description: "Comprehensive fatigue analysis and testing protocol for structural bracket components in aerospace applications.",
+      tags: ["FEA", "Testing", "Structural"],
+      image: img3,
+      author: "Kevin Carpenter",
+      type: "challenge"
+    }
+  ];
+
+
+//how it works page
+ export const steps = [
+    {
+      icon: <CheckCircle className="w-10 h-10 text-inkaer-blue" />,
+      title: "Submit Your Projects",
+      subtitle: "Showcase Your Work",
+      description: "Upload your engineering projects or tackle our curated challenges to showcase your technical skills to our community of professionals."
+    },
+    {
+      icon: <Users className="w-10 h-10 text-inkaer-blue" />,
+      title: "Get Peer Reviews",
+      subtitle: "Community Feedback",
+      description: "Receive constructive feedback from fellow engineers and industry experts to improve your work and learn from others."
+    },
+    {
+      icon: <Trophy className="w-10 h-10 text-inkaer-blue" />,
+      title: "Build Your Rank",
+      subtitle: "Progress & Recognition",
+      description: "Earn points and improve your ranking based on project quality and peer feedback. Rise from Novice to Elite status."
+    },
+    {
+      icon: <Award className="w-10 h-10 text-inkaer-blue" />,
+      title: "Get Certified",
+      subtitle: "Verify Your Skills",
+      description: "Achieve certification badges that validate your expertise in specific engineering domains and enhance your professional profile."
+    },
+    {
+      icon: <Briefcase className="w-10 h-10 text-inkaer-blue" />,
+      title: "Land Your Dream Job",
+      subtitle: "Career Opportunities",
+      description: "Get discovered by top employers looking for talented engineers with proven skills and verified certifications."
+    }
+  ];
+
 
 
   
@@ -437,42 +691,42 @@ export const defaultSections = [
   {
     title: "Product",
     links: [
-      { name: "How It Works", href: "#how-it-works" },
-      { name: "Projects", href: "#projects" },
-      { name: "Certification", href: "#certification" },
-      { name: "Rankings", href: "#rankings" },
+      { name: "How It Works", href: "/how-it-works" },
+      { name: "Projects", href: "/projects" },
+      { name: "Certification", href: "/certification" },
+      { name: "Rankings", href: "/rankings" },
     ],
   },
   {
     title: "Company",
     links: [
-      { name: "About", href: "#about" },
-      { name: "Careers", href: "#careers" },
-      { name: "Blog", href: "#blog" },
-      { name: "Contact", href: "#contact" },
+      { name: "About", href: "/about" },
+      { name: "Careers", href: "/careers" },
+      { name: "Blog", href: "/blog" },
+      { name: "Contact", href: "/contact" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { name: "Help Center", href: "#help" },
-      { name: "Community", href: "#community" },
-      { name: "Documentation", href: "#docs" },
-      { name: "Support", href: "#support" },
+      { name: "Help Center", href: "/help" },
+      { name: "Community", href: "/community" },
+      { name: "Documentation", href: "/docs" },
+      { name: "Support", href: "/support" },
     ],
   },
 ];
 
 export const defaultSocialLinks = [
-  { icon: <FaInstagram className="size-4 xs:size-5" />, href: "#", label: "Instagram" },
-  { icon: <FaFacebook className="size-4 xs:size-5" />, href: "#", label: "Facebook" },
-  { icon: <FaTwitter className="size-4 xs:size-5" />, href: "#", label: "Twitter" },
-  { icon: <FaLinkedin className="size-4 xs:size-5" />, href: "#", label: "LinkedIn" },
+  { icon: <FaInstagram className="size-4 xs:size-5" />, href: "/", label: "Instagram" },
+  { icon: <FaFacebook className="size-4 xs:size-5" />, href: "/", label: "Facebook" },
+  { icon: <FaTwitter className="size-4 xs:size-5" />, href: "/", label: "Twitter" },
+  { icon: <FaLinkedin className="size-4 xs:size-5" />, href: "/", label: "LinkedIn" },
 ];
 
 export const defaultLegalLinks = [
-  { name: "Terms and Conditions", href: "#terms" },
-  { name: "Privacy Policy", href: "#privacy" },
+  { name: "Terms and Conditions", href: "/terms" },
+  { name: "Privacy Policy", href: "/privacy" },
 ];
 
 

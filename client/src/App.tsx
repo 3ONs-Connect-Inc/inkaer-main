@@ -9,6 +9,8 @@ import UploadPortfolio from "./pages/UploadPortfolio";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import useAuthListener from "./hooks/auth/useAuthListener";
 import { Loader } from "./components/ui/Spinner";
+import ScrollToTop from "./components/ScrollToTop";
+import BackToTopButton from "./components/BackToTopButton";
 
 
 const CreateAccount = lazy(() => import("./pages/auth/CreateAccount"));
@@ -17,6 +19,9 @@ const Home = lazy(() => import("./pages/Home"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const PortfolioProject =lazy(()=> import("./pages/PortfolioProject"));
+const HowItWorks =lazy(() => import("./components/HowItWorks"));
+const Projects =lazy(()=>import("./pages/Projects"));
+
 
 const qc = new QueryClient();
 function App() {
@@ -27,6 +32,8 @@ function App() {
     <QueryClientProvider client={qc}>
       <Toaster />
       <Sonner />
+    <ScrollToTop /> 
+    <BackToTopButton /> 
       <Suspense>
         <Routes>
           <Route element={<AuthLayout />}>
@@ -41,6 +48,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/upload-portfolio" element={<UploadPortfolio />} />
             <Route path="/portfolio/:id" element={<PortfolioProject />} />
+
+             <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/projects" element={<Projects />} />
+              
             <Route path="*" element={<NotFound />} />
           </Route>
 

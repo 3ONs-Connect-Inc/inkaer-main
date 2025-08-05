@@ -67,7 +67,6 @@ const LoggedInUser = () => {
 
         {/* Feature Section */}
         <motion.div
-          className="-mt-[15px]"
           variants={fadeInUp}
           initial="hidden"
           animate="visible"

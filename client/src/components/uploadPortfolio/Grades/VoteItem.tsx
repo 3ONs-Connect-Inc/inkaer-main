@@ -13,6 +13,6 @@ import { ThumbsDown, ThumbsUp } from "lucide-react";
           <span className="date">{vote.timestamp}</span>
         </div>
       </div>
-      <p className="section-p">{vote.comment}</p>
+      <p className="section-p">{vote.comment}</p>  
     </>
   );

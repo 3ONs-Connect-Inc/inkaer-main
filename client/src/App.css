@@ -68,7 +68,9 @@
 .section-subtitle2 {
   @apply text-base  sm:text-xl lg:text-2xl font-sora font-bold text-gray-900 ;
 }
-
+.section-subtitle3 {
+  @apply text-sm xs:text-lg text-gray-900 font-sora font-bold max-w-3xl mx-auto;
+}
 .section-subtitle {
   @apply text-sm xs:text-xl text-gray-600 font-sora max-w-3xl mx-auto;
 }
@@ -84,13 +86,24 @@
 .author {
   @apply text-xs  sm:text-sm lg:text-base  text-gray-900 font-sora font-medium mx-auto;
 }
+.author-lite {
+  @apply text-xs  sm:text-sm   text-gray-500 font-sora font-medium;
+}
+.text-inkaer {
+  @apply text-xs  sm:text-sm lg:text-base  text-inkaer-blue font-sora font-semibold mx-auto;
+}
+.text-inkaer2 {
+  @apply text-xs  sm:text-sm   text-inkaer-blue font-sora font-semibold mx-auto;
+}
 .date {
-  @apply text-[12px] xs:text-xs text-gray-600 font-sora ;
+  @apply text-[12px] xs:text-xs text-gray-600 font-medium font-sora ;
 }
 .section-p {
-  @apply text-xs xs:text-sm text-gray-600 font-sora ;
+  @apply text-xs xs:text-sm text-gray-600 font-sora  font-medium;
 }
-
+.text-small {
+  @apply text-[10px] xs:text-xs  font-sora ;
+}
 
 /* BUTTON RESPONSIVENESS */
 .btn-responsive {

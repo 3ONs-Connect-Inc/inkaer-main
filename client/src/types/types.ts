@@ -3,22 +3,26 @@ export interface Project {
   title: string;
   category?: string;
   difficulty: string;
-  duration: string;
-  participants: number;
   userId?: string;
   stepFileUrl?: string;
   pdfFileUrl?: string;
   explanation?: string;
   submissionDate?: string;
   timestamp?: any;
+  stats?: Stats[];
   rating: number;
   description: string;
   tags: string[];
   image: string;
   author?: string;
   comments?: number;
-  type?: string;
+  type?: 'portfolio' | 'challenge';
   grades?: Grade[];
+}
+export interface Stats {
+  participants?: number;
+  duration?: string;
+  submissions?: number;
 }
 
 export interface Vote {
@@ -37,3 +41,5 @@ export interface Grade {
   author: string;
   votes: Vote[];
 }
+
+

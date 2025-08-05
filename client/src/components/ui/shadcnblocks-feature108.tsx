@@ -95,7 +95,7 @@ const Feature108 = ({
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="btn-responsive flex items-center gap-2 rounded-xl 
+                className=" flex items-center gap-2 rounded-xl 
                 px-4 py-3 text-sm font-semibold text-muted-foreground 
                 data-[state=active]:bg-muted 
                 bg-muted
