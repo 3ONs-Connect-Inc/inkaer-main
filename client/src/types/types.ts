@@ -1,22 +1,22 @@
 export interface Project {
-  id?: string;
-  title: string;
-  category?: string;
-  difficulty: string;
+    id: string;
+    title: string;
+    type: string;
+    tags: string[];
+    image?: string;
+    rank: string;
+    author?: string;
+    domain: string;
+    stats?: { participants?: number; duration?: string }[];
+    rating?: number;
+    comments?: number;
+    projectId: string;
   userId?: string;
   stepFileUrl?: string;
   pdfFileUrl?: string;
   explanation?: string;
   submissionDate?: string;
   timestamp?: any;
-  stats?: Stats[];
-  rating: number;
-  description: string;
-  tags: string[];
-  image: string;
-  author?: string;
-  comments?: number;
-  type?: 'portfolio' | 'challenge';
   grades?: Grade[];
 }
 export interface Stats {

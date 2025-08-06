@@ -1,8 +1,6 @@
 import { heroImage, img1, img2, img3 } from "@/assets";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { CheckCircle, Users, Trophy, Award, Briefcase } from 'lucide-react';
-import type { Project } from "@/types/types";
-
 
 
  
@@ -30,7 +28,7 @@ import type { Project } from "@/types/types";
 
 
 //HOME FEATURED SECTION
-  export const getDifficultyColor = (difficulty: string) => {
+  export const getRankColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Beginner': return 'text-green-600 bg-green-100';
       case 'Intermediate': return 'text-yellow-600 bg-yellow-100';
@@ -555,99 +553,7 @@ export const projects = [
       type: "portfolio" as const
     },
   ];  
-   export const allProjects: Project[]  = [
-    {
-      title: "Modular Drone Frame",
-      category: "MECHANICAL ENGINEERING",
-      difficulty: "Beginner",
-    stats: [   
-      {
-        duration: "2-3 hrs",
-        participants: 23,
-        submissions: 5
-      }
-    ],
-      rating: 4.2,
-      description: "Design and prototype a modular drone frame system with interchangeable components for enhanced flexibility and performance.",
-      tags: ["CAD", "Drone", "Modular"],
-      image: img1,
-      author: "Daniel Brown",
-      type: "challenge"
-    },
-    {
-      title: "Smart Home IoT Dashboard", 
-      category: "SOFTWARE (BACKEND)",
-      difficulty: "Intermediate",
-      stats: [   
-      {
-        duration: "2-3 hrs",
-        participants: 23,
-        submissions: 5
-      }
-    ],
-      rating: 4.5,
-      description: "Full-stack web application for monitoring and controlling IoT devices in a smart home environment with real-time data visualization.",
-      tags: ["React", "Node.js", "IoT"],
-      image: img3,
-      author: "Sarah Chen",
-      type: "portfolio"
-    },
-    {
-      title: "Heat Exchanger Redesign", 
-      category: "MECHANICAL ENGINEERING",
-      difficulty: "Advanced",
-       stats: [   
-      {
-        duration: "2-3 hrs",
-        participants: 23,
-        submissions: 5
-      }
-    ],
-      rating: 4.6,
-      description: "Thermal engineering project focusing on heat transfer optimization and efficiency improvements through advanced computational methods.",
-      tags: ["CAD", "Thermal", "Engineering"],
-      image: img1,
-      author: "Cathy Lee",
-      type: "challenge"
-    },
-    {
-      title: "Cooling Plate Simulation",
-      category: "MECHANICAL ENGINEERING", 
-      difficulty: "Elite",
-      stats: [   
-      {
-        duration: "2-3 hrs",
-        participants: 23,
-        submissions: 5
-      }
-    ],
-      rating: 4.9,
-      description: "Advanced computational fluid dynamics simulation for cooling plate optimization in high-performance computing systems.",
-      tags: ["CFD", "Simulation", "Thermal"],
-      image: img2,
-      author: "Ivy Timmons",
-      type: "portfolio"
-    },
-    {
-      title: "Bracket Fatigue Test",
-      category: "CIVIL / STRUCTURAL",
-      difficulty: "Intermediate", 
-       stats: [   
-      {
-        duration: "2-3 hrs",
-        participants: 23,
-        submissions: 5
-      }
-    ],
-      rating: 4.4,
-      description: "Comprehensive fatigue analysis and testing protocol for structural bracket components in aerospace applications.",
-      tags: ["FEA", "Testing", "Structural"],
-      image: img3,
-      author: "Kevin Carpenter",
-      type: "challenge"
-    }
-  ];
-
+  
 
 //how it works page
  export const steps = [

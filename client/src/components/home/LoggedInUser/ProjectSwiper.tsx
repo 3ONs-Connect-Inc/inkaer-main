@@ -1,9 +1,10 @@
 
-import ProjectCard from "../ProjectCard"; 
+
 import type { Project } from "@/types/types"; 
 import { Swiper, SwiperSlide } from 'swiper/react';
 //@ts-ignore
 import 'swiper/css';
+import ProjectCard from "@/components/ProjectCard";
 
 
 export type ProjectCardProps = Project & {
@@ -23,7 +24,7 @@ const ProjectSwiper = ({ projects }: ProjectSwiperProps) => {
       breakpoints={{
         220: { slidesPerView: 1 },
         360: { slidesPerView: 1.5 },
-        640: { slidesPerView: 2 },
+        640: { slidesPerView: 2 },  
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },
         1280: { slidesPerView: 3 },

@@ -6,15 +6,13 @@ import {
   getDocs,
   query,
   where,
-  orderBy,
-  limit,
 } from "firebase/firestore";
 import { formatDistanceToNow } from "date-fns";
 import { toast } from "sonner";
 import type { Project } from "@/types/types";
 import { db } from "@/firebase/config";
 
-export const usePortfolioProject = (userId?: string) => {
+export const usePortfolioProject = (projectId?: string) => {
   const [project, setProject] = useState<Project | null>(null);
   const [authorName, setAuthorName] = useState("");
   const [submissionDate, setSubmissionDate] = useState("");
@@ -22,8 +20,8 @@ export const usePortfolioProject = (userId?: string) => {
 
   useEffect(() => {
     const fetchProject = async () => {
-      if (!userId) {
-        toast.error("User ID is missing");
+      if (!projectId) {
+        toast.error("Missing project ID");
         return;
       }
 
@@ -32,53 +30,47 @@ export const usePortfolioProject = (userId?: string) => {
 
         const projectQuery = query(
           collection(db, "portfolios"),
-          where("userId", "==", userId),
-          orderBy("timestamp", "desc"),
-          limit(1)
+          where("projectId", "==", projectId)
         );
 
-        const querySnapshot = await getDocs(projectQuery);
+        const snapshot = await getDocs(projectQuery);
 
-        if (!querySnapshot.empty) {
-          const docSnap = querySnapshot.docs[0];
+        if (!snapshot.empty) {
+          const docSnap = snapshot.docs[0];
           const data = docSnap.data() as Project;
           setProject(data);
 
-          // Guard: make sure userId exists in data
-          if (!data.userId) {
-            throw new Error("Project is missing userId.");
+          // Fetch author
+          if (data.userId) {
+            const userRef = doc(db, "users", data.userId);
+            const userSnap = await getDoc(userRef);
+
+            if (userSnap.exists()) {
+              const user = userSnap.data();
+              const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+              const name = `${capitalize(user.firstName)} ${capitalize(user.lastName)}`;
+              setAuthorName(name);
+            }
           }
 
-          // Fetch user
-          const userRef = doc(db, "users", data.userId);
-          const userSnap = await getDoc(userRef);
-
-          if (userSnap.exists()) {
-            const user = userSnap.data();
-            const capitalize = (str: string) =>
-              str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-            const name = `${capitalize(user.firstName)} ${capitalize(user.lastName)}`;
-            setAuthorName(name);
-          }
-
-          // Format date
+          // Format submission date
           if (data.timestamp?.toDate) {
             const timeAgo = formatDistanceToNow(data.timestamp.toDate(), { addSuffix: true });
             setSubmissionDate(timeAgo);
           }
         } else {
-          toast.error(`No portfolio found for user ID ${userId}`);
+          toast.error(`No project found for ID: ${projectId}`);
         }
       } catch (error) {
-        console.error("Error fetching portfolio:", error);
-        toast.error("Failed to load project data");
+        console.error("Error fetching project:", error);
+        toast.error("Failed to load portfolio");
       } finally {
         setIsLoading(false);
       }
     };
- 
+
     fetchProject();
-  }, [userId]);
+  }, [projectId]);
 
   return { project, isLoading, authorName, submissionDate };
 };

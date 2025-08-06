@@ -4,7 +4,7 @@ import type { Grade, Project } from '@/types/types';
 
 
 const ProjectHeader = ({
-//  project,
+  project,
   averageGrade,
   grades,
   author,
@@ -16,9 +16,7 @@ const ProjectHeader = ({
   author: string;
   submissionDate: string;
 }) => {
-    const projectTags = {
-    tags: ['Thermal Engineering', 'CFD', 'Heat Transfer', 'Design Optimization']
-  };
+ 
 
   return (
   
@@ -33,14 +31,14 @@ const ProjectHeader = ({
       </div>
     </div>
     <h1 className="section-title2 mb-2">
-      Advanced Heat Exchanger Design Optimization
+    {project.title}
       </h1>
     <p className="section-p">
        by {author} • Submitted {submissionDate}
     </p>
     <div className="flex flex-wrap gap-2 mt-4">
-      {projectTags.tags && projectTags.tags.length > 0 ? (
-        projectTags.tags.map((tag, index) => (
+      {project.tags && project.tags.length > 0 ? (
+        project.tags.map((tag, index) => (
           <Badge key={index} variant="secondary" className="section-p">
             {tag}
           </Badge>

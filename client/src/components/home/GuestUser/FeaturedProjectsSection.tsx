@@ -1,9 +1,26 @@
+import ProjectCard from "@/components/ProjectCard";
 import Button from "@/components/ui/button";
-import { projects } from "@/constants";
+import { useAllProjects } from "@/hooks/portfolio/useAllProjects";
 import { ArrowRight } from "lucide-react";
-import ProjectCard from "../ProjectCard";
+
 
 const FeaturedProjectsSection = () => {
+     const { allProjects, loading, error } = useAllProjects();
+  if (loading) {
+    return (
+      <div className="text-center py-20 font-semibold text-xl text-gray-600">
+        Loading portfolios...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-20 text-red-500 font-semibold">
+        {error}
+      </div>
+    );
+  }
   return (
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-1 sm:px-6 lg:px-8">
@@ -18,7 +35,7 @@ const FeaturedProjectsSection = () => {
 
         {/* Projects Grid */}
         <div className="grid w-full gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12">
-          {projects.map((project, index) => (
+          {allProjects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
         </div>

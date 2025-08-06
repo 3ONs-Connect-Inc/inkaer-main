@@ -1,18 +1,20 @@
 import React, { useEffect, useState, useRef } from "react";
-import { FileText, ChevronLeft, ChevronRight } from "lucide-react";
+import { FileText, ChevronLeft, ChevronRight, Download } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { AnimatePresence, motion } from "framer-motion";
 import "react-pdf/dist/Page/AnnotationLayer.css";
+import Button from "../ui/button";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 interface PdfViewerProps {
   file: string;
   fileType: string;
+  onDownload: (fileUrl: string) => void;
 }
 
-const PdfViewer: React.FC<PdfViewerProps> = ({ file, fileType }) => {
+const PdfViewer: React.FC<PdfViewerProps> = ({ file, fileType, onDownload }) => {
   const [numPages, setNumPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
   const [containerWidth, setContainerWidth] = useState<number>(800);
@@ -50,6 +52,14 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ file, fileType }) => {
         <CardTitle className="flex items-center justify-center gap-2 section-title2">
           <FileText className="w-5 h-5" />
           <p className="section-title2">{fileType}</p>
+          <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onDownload(file)}
+                      className="text-gray-600 hover:text-gray-900"
+                    >
+                      <Download className="w-4 h-4" />
+                    </Button>
         </CardTitle>
       </CardHeader>
 

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { FileText } from "lucide-react";
+import { Download, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, ContactShadows } from '@react-three/drei'
-//import StepModel from './StepModel'
+import StepModel from './StepModel'
 import Loader  from './Loader'
 import { CameraLight, FillLights } from "./Settings";
+import Button from "../ui/button";
 
-const StepViewer = ({ file, fileType }: { file: string; fileType: string }) => {
+const StepViewer = ({ file, fileType, onDownload }: { file: string; fileType: string, onDownload: (fileUrl: string) => void; }) => {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
@@ -20,6 +21,14 @@ const StepViewer = ({ file, fileType }: { file: string; fileType: string }) => {
         <CardTitle className="flex items-center justify-center gap-2 section-title2">
           <FileText className="flex self-start w-5 h-5" />
           <p className="section-title2">{fileType}</p>
+          <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onDownload(file)}
+                      className="text-gray-600 hover:text-gray-900"
+                    >
+                      <Download className="w-4 h-4" />
+                    </Button>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -31,12 +40,12 @@ const StepViewer = ({ file, fileType }: { file: string; fileType: string }) => {
           shadows>
             <CameraLight />
             <FillLights />
-            {/* <StepModel file={file} onLoad={() => setReady(true)} /> */}
+        <StepModel file={file} onLoad={() => setReady(true)} />
             <ContactShadows
               position={[0, -0.8, 0]}
               opacity={0.5}
               scale={10}
-              blur={1.5}
+              blur={1.5}  
               far={10}
             />
             <OrbitControls makeDefault enableDamping dampingFactor={0.1} enabled={ready} />

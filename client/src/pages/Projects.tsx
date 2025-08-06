@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { allProjects } from "@/constants";
 import Header from "@/components/Projects/Header";
 import Filters from "@/components/Projects/Filters";
 import ViewToggle from "@/components/Projects/ViewToggle";
 import ProjectCardGrid from "@/components/Projects/ProjectCardGrid";
 import ProjectCardList from "@/components/Projects/ProjectCardList";
+import { useAllProjects } from "@/hooks/portfolio/useAllProjects";
 
 const Projects = () => {
+   const { allProjects, loading, error } = useAllProjects();
   const [selectedDomain, setSelectedDomain] = useState("all");
   const [selectedDifficulty, setSelectedDifficulty] = useState("all");
   const [selectedSubdomain, setSelectedSubdomain] = useState("all");
@@ -22,13 +23,27 @@ const Projects = () => {
 
     const domainMatch =
       selectedDomain === "all" ||
-      project.category?.toLowerCase().includes(selectedDomain);
+      project.domain?.toLowerCase().includes(selectedDomain);
     const difficultyMatch =
-      selectedDifficulty === "all" || project.difficulty === selectedDifficulty;
+      selectedDifficulty === "all" || project.rank === selectedDifficulty;
 
     return tabMatch && domainMatch && difficultyMatch;
   });
+  if (loading) {
+    return (
+      <div className="text-center py-20 font-semibold text-xl text-gray-600">
+        Loading portfolios...
+      </div>
+    );
+  }
 
+  if (error) {
+    return (
+      <div className="text-center py-20 text-red-500 font-semibold">
+        {error}
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-indigo-50/30">
       <section className="py-12">
@@ -48,7 +63,7 @@ const Projects = () => {
           {filteredProjects.length > 0 ? (
             viewMode === "grid" ? (
               <ProjectCardGrid projects={filteredProjects} />
-            ) : (
+            ) : (  
               <ProjectCardList projects={filteredProjects} />
             )
           ) : (
@@ -56,7 +71,7 @@ const Projects = () => {
               <p className="text-xl text-gray-500 font-sora">
                 No projects found matching your filters.
               </p>
-            </div>
+            </div>  
           )}
         </div>
       </section>

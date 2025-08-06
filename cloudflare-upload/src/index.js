@@ -38,7 +38,7 @@ async function handleRequest(request) {
         status: 200,
         headers: {
           ...corsHeaders(),
-          "Content-Type": contentType,
+          "Content-Type": contentType,  
         },
       });
     } catch (err) {

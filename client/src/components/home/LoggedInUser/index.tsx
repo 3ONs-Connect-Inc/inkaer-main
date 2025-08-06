@@ -1,15 +1,16 @@
 import { Feature108 } from "@/components/ui/shadcnblocks-feature108";
 import ProjectSection from "./ProjectSection";
-import {
-  featuredProjects,
-  myProjects,
-  newProjects,
-  portfolioProjects,
-  starredProjects,
-} from "@/constants";
+// import {
+//   featuredProjects,
+//   myProjects,
+//   newProjects,
+//   portfolioProjects,
+//   starredProjects,
+// } from "@/constants";
 import FlickeringGridWrapper from "@/components/auth/FlickeringGridWrapper";
 import BackgroundDecor from "@/components/auth/BackgroundDecor";
 import { motion, type Variants } from "framer-motion";
+import { useAllProjects } from "@/hooks/portfolio/useAllProjects";
 
 
 const fadeInUp: Variants = {
@@ -31,6 +32,23 @@ const staggerContainer: Variants = {
 };
 
 const LoggedInUser = () => {
+     const { allProjects, loading, error } = useAllProjects();
+    if (loading) {
+      return (
+        <div className="text-center py-20 font-semibold text-xl text-gray-600">
+          Loading portfolios...
+        </div>
+      );
+    }
+  
+    if (error) {
+      return (
+        <div className="text-center py-20 text-red-500 font-semibold">
+          {error}
+        </div>
+      );
+    }
+    
   return (
     <div className="mb-20 min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
       <FlickeringGridWrapper />
@@ -84,30 +102,30 @@ const LoggedInUser = () => {
           <motion.div variants={fadeInUp}>
             <ProjectSection
               title="Featured Portfolio Projects"
-              projects={portfolioProjects}
+              projects={allProjects}
             />
           </motion.div>
              <motion.div variants={fadeInUp}>
              <ProjectSection 
             title="Featured Challenges" 
-            projects={featuredProjects}
+            projects={allProjects}
           />
           </motion.div>
           <motion.div variants={fadeInUp}>
             <ProjectSection title="New Projects" 
-            projects={newProjects} 
+            projects={allProjects} 
             />
           </motion.div>
           <motion.div variants={fadeInUp}>
             <ProjectSection 
             title="My Projects"
-             projects={myProjects} 
+             projects={allProjects} 
              />
           </motion.div>
           <motion.div variants={fadeInUp}>
             <ProjectSection 
             title="Starred Projects"
-             projects={starredProjects}
+             projects={allProjects}
               />
           </motion.div>
         </motion.div>

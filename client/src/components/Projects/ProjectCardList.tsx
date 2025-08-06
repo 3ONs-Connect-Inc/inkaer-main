@@ -1,6 +1,7 @@
 
 import type { Project } from '@/types/types';
-import ProjectCard from '../home/ProjectCard';
+import ProjectCard from '../ProjectCard';
+
 
 interface Props {
   projects: Project[];
