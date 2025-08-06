@@ -6,16 +6,11 @@ export const getButtonText = (type: string): string =>
 
 
 export const getRankColor = (rank?: string): string => {
-  if (!rank) return "bg-gray-200 text-gray-800"; 
-
-  switch (rank.toLowerCase()) {
-    case "gold":
-      return "bg-yellow-500 text-white";
-    case "silver":
-      return "bg-gray-400 text-white";
-    case "bronze":
-      return "bg-orange-400 text-white";
-    default:
-      return "bg-gray-200 text-gray-800";
+  switch (rank) {
+      case 'Beginner': return 'text-green-600 bg-green-100';
+      case 'Intermediate': return 'text-yellow-600 bg-yellow-100';
+      case 'Advanced': return 'text-orange-600 bg-orange-100';
+      case 'Elite': return 'text-red-600 bg-red-100';
+      default: return 'text-gray-600 bg-gray-100';
   }
 };

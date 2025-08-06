@@ -5,9 +5,10 @@ import ViewToggle from "@/components/Projects/ViewToggle";
 import ProjectCardGrid from "@/components/Projects/ProjectCardGrid";
 import ProjectCardList from "@/components/Projects/ProjectCardList";
 import { useAllProjects } from "@/hooks/portfolio/useAllProjects";
+import { PageLoader } from "@/components/ui/Spinner";
 
 const Projects = () => {
-   const { allProjects, loading, error } = useAllProjects();
+  const { allProjects, loading, error } = useAllProjects();
   const [selectedDomain, setSelectedDomain] = useState("all");
   const [selectedDifficulty, setSelectedDifficulty] = useState("all");
   const [selectedSubdomain, setSelectedSubdomain] = useState("all");
@@ -32,7 +33,7 @@ const Projects = () => {
   if (loading) {
     return (
       <div className="text-center py-20 font-semibold text-xl text-gray-600">
-        Loading portfolios...
+        <PageLoader />
       </div>
     );
   }
@@ -63,7 +64,7 @@ const Projects = () => {
           {filteredProjects.length > 0 ? (
             viewMode === "grid" ? (
               <ProjectCardGrid projects={filteredProjects} />
-            ) : (  
+            ) : (
               <ProjectCardList projects={filteredProjects} />
             )
           ) : (
@@ -71,7 +72,7 @@ const Projects = () => {
               <p className="text-xl text-gray-500 font-sora">
                 No projects found matching your filters.
               </p>
-            </div>  
+            </div>
           )}
         </div>
       </section>

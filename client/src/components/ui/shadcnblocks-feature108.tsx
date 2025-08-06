@@ -5,7 +5,6 @@ import  Badge  from "@/components/ui/badge";
 import  Button  from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { heroImage, img1, img5 } from "@/assets";
-import { Image } from "./Image";
 
 interface TabContent {
   badge: string;
@@ -128,7 +127,7 @@ const Feature108 = ({
                     </Link>
                   </Button>
                 </div>
-                <Image
+                <img
                   src={tab.content.imageSrc}
                   alt={tab.content.imageAlt}
                   className="rounded-xl"
