@@ -5,8 +5,48 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Label } from '../ui/label';
+import { submitContactForm } from '@/firebase/contactService';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const result = await submitContactForm(formData);
+    setLoading(false);
+
+    if (result.success) {
+      toast.success("Message sent successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } else {
+      toast.error("Failed to send message. Please try again.");
+    }
+  };
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-indigo-50/30 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-100/30"></div>
@@ -29,52 +69,78 @@ const Contact = () => {
               <div className="bg-white/70 rounded-2xl p-2 sm:p-8">
                 <h2 className="section-subtitle2 mb-6">Send us a message</h2>
                 
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <Label className="Label block text-left mb-2">
                         First Name
                       </Label>
-                      <Input placeholder="Your first name" />
+                      <Input
+                        name="firstName"
+                        placeholder="Your first name"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div>
                       <Label className="Label block text-left mb-2">
                         Last Name
                       </Label>
-                      <Input placeholder="Your last name" />
+                      <Input
+                        name="lastName"
+                        placeholder="Your last name"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                   </div>
-                  
+
                   <div>
-                    <Label className="Label block text-left mb-2">
-                      Email
-                    </Label>
-                    <Input type="email" placeholder="your.email@example.com" />
-                  </div>
-                  
-                  <div>
-                    <Label className="Label block text-left mb-2">
-                      Subject
-                    </Label>
-                    <Input placeholder="How can we help?" />
-                  </div>
-                  
-                  <div>
-                    <Label className="Label block text-left mb-2">
-                      Message
-                    </Label>
-                    <Textarea 
-                      placeholder="Tell us more about your inquiry..."
-                      rows={5}
+                    <Label className="Label block text-left mb-2">Email</Label>
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder="your.email@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
-                  
-                  <Button 
+
+                  <div>
+                    <Label className="Label block text-left mb-2">Subject</Label>
+                    <Input
+                      name="subject"
+                      placeholder="How can we help?"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="Label block text-left mb-2">Message</Label>
+                    <Textarea
+                      name="message"
+                      placeholder="Tell us more about your inquiry..."
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
                     className="w-full bg-inkaer-blue hover:bg-inkaer-dark-blue text-white btn-responsive"
                   >
-                    Send Message
+                    {loading ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
+
               </div>
 
               {/* Contact Information */}
