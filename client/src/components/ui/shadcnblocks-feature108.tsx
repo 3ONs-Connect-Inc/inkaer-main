@@ -4,7 +4,7 @@ import { Layout, Pointer, Zap } from "lucide-react";
 import  Badge  from "@/components/ui/badge";
 import  Button  from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { heroImage, img1, img5 } from "@/assets";
+import { heroImage, img6, img5 } from "@/assets";
 
 interface TabContent {
   badge: string;
@@ -44,7 +44,7 @@ const Feature108 = ({
         description:
           "Share your portfolio and demonstrate your skills through real work examples. Let employers see what you can actually build.",
         buttonText: "Upload Portfolio",
-        imageSrc: img1,
+        imageSrc: img6,
         imageAlt: "Portfolio showcase",
       },
     },

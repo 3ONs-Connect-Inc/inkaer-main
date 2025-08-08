@@ -1,8 +1,8 @@
 
 import { predefinedTags } from "@/constants";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
 import { Tag } from "lucide-react"
-import Badge from "../ui/badge";
+import Badge from "../../ui/badge";
 
 
 export interface ProjectTagsProps {

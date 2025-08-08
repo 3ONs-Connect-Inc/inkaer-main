@@ -24,13 +24,27 @@ const Projects = () => {
 
     const domainMatch =
       selectedDomain === "all" ||
-      project.domain?.toLowerCase().includes(selectedDomain);
-    const difficultyMatch =
-      selectedDifficulty === "all" || project.rank === selectedDifficulty;
+      project.domain?.toLowerCase().includes(selectedDomain.toLowerCase());
 
-    return tabMatch && domainMatch && difficultyMatch;
+    const difficultyMatch =
+      selectedDifficulty === "all" ||
+      project.rank?.toLowerCase() === selectedDifficulty.toLowerCase();
+
+    const subdomainMatch =
+      selectedSubdomain === "all" ||
+      project.subdomain?.toLowerCase() === selectedSubdomain.toLowerCase();
+
+    const tagsMatch =
+      selectedTags === "all" ||
+      (Array.isArray(project.tags) &&
+        project.tags.some(
+          (tag) => tag.toLowerCase() === selectedTags.toLowerCase()
+        ));
+
+    return tabMatch && domainMatch && difficultyMatch && subdomainMatch && tagsMatch;
   });
-  if (loading) {
+
+  if (loading) {  
     return (
       <div className="text-center py-20 font-semibold text-xl text-gray-600">
         <PageLoader />
@@ -44,7 +58,7 @@ const Projects = () => {
         {error}
       </div>
     );
-  }
+  }  
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-indigo-50/30">
       <section className="py-12">

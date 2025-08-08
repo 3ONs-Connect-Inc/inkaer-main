@@ -1,5 +1,6 @@
-import ProjectCard from "@/components/ProjectCard";
+import ProjectCard from "@/components/Projects/ProjectCard";
 import Button from "@/components/ui/button";
+import { PageLoader } from "@/components/ui/Spinner";
 import { useAllProjects } from "@/hooks/portfolio/useAllProjects";
 import { ArrowRight } from "lucide-react";
 
@@ -9,7 +10,7 @@ const FeaturedProjectsSection = () => {
   if (loading) {
     return (
       <div className="text-center py-20 font-semibold text-xl text-gray-600">
-        Loading portfolios...
+        <PageLoader/>
       </div>
     );
   }

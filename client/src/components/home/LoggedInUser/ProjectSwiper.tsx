@@ -4,7 +4,7 @@ import type { Project } from "@/types/types";
 import { Swiper, SwiperSlide } from 'swiper/react';
 //@ts-ignore
 import 'swiper/css';
-import ProjectCard from "@/components/ProjectCard";
+import ProjectCard from "@/components/Projects/ProjectCard";
 
 
 export type ProjectCardProps = Project & {

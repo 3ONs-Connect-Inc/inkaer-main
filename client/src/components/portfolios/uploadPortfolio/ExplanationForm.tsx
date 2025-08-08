@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import  Button  from "@/components/ui/button";
 import { Suspense } from "react";
-import ErrorAlert from "../ErrorAlert";
-import { ChatInput } from "../ui/chat-input";
+import ErrorAlert from "../../ErrorAlert";
+import { ChatInput } from "../../ui/chat-input";
 
 
 interface ExplanationInputProps {

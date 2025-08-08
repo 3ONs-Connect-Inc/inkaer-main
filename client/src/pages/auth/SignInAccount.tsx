@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlickeringGridWrapper from "@/components/auth/FlickeringGridWrapper";
 import BackgroundDecor from "@/components/auth/BackgroundDecor";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,6 +7,9 @@ import SocialLogin from "@/components/auth/SocialLogin";
 import { useSignIn } from "@/hooks/auth/useSignIn";
 import SignInForm from "@/components/auth/SignInForm";
 import Seo from "@/components/Seo";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import type { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
 
 
 const SignInAccount = () => {
@@ -14,6 +17,17 @@ const SignInAccount = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+
+  //after login return to previous page
+const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const user = useSelector((state: RootState) => state.session.user);
+  useEffect(() => {
+    if (user) {
+      const returnTo = searchParams.get("returnTo");
+      navigate(returnTo || "/"); // or your default page
+    }
+  }, [user, navigate, searchParams]);
 
   const signInMutation = useSignIn();
 

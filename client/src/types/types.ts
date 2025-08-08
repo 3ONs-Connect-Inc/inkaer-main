@@ -7,22 +7,29 @@ export interface Project {
     rank: string;
     author?: string;
     domain: string;
-    stats?: { participants?: number; duration?: string }[];
-    rating?: number;
-    comments?: number;
+    subdomain?: string;
+    stats?: ProjectStats[];
     projectId: string;
   userId?: string;
   stepFileUrl?: string;
-  pdfFileUrl?: string;
+  pdfFileUrl?: string;  
   explanation?: string;
   submissionDate?: string;
   timestamp?: any;
   grades?: Grade[];
 }
-export interface Stats {
+export type ProjectStats = {
+  duration?: string | null;
   participants?: number;
-  duration?: string;
-  submissions?: number;
+  rating?: number;
+};
+export interface Grade {
+  id: string;
+  rating: number;
+  comment: string;
+  timestamp: string;
+  author: string;
+  votes: Vote[];
 }
 
 export interface Vote {
@@ -33,13 +40,5 @@ export interface Vote {
   author: string;
 }
 
-export interface Grade {
-  id: string;
-  rating: number;
-  comment: string;
-  timestamp: string;
-  author: string;
-  votes: Vote[];
-}
 
 

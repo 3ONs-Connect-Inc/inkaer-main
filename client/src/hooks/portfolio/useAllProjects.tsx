@@ -14,11 +14,12 @@ export const useAllProjects = () => {
         const data = await fetchAllProjects();
         setAllProjects(data);
       } catch (err) {
-        setError("Failed to fetch projects.");
+        console.error("Project fetch error:", err);
+        setError("Something went wrong while loading projects.");
       } finally {
         setLoading(false);
       }
-    };
+    };  
 
     loadProjects();
   }, []);

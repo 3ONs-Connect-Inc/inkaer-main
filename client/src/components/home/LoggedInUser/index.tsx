@@ -11,6 +11,9 @@ import FlickeringGridWrapper from "@/components/auth/FlickeringGridWrapper";
 import BackgroundDecor from "@/components/auth/BackgroundDecor";
 import { motion, type Variants } from "framer-motion";
 import { useAllProjects } from "@/hooks/portfolio/useAllProjects";
+import { PageLoader } from "@/components/ui/Spinner";
+import type { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
 
 
 const fadeInUp: Variants = {
@@ -32,23 +35,37 @@ const staggerContainer: Variants = {
 };
 
 const LoggedInUser = () => {
+    const currentUser = useSelector((state: RootState) => state.session.user);
      const { allProjects, loading, error } = useAllProjects();
     if (loading) {
       return (
         <div className="text-center py-20 font-semibold text-xl text-gray-600">
-          Loading portfolios...
+          <PageLoader />
         </div>
       );
     }
   
-    if (error) {
-      return (
-        <div className="text-center py-20 text-red-500 font-semibold">
-          {error}
-        </div>
-      );
-    }
-    
+  if (error && allProjects.length === 0) {
+  return (
+    <div className="text-center py-20 text-red-500 font-semibold">
+      {error}
+    </div>
+  );
+}
+     const portfolioProjects = allProjects.filter(p => p.type === "portfolio");
+  const challengeProjects = allProjects.filter(p => p.type === "challenge");
+
+  const newProjects = [...allProjects].sort((a, b) => {
+    const timeA = a.timestamp?.toMillis?.() || 0;
+    const timeB = b.timestamp?.toMillis?.() || 0;
+    return timeB - timeA;
+  });
+
+ const myProjects =
+    currentUser?.uid
+      ? allProjects.filter(p => p.userId === currentUser.uid)
+      : [];
+
   return (
     <div className="mb-20 min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
       <FlickeringGridWrapper />
@@ -99,29 +116,39 @@ const LoggedInUser = () => {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={fadeInUp}>
-            <ProjectSection
-              title="Featured Portfolio Projects"
-              projects={allProjects}
-            />
-          </motion.div>
-             <motion.div variants={fadeInUp}>
-             <ProjectSection 
-            title="Featured Challenges" 
-            projects={allProjects}
-          />
-          </motion.div>
-          <motion.div variants={fadeInUp}>
-            <ProjectSection title="New Projects" 
-            projects={allProjects} 
-            />
-          </motion.div>
-          <motion.div variants={fadeInUp}>
-            <ProjectSection 
-            title="My Projects"
-             projects={allProjects} 
-             />
-          </motion.div>
+                {portfolioProjects.length > 0 && (
+            <motion.div variants={fadeInUp}>
+              <ProjectSection
+                title="Featured Portfolio Projects"
+                projects={portfolioProjects}
+              />
+            </motion.div>
+          )}
+
+          {challengeProjects.length > 0 && (
+            <motion.div variants={fadeInUp}>
+              <ProjectSection
+                title="Featured Challenges"
+                projects={challengeProjects}
+              />
+            </motion.div>
+          )}
+
+          {newProjects.length > 0 && (
+            <motion.div variants={fadeInUp}>
+              <ProjectSection title="New Projects" projects={newProjects} />
+            </motion.div>
+          )}
+
+          {currentUser?.uid && (
+            <motion.div variants={fadeInUp}>
+              {myProjects.length > 0 ? (
+                <ProjectSection title="My Projects" projects={myProjects} />
+              ) :null
+              }
+            </motion.div>
+          )}
+          
           <motion.div variants={fadeInUp}>
             <ProjectSection 
             title="Starred Projects"

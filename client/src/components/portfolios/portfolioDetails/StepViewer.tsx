@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Download, FileText } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, ContactShadows } from '@react-three/drei'
 import StepModel from './StepModel'
 import Loader  from './Loader'
 import { CameraLight, FillLights } from "./Settings";
-import Button from "../ui/button";
+import Button from "@/components/ui/button";
 
 const StepViewer = ({ file, fileType, onDownload }: { file: string; fileType: string, onDownload: (fileUrl: string) => void; }) => {
   const [ready, setReady] = useState(false)

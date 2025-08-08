@@ -1,5 +1,5 @@
 import { Star } from 'lucide-react';
-import Badge from '../ui/badge';
+import Badge from '../../ui/badge';
 import type { Grade, Project } from '@/types/types';
 
 
@@ -18,8 +18,8 @@ const ProjectHeader = ({
 }) => {
  
 
-  return (
-  
+  return (  
+    
   <div className="mb-8">
     <div className="flex items-center gap-2 mb-4">
       <Badge className="bg-blue-600 text-white">Portfolio Project</Badge>

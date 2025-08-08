@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FileText, ChevronLeft, ChevronRight, Download } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnimatePresence, motion } from "framer-motion";
 import "react-pdf/dist/Page/AnnotationLayer.css";
-import Button from "../ui/button";
+import Button from "@/components/ui/button";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 

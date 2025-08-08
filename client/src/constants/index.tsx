@@ -600,7 +600,7 @@ export const defaultSections = [
       { name: "How It Works", href: "/how-it-works" },
       { name: "Projects", href: "/projects" },
       { name: "Certification", href: "/certification" },
-      { name: "Rankings", href: "/rankings" },
+      { name: "Rankings", href: "/rank" },
     ],
   },
   {

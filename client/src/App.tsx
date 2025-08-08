@@ -13,14 +13,23 @@ import ScrollToTop from "./components/ScrollToTop";
 import BackToTopButton from "./components/BackToTopButton";
 
 
+
 const CreateAccount = lazy(() => import("./pages/auth/CreateAccount"));
 const SignInAccount = lazy(() => import("./pages/auth/SignInAccount"));
 const Home = lazy(() => import("./pages/Home"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
-const PortfolioProject =lazy(()=> import("./pages/PortfolioProject"));
-const HowItWorks =lazy(() => import("./components/HowItWorks"));
+const PortfolioDetailPage =lazy(()=> import("./pages/PortfolioDetailPage"));
+const HowItWorks =lazy(() => import("./components/footer/HowItWorks"));
 const Projects =lazy(()=>import("./pages/Projects"));
+// const Certification =lazy(()=> import ("./components/footer/Certification"));
+// const Rank =lazy(()=> import("./components/footer/Rank"));
+// const About = lazy(() => import("./components/footer/About"));
+//const Careers =lazy(() => import ("./components/footer/Careers"));
+//const Blog =lazy(()=>import("./components/footer/Blog"));
+//const Contact =lazy(()=> import("./components/footer/Contact"));
+
+
 
 
 const qc = new QueryClient();
@@ -47,7 +56,17 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/upload-portfolio" element={<UploadPortfolio />} />
-            <Route path="/portfolio/:id" element={<PortfolioProject />} />
+            <Route path="/portfolio/:id" element={<PortfolioDetailPage />} />
+      {/*
+                <Route path="/contact" element={<Contact />} />
+        
+
+                <Route path="/blog" element={<Blog />} />
+              <Route path="/careers" element={<Careers />} />
+                 <Route path="/about" element={<About />} />
+               <Route path="/rank" element={<Rank />} />
+               <Route path="/certification" element={<Certification />} /> 
+                */}
 
              <Route path="/how-it-works" element={<HowItWorks />} />
               <Route path="/projects" element={<Projects />} />

@@ -45,6 +45,6 @@ export const submitProject = async ({
     timestamp: new Date(),
   });
 
-  await updateUserPointsAndRank(userId, domain);
+  await updateUserPointsAndRank(userId, domain, 100);
    return projectId;
 };

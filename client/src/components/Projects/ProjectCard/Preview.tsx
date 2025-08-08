@@ -1,7 +1,7 @@
+import Loader from "@/components/portfolios/portfolioDetails/Loader";
+import { CameraLight, FillLights } from "@/components/portfolios/portfolioDetails/Settings";
+//import StepModel from "@/components/portfolios/portfolioDetails/StepModel";
 import { Canvas } from "@react-three/fiber";
-import { CameraLight, FillLights } from "../uploadPortfolio/Settings";
-//import StepModel from "../uploadPortfolio/StepModel";
-import Loader from "../uploadPortfolio/Loader";
 import { Suspense } from "react";
 
 type Props = {
@@ -9,7 +9,9 @@ type Props = {
   setReady: (ready: boolean) => void;
 };
 
-export const Preview = ({ image }: Props) => {
+export const Preview = ({ image,
+   //setReady 
+  }: Props) => {
   if (!image) {
     return (
       <div className="flex items-center justify-center w-full h-full bg-gray-100 text-gray-500">

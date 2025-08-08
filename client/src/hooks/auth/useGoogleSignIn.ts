@@ -7,7 +7,7 @@ import { db } from "@/firebase/config";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { signInWithGoogle } from "@/api/auth/socialAuth";
 
-export function useGoogleSignIn() {
+export function useGoogleSignIn(returnTo: string) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ export function useGoogleSignIn() {
       }));
 
       toast.success("Signed in with Google!");
-      navigate("/");
+      navigate(returnTo || "/");
     },
     onError: () => {
       toast.error("Google sign-in failed.");

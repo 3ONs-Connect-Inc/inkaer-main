@@ -47,15 +47,28 @@ export const usePortfolioProject = (projectId?: string) => {
 
             if (userSnap.exists()) {
               const user = userSnap.data();
-              const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
-              const name = `${capitalize(user.firstName)} ${capitalize(user.lastName)}`;
+              const capitalize = (s: string) =>
+                s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : "";
+
+              let name = "Unknown";
+
+              if (user.firstName || user.lastName) {
+                name = `${capitalize(user.firstName)} ${capitalize(
+                  user.lastName
+                )}`.trim();
+              } else if (user.displayName) {
+                name = user.displayName;
+              }
+
               setAuthorName(name);
             }
           }
 
           // Format submission date
           if (data.timestamp?.toDate) {
-            const timeAgo = formatDistanceToNow(data.timestamp.toDate(), { addSuffix: true });
+            const timeAgo = formatDistanceToNow(data.timestamp.toDate(), {
+              addSuffix: true,
+            });
             setSubmissionDate(timeAgo);
           }
         } else {

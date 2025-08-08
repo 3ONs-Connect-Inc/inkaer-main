@@ -1,19 +1,24 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import { toast } from "sonner";
-import EngineeringDropdown from "@/components/uploadPortfolio/EngineeringDropdown";
+import EngineeringDropdown from "@/components/portfolios/uploadPortfolio/EngineeringDropdown";
 import BackgroundDecor from "@/components/auth/BackgroundDecor";
 import type { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { validateFile, validateSubmission } from "@/utils/validation";
 import Seo from "@/components/Seo";
-import ProjectTitle from "@/components/uploadPortfolio/ProjectTitle";
-import ProjectTags from "@/components/uploadPortfolio/ProjectTags";
-import ExplanationForm from "@/components/uploadPortfolio/ExplanationForm";
+import ProjectTitle from "@/components/portfolios/uploadPortfolio/ProjectTitle";
+import ProjectTags from "@/components/portfolios/uploadPortfolio/ProjectTags";
+import ExplanationForm from "@/components/portfolios/uploadPortfolio/ExplanationForm";
 import { submitProject } from "@/firebase/uploadPortfolio";
 import { useNavigate } from "react-router-dom";
-  
-const FileUpload = lazy(() => import("@/components/uploadPortfolio/FileUpload"));
+import { redirectToLoginWithReturnUrl } from "@/hooks/auth/redirectToLogin";
+
+const FileUpload = lazy(
+  () => import("@/components/portfolios/uploadPortfolio/FileUpload")
+);
 const ErrorAlert = lazy(() => import("@/components/ErrorAlert"));
+
+const STORAGE_KEY = "upload-portfolio-draft";
 
 const UploadPortfolio = () => {
   const navigate = useNavigate();
@@ -44,6 +49,25 @@ const UploadPortfolio = () => {
     });
   };
 
+  // 🚀 Restore draft from localStorage if exists
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setTitle(parsed.title || "");
+        setExplanation(parsed.explanation || "");
+        setSelectedDomain(parsed.selectedDomain || "mechanical");
+        setSelectedTags(parsed.selectedTags || []);
+        toast.success("Restored saved form data.");
+      } catch (err) {
+        console.error("Failed to restore draft:", err);
+      } finally {
+        localStorage.removeItem(STORAGE_KEY); // remove it after restoring
+      }
+    }
+  }, []);
+
   const handleFileUpload = (file: File | null, type: "step" | "pdf") => {
     if (!file) return;
 
@@ -64,52 +88,64 @@ const UploadPortfolio = () => {
     }
   };
 
-const handleSubmit = async () => {
-  if (!currentUser) {
-    toast.error("You must be logged in before submitting a portfolio.");
-    return;
-  }
+  const handleSubmit = async () => {
+    if (!currentUser) {
+      // 🧠 Save draft form data
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          title,
+          explanation,
+          selectedDomain,
+          selectedTags,
+        })
+      );
 
-  const newErrors = validateSubmission(title, stepFile, pdfFile, explanation);
-  setErrors(newErrors);
-  if (Object.values(newErrors).some((error) => error !== "")) {
-    toast.error("Please fix the errors before submitting");
-    return;
-  }
+      toast.error("You must be logged in before submitting a portfolio.");
+      redirectToLoginWithReturnUrl(navigate, "/upload-portfolio");
+      return;
+    }
 
-  setIsSubmitting(true);
-  clearErrors();
+    const newErrors = validateSubmission(title, stepFile, pdfFile, explanation);
+    setErrors(newErrors);
+    if (Object.values(newErrors).some((error) => error !== "")) {
+      toast.error("Please fix the errors before submitting");
+      return;
+    }
 
-  try {
-     const projectId = await submitProject({
-      userId: currentUser.uid,
-      title,
-      stepFile: stepFile!,
-      pdfFile: pdfFile!,
-      explanation,
-      domain: selectedDomain,
-      tags: selectedTags,
-      type: 'portfolio',
-      setIsLoading,
-    });
+    setIsSubmitting(true);
+    clearErrors();
 
-    toast.success("Project submitted successfully!");
+    try {
+      const projectId = await submitProject({
+        userId: currentUser.uid,
+        title,
+        stepFile: stepFile!,
+        pdfFile: pdfFile!,
+        explanation,
+        domain: selectedDomain,
+        tags: selectedTags,
+        type: "portfolio",
+        setIsLoading,
+      });
+      localStorage.removeItem(STORAGE_KEY);
+      toast.success("Project submitted successfully!");
 
-    setStepFile(null);
-    setPdfFile(null);
-    setExplanation("");
-    setTitle("");
-    setSelectedTags([]);
+      setStepFile(null);
+      setPdfFile(null);
+      setExplanation("");
+      setTitle("");
+      setSelectedTags([]);
       navigate(`/portfolio/${projectId}`);
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : "An unexpected error occurred";
-    setErrors((prev) => ({ ...prev, general: errorMessage }));
-    toast.error(errorMessage);
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "An unexpected error occurred";
+      setErrors((prev) => ({ ...prev, general: errorMessage }));
+      toast.error(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -184,7 +220,7 @@ const handleSubmit = async () => {
               </div>
 
               {/* Submission Explanation */}
-                 <ExplanationForm
+              <ExplanationForm
                 explanation={explanation}
                 setExplanation={setExplanation}
                 error={errors.explanation}

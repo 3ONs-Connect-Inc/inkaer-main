@@ -19,16 +19,14 @@ const ProjectCard = ({
   rank,
   stats = [],
   type = "portfolio",
-  rating,
   explanation,
   tags,
   domain,
   image,
   author,
-  comments,
   view = "grid",
 }: ProjectCardProps) => {
-  const { participants, duration } = stats[0] || {};
+  const { participants, duration, rating } = stats?.[0] || {};
   const navigate = useNavigate();
   const [_, setReady] = useState(false);
 
@@ -48,9 +46,9 @@ const ProjectCard = ({
 
   if (view === "grid") {
     return (
-      <Card className="flex flex-col w-full max-w-sm mx-auto rounded-2xl group shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-        <div className="relative h-48 w-full overflow-hidden">
-          <Preview image={image}  setReady={setReady} />
+      <Card className="flex flex-col min-h-[360px] h-[420px] sm:h-[460px] md:h-[500px] w-full max-w-sm mx-auto rounded-2xl group shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+        <div className="relative max-h-auto h-48 object-cover  w-full overflow-hidden">
+          <Preview image={image} setReady={setReady} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           <div className="absolute top-4 left-4">
             <span
@@ -72,12 +70,18 @@ const ProjectCard = ({
           </div>
         </div>
 
-        <CardContent className="p-4 flex flex-col gap-3 flex-grow">
+        <CardContent className="p-4 flex flex-col gap-2 flex-grow">
           <div className="text-inkaer2 uppercase tracking-wide">{domain}</div>
           <CardTitle className="section-subtitle3">{title}</CardTitle>
           <p className="author-lite">by {author}</p>
           <p className="section-p line-clamp-2">{explanation}</p>
-          <Stats {...{ type, duration, participants, rating, comments }} />
+          <Stats
+            type={type}
+            duration={typeof duration === "string" ? duration : undefined}
+            participants={participants}
+            rating={rating}
+          />
+
           <Tags tags={tags} />
         </CardContent>
 
@@ -126,15 +130,22 @@ const ProjectCard = ({
               <div className="text-inkaer2 uppercase tracking-wide mb-1">
                 {domain}
               </div>
-              <h3 className="section-subtitle3 mb-1">{title}</h3>
-              <p className="author-lite mb-2">by {author}</p>
-              <p className="section-p leading-relaxed">{explanation}</p>
+              <h3 className="section-subtitle3 mb-1 line-clamp-1">{title}</h3>
+              <p className="author-lite mb-2 line-clamp-1">by {author}</p>
+              <div className="flex items-center justify-center w-full">
+                <p className="section-p line-clamp-2 text-center break-words">
+                  {explanation}
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between mt-4">
               <div className="flex items-center gap-6 author-lite">
                 <Stats
-                  {...{ type, duration, participants, rating, comments }}
+                  type={type}
+                  duration={typeof duration === "string" ? duration : undefined}
+                  participants={participants}
+                  rating={rating}
                 />
               </div>
               <Button

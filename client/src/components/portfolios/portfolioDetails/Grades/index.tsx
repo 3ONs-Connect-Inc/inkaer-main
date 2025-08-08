@@ -4,9 +4,10 @@ import { RatingStars } from "./RatingStars";
 import { VoteButtons } from "./VoteButtons";
 import { VoteItem } from "./VoteItem";
 import GradeHeader from "./GradeHeader";
+import { formatDistanceToNow } from "date-fns";
 
 interface GradeComponentProps {
-  grades: Grade[];
+  grades: Grade[]; 
   openVoteDialog: (gradeId: string, voteType: "upvote" | "downvote") => void;
   voteType: "upvote" | "downvote";
   handleVoteSubmit: () => void;
@@ -47,7 +48,7 @@ const index = ({
     <Card className="bg-white/80 backdrop-blur-sm border-gray-200">
       <GradeHeader
         isGradeDialogOpen={isGradeDialogOpen}
-        setIsGradeDialogOpen={setIsGradeDialogOpen}
+        setIsGradeDialogOpen={setIsGradeDialogOpen}  
         newGrade={newGrade}
         setNewGrade={setNewGrade}
         handleGradeSubmit={handleGradeSubmit}
@@ -65,7 +66,9 @@ const index = ({
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-2 mb-2 sm:mb-0">
                     <RatingStars rating={grade.rating} />
                     <span className="author">{grade.author}</span>
-                    <span className="date">{grade.timestamp}</span>
+                    <span className="date">  
+                      {formatDistanceToNow(new Date(grade.timestamp), { addSuffix: true })}
+                      </span>
                   </div>
                   <VoteButtons
                     gradeId={grade.id}

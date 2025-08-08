@@ -1,7 +1,7 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import ErrorAlert from "../ErrorAlert"
-import { Input } from "../ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
+import ErrorAlert from "../../ErrorAlert"
+import { Input } from "../../ui/input"
 
 // types.ts (you can put this in a types folder)
 export interface ProjectTitleProps {

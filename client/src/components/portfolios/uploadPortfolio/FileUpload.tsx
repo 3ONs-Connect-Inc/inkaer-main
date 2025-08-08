@@ -1,8 +1,8 @@
 import React from "react";
 import {  File, FileText, Upload, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Button from "../ui/button";
-import ErrorAlert from "../ErrorAlert";
+import Button from "../../ui/button";
+import ErrorAlert from "../../ErrorAlert";
 
 type FileUploadProps = {
   file: File | null;

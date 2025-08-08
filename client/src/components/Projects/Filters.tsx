@@ -45,7 +45,10 @@ const Filters = ({
         label: 'Tags',
         value: selectedTags,
         setValue: setSelectedTags,
-        options: ['all', 'cad', 'thermal', 'simulation']
+        options: ['all', 'CAD Design', 'Simulation', 'Prototyping', 'Manufacturing', 'Assembly',
+    'Analysis', 'Testing', 'Optimization', 'Materials', 'Thermal',
+    'Structural', 'Mechanical', 'Innovation', 'Automation', 'Robotics',
+    'Product Design', 'Research', 'Development', 'Engineering']
       }
     ].map(({ label, value, setValue, options }, i) => (
       <div key={i}>

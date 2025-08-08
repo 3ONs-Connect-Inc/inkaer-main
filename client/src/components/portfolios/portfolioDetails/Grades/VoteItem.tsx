@@ -1,3 +1,4 @@
+import { formatDistanceToNow } from "date-fns";
 import { ThumbsDown, ThumbsUp } from "lucide-react";
 
   export const VoteItem = ({ vote }: { vote: any }) => (
@@ -10,9 +11,11 @@ import { ThumbsDown, ThumbsUp } from "lucide-react";
             <ThumbsDown className="w-3 h-3 text-red-600" />
           )}
           <span className="author">{vote.author}</span>
-          <span className="date">{vote.timestamp}</span>
+          <span className="date">
+             {formatDistanceToNow(new Date(vote.timestamp), { addSuffix: true })}
+          </span>
         </div>
       </div>
       <p className="section-p">{vote.comment}</p>  
     </>
-  );
+  ); 

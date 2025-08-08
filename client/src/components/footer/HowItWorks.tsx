@@ -93,8 +93,8 @@ const HowItWorks = () => {
               viewport={{ once: true }}
             >
               <div className="max-w-3xl mx-auto">
-                <div className="flex items-center justify-center mb-6">
-                  <Linkedin className="w-12 h-12 text-blue-600 mr-4" />
+                <div className="flex flex-col sm:flex-row items-center justify-center mb-6">
+                  <Linkedin className="w-8 h-8 sm:w-12 sm:h-12 text-blue-600 mr-4 mb-2" />
                   <h2 className="section-title2">Showcase Your Achievements</h2>
                 </div>
                 <p className="section-subtitle font-sora mb-8">
