@@ -7,7 +7,7 @@ export const generateUniqueProjectId = () => {
   return uuidv4();
 };
 
-
+  
 
 // Rank calculation
 const getRankByPoints = (points: number): string => {

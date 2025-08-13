@@ -83,7 +83,7 @@ const Feature108 = ({
       <div className="container mx-auto">
         <div className="flex flex-col items-center gap-4 text-center">
           <Badge variant="outline" className="text-inkaer-blue border-inkaer-blue">{badge}</Badge>
-          <h1 className="section-title">
+          <h1 className="section-title2">
             {heading}
           </h1>
           <p className="section-subtitle">{description}</p>

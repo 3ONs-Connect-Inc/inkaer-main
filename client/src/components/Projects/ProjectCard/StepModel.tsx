@@ -2,54 +2,55 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import { OrbitControls as DreiOrbitControls } from "three-stdlib";
-import { LoadStep } from "@/lib/stepLoaderView";
+import { LoadStep } from "@/lib/stepLoader";
 
 type Props = {
   file: string;
-  onLoad?: (model: THREE.Object3D) => void;
+  onLoad?: (model: THREE.Object3D) => void;      // Full model loaded
+  onFirstChunk?: () => void;                     // First geometry arrived
 };
 
-export default function StepModel({ file, onLoad }: Props) {
+export default function StepModel({ file, onLoad, onFirstChunk }: Props) {
   const [model, setModel] = useState<THREE.Object3D | null>(null);
   const groupRef = useRef<THREE.Group>(null);
-  const { camera, scene, controls } = useThree();
+  const { camera, scene, controls, gl } = useThree();
 
   useEffect(() => {
     let disposed = false;
     let currentObject: THREE.Object3D | null = null;
-    const isDataUrl = file.startsWith("data:");
-    let srcUrl = file;
-
-    if (isDataUrl) {
-      const [base64] = file.split(",");
-      const binary = atob(base64);
-      const byteArray = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) {
-        byteArray[i] = binary.charCodeAt(i);
-      }
-      const blob = new Blob([byteArray], { type: "application/step" });
-      srcUrl = URL.createObjectURL(blob);
-    }
+    let firstChunkTriggered = false;
 
     const load = async () => {
-      const object = await LoadStep(srcUrl);
+      const object = await LoadStep(
+        file,
+        (partial, isFirst) => {
+          if (disposed) return;
+          setModel(partial);
+          if (isFirst && !firstChunkTriggered) {
+            firstChunkTriggered = true;
+            onFirstChunk?.();
+          }
+        }
+      );
+
       if (disposed) return;
       currentObject = object;
 
+      // Fit camera to model
       const box = new THREE.Box3().setFromObject(object);
       const center = box.getCenter(new THREE.Vector3());
       const size = box.getSize(new THREE.Vector3());
       object.position.sub(center);
 
       const maxDim = Math.max(size.x, size.y, size.z);
-      const distance = maxDim * 1.5;
+      const distance = maxDim * 1.5 || 3; // fallback distance
       camera.position.set(distance, distance, distance);
       camera.lookAt(0, 0, 0);
       camera.near = 0.1;
-      camera.far = distance * 10;
+      camera.far = Math.max(1000, distance * 10);
       camera.updateProjectionMatrix();
 
-      if (controls && (controls as DreiOrbitControls).target) {
+      if ((controls as DreiOrbitControls)?.target) {
         const orbit = controls as DreiOrbitControls;
         orbit.target.set(0, 0, 0);
         orbit.update();
@@ -57,8 +58,6 @@ export default function StepModel({ file, onLoad }: Props) {
 
       setModel(object);
       onLoad?.(object);
-
-      if (isDataUrl) setTimeout(() => URL.revokeObjectURL(srcUrl), 10000);
     };
 
     load();
@@ -68,21 +67,20 @@ export default function StepModel({ file, onLoad }: Props) {
       if (currentObject) {
         scene.remove(currentObject);
         currentObject.traverse((child) => {
-          if ((child as THREE.Mesh).geometry) {
-            (child as THREE.Mesh).geometry.dispose();
-          }
-          if ((child as THREE.Mesh).material) {
-            const material = (child as THREE.Mesh).material;
-            if (Array.isArray(material)) {
-              material.forEach((m) => m.dispose());
-            } else {
-              material.dispose();
-            }
+          const mesh = child as THREE.Mesh;
+          if (mesh.geometry) mesh.geometry.dispose();
+          if (mesh.material) {
+            const mat = mesh.material;
+            if (Array.isArray(mat)) mat.forEach((m) => m.dispose());
+            else mat.dispose();
           }
         });
       }
+      // Lose WebGL context (if we set it in Preview onCreated)
+      const lose = (gl as any).__forceLoseContext;
+      if (typeof lose === "function") lose();
     };
-  }, [file, camera, controls, onLoad, scene]);
+  }, [file, camera, controls, onLoad, onFirstChunk, scene, gl]);
 
   if (!model) return null;
   return (

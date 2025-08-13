@@ -9,6 +9,7 @@ const userPoints = 2450;
 
 const MobileNav = () => {
   const logout = useLogout();
+ const isActive = (path: string) => location.pathname === path;
 
   return (
     <div className="my-6 flex flex-col gap-6">
@@ -17,7 +18,11 @@ const MobileNav = () => {
    <div className="mt-2 flex justify-center">
   <Link
     to="/user-rank-dashboard"
-    className="flex flex-col items-center gap-2 px-2 py-1 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-full border border-blue-200 hover:shadow-md transition-all duration-200 flex-shrink-0"
+    className={`flex flex-col items-center gap-2 px-2 py-1 
+    bg-gradient-to-r from-blue-50 to-indigo-50 rounded-full 
+    border border-blue-200 hover:shadow-md transition-all 
+    duration-200 flex-shrink-0
+     ${isActive("/user-rank-dashboard") ? "border border-inkaer-blue font-semibold" : ""}`}
   >
     {/* User Rank */}
     <div className="flex items-center gap-1 mt-1">
@@ -41,14 +46,14 @@ const MobileNav = () => {
       </div>
       <div className="space-y-4">
         <Link
-          to="/dashboard"
-          className="block nav-text py-2"
+          to="/"
+           className={`nav-text block py-2 ${isActive("/") ? "text-inkaer-blue font-semibold" : ""}`}
         >
           Dashboard
         </Link>
         <Link
           to="/projects"
-          className="block nav-text py-2"
+           className={`nav-text block py-2 ${isActive("/projects") ? "text-inkaer-blue font-semibold" : ""}`}
         >
           Projects
         </Link>
@@ -56,21 +61,26 @@ const MobileNav = () => {
       <div className="flex flex-col gap-3 border-t pt-4">
         <Button
           asChild
-          className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-sora font-semibold py-3 rounded-full"
+          className={`bg-gradient-to-r
+           from-purple-600 to-indigo-600
+            hover:from-purple-700 hover:to-indigo-700
+             text-white font-sora font-semibold py-3 rounded-full
+              ${isActive("/pricing") ? "border-2 border-purple-600 font-semibold" : ""}`}
         >
-          <Link to="/upgrade" className="text-sm xs:text-xl font-sora">
+          <Link to="/pricing" className="text-sm xs:text-xl font-sora">
             <Crown className="mr-2 h-4 w-4" />
             Upgrade
           </Link>
         </Button>
         <Button asChild variant="outline" className="justify-start">
-          <Link to="/profile" className="nav-text">
+          <Link to="/profile" className={`nav-text ${isActive("/profile") ? "text-inkaer-blue font-semibold" : ""}`}>
             <User className="mr-2 h-4 w-4" />
             Profile
           </Link>
         </Button>
         <Button asChild variant="outline" className="justify-start">
-          <Link to="/settings" className="nav-text">
+          <Link to="/settings" 
+          className= {`nav-text ${isActive("/settings") ? "text-inkaer-blue font-semibold" : ""}`}>
             <Settings className="mr-2 h-4 w-4" />
             Settings
           </Link>
@@ -81,7 +91,7 @@ const MobileNav = () => {
           onClick={logout}
           className="justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
         >
-          <Link to="/logout" className="nav-text">
+          <Link to="/logout" className= "nav-text" >
             <LogOut className="mr-2 h-4 w-4" />
             Logout
           </Link>

@@ -591,6 +591,147 @@ export const projects = [
 
 
 
+//user rank dashboard
+ export  const ranks = [
+    {
+      name: "Novice",
+      points: "Newly Joined",
+      color: "bg-gray-100 text-gray-800",
+      current: false,
+      completed: true
+    },
+    {
+      name: "Beginner",
+      points: "1 - 500",
+      color: "bg-green-100 text-green-800",
+      current: false,
+      completed: true
+    },
+    {
+      name: "Intermediate",
+      points: "501 - 1500",
+      color: "bg-blue-100 text-blue-800",
+      current: false,
+      completed: true
+    },
+    {
+      name: "Advanced",
+      points: "1501 - 3000",
+      color: "bg-purple-100 text-purple-800",
+      current: true,
+      completed: false
+    },
+    {
+      name: "Expert",
+      points: "3001 - 5000",
+      color: "bg-orange-100 text-orange-800",
+      current: false,
+      completed: false
+    },
+    {
+      name: "Elite",
+      points: "5000+",
+      color: "bg-red-100 text-red-800",
+      current: false,
+      completed: false
+    }
+  ];
+
+ export  const domains = [
+    { value: 'mechanical', label: 'Mechanical Engineering' },
+    { value: 'civil', label: 'Civil Engineering' },
+    { value: 'electrical', label: 'Electrical Engineering' },
+    { value: 'chemical', label: 'Chemical Engineering' },
+    { value: 'software', label: 'Software Engineering' },
+    { value: 'aerospace', label: 'Aerospace Engineering' }
+  ];
+
+  export const certifications = [
+    {
+      rank: "Beginner",
+      title: "Mechanical Engineering (Beginner)",
+      acronym: "ME1",
+      available: true,
+      earned: true,
+      requirements: [
+        "Complete Beginner rank (1-500 points)",
+        "Submit 3 verified projects",
+        "Pass peer review assessment",
+        "Complete basic safety training"
+      ]
+    },
+    {
+      rank: "Intermediate", 
+      title: "Mechanical Engineering (Intermediate)",
+      acronym: "ME2",
+      available: true,
+      earned: false,
+      requirements: [
+        "Complete Intermediate rank (501-1500 points)",
+        "Submit 5 advanced projects",
+        "Mentor 2 junior engineers",
+        "Pass technical interview",
+        "Complete advanced CAD certification"
+      ]
+    },
+    {
+      rank: "Advanced",
+      title: "Mechanical Engineering (Advanced)",
+      acronym: "ME3",
+      available: false,
+      earned: false,
+      requirements: [
+        "Complete Advanced rank (1501-3000 points)",
+        "Lead 2 major projects",
+        "Publish technical paper",
+        "Complete industry collaboration",
+        "Pass expert-level assessment"
+      ]
+    },
+    {
+      rank: "Expert",
+      title: "Mechanical Engineering (Expert)",
+      acronym: "ME4",
+      available: false,
+      earned: false,
+      requirements: [
+        "Complete Expert rank (3001-5000 points)",
+        "Lead cross-functional team",
+        "Develop innovative solution",
+        "Complete management training",
+        "Industry recognition award"
+      ]
+    },
+    {
+      rank: "Elite",
+      title: "Mechanical Engineering (Elite)",
+      acronym: "ME-Elite",
+      available: false,
+      earned: false,
+      requirements: [
+        "Complete Elite rank (5000+ points)",
+        "Revolutionary contribution to field",
+        "International recognition",
+        "Mentor 10+ engineers to Expert level",
+        "Industry leadership position"
+      ]
+    }
+  ];
+
+  export const getDomainPrefix = (domain: string) => {
+    const prefixes = {
+      'mechanical': 'ME',
+      'civil': 'CE',
+      'electrical': 'EE',
+      'chemical': 'CH',
+      'software': 'SE',
+      'aerospace': 'AE'
+    };
+    return prefixes[domain as keyof typeof prefixes] || 'ME';
+  };
+
+
+
   
 //FOOTER
 export const defaultSections = [
@@ -617,7 +758,7 @@ export const defaultSections = [
     links: [
       { name: "Help Center", href: "/help" },
       { name: "Community", href: "/community" },
-      { name: "Documentation", href: "/docs" },
+      { name: "Documentation", href: "/documentation" },
       { name: "Support", href: "/support" },
     ],
   },

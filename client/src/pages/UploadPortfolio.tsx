@@ -123,7 +123,7 @@ const UploadPortfolio = () => {
         stepFile: stepFile!,
         pdfFile: pdfFile!,
         explanation,
-        domain: selectedDomain,
+        domain: selectedDomain,  
         tags: selectedTags,
         type: "portfolio",
         setIsLoading,

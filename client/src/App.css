@@ -53,7 +53,7 @@
 
 /* HEADER */
 .nav-text{
-  @apply  text-gray-700 hover:text-inkaer-blue transition-colors duration-200 font-sora font-medium;
+  @apply   transition-colors duration-200 font-sora font-medium;
 }
 .section-header {
   @apply text-center mb-12 xs:mb-16 animate-fade-in;
@@ -100,6 +100,9 @@
 }
 .section-p {
   @apply text-xs xs:text-sm text-gray-600 font-sora  font-medium;
+}
+.section-p2 {
+  @apply text-xs xs:text-base text-gray-600 font-sora  font-normal;
 }
 .text-small {
   @apply text-[10px] xs:text-xs  font-sora ;

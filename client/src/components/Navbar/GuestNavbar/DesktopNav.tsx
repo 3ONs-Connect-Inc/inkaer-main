@@ -1,29 +1,31 @@
 import { Link } from "react-router-dom";
 import Button from "@/components/ui/button";
 
-const DesktopNav = () => (
+const DesktopNav = () => {
+    const isActive = (path: string) => location.pathname === path;
+return (
   <div className="flex items-center gap-6">
     <Link
       to="/how-it-works"
-      className="nav-text"
+      className={`nav-text ${isActive("/how-it-works") ? "text-inkaer-blue font-semibold" : ""}`}
     >
       How It Works
     </Link>
     <Link
       to="/rank"
-      className="nav-text"
+      className={`nav-text ${isActive("/rank") ? "text-inkaer-blue font-semibold" : ""}`}
     >
       Rank
     </Link>
     <Link
       to="/certification"
-      className="nav-text"
+      className={`nav-text ${isActive("/certification") ? "text-inkaer-blue font-semibold" : ""}`}
     >
       Certification
     </Link>
     <Link
       to="/pricing"
-      className="nav-text"
+       className={`nav-text ${isActive("/pricing") ? "text-inkaer-blue font-semibold" : ""}`}
     >
       Pricing
     </Link>
@@ -41,6 +43,6 @@ const DesktopNav = () => (
       <Link to="/sign-up">Get Started</Link>
     </Button>
   </div>
-);
-
+   );
+}
 export default DesktopNav;

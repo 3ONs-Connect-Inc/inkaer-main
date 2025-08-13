@@ -20,7 +20,7 @@ export const Stats = ({ type, participants, duration, rating }: Props) => (
   <div className="flex items-center space-x-1">
     <Users className="w-4 h-4" />
     <span>
-      {/* {participants} */}
+      {participants}
 
     </span>
   </div>
@@ -30,7 +30,7 @@ export const Stats = ({ type, participants, duration, rating }: Props) => (
   <div className="flex items-center space-x-1">
     <Star className="w-4 h-4 fill-current text-yellow-400" />
     <span>
-      {/* {rating.toFixed(1)} */}
+      {rating.toFixed(1)}
 
     </span>
   </div>

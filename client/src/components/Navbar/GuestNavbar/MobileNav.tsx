@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import Button from "@/components/ui/button";
 import ProfileSearchBar from "@/components/ProfileSearchBar";
 
-const MobileNav = () => (
+const MobileNav = () => {
+   const isActive = (path: string) => location.pathname === path;
+
+  return (
   <div className="my-6 flex flex-col gap-6">
     <div className="block md:hidden">
       <ProfileSearchBar />
@@ -10,25 +13,25 @@ const MobileNav = () => (
     <div className="space-y-4">
       <Link
         to="/how-it-works"
-        className="block nav-text py-2"
+         className={`nav-text block py-2 ${isActive("/how-it-works") ? "text-inkaer-blue font-semibold" : ""}`}
       >
         How It Works
       </Link>
       <Link
         to="/rank"
-        className="block nav-text py-2"
+         className={`nav-text block py-2 ${isActive("/rank") ? "text-inkaer-blue font-semibold" : ""}`}
       >
         Rank
       </Link>
       <Link
         to="/certification"
-        className="block nav-text py-2"
+         className={`nav-text block py-2 ${isActive("/certification") ? "text-inkaer-blue font-semibold" : ""}`}
       >
         Certification
       </Link>
       <Link
         to="/pricing"
-        className="block nav-text py-2"
+         className={`nav-text block py-2 ${isActive("/pricing") ? "text-inkaer-blue font-semibold" : ""}`}
       >
         Pricing
       </Link>
@@ -47,6 +50,6 @@ const MobileNav = () => (
       </Button>
     </div>
   </div>
-);
-
+ );
+}
 export default MobileNav;

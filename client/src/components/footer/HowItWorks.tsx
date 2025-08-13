@@ -69,7 +69,7 @@ const HowItWorks = () => {
                       <div className="bg-inkaer-blue/10 rounded-2xl p-2 w-15 h-15  xs:p-4 xs:w-20 xs:h-20 flex items-center justify-center mx-auto mb-6">
                         {step.icon}
                       </div>
-                      <h3 className="section-title2 mb-2">
+                      <h3 className="section-subtitle2 mb-2">
                         {step.title}
                       </h3>
                       <p className="text-inkaer uppercase tracking-wide mb-4">

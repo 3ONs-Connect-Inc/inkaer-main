@@ -17,6 +17,7 @@ import img3 from './images/img3.jpeg';
 import img4 from './images/img4.jpg';
 import img5 from './images/img5.jpeg';
 import img6 from './images/img6.jpeg';
+import loader from './loader.gif';
 
 export { logoDark, 
     logoLight, 
@@ -26,6 +27,7 @@ export { logoDark,
     microsoft,
     pwc,
    bombardier,
+   loader,
    img1,img2,img3,img4,img5,img6
 
 

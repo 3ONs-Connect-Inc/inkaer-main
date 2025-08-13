@@ -75,7 +75,7 @@ const FileUpload = ({
             id={`${fileType}-upload`}
             accept={fileExtension}
             onChange={onFileUpload}
-            className="hidden"
+            className="hidden"  
           />
           <Button
             onClick={() =>
