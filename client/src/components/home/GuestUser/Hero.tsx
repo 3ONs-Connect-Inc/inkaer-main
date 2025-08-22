@@ -58,14 +58,15 @@ const Hero: React.FC = () => {
               </a>
             </motion.div>
 
-            <motion.p
-              className="mt-4 text-xs xs:text-sm text-gray-500"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-            >
-              92% of Inkaer candidates pass their first interview.
-            </motion.p>
+           <motion.p
+  className="mt-4 text-xs xs:text-sm text-gray-500 text-center sm:text-left"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.8, duration: 0.8 }}
+>
+  92% of Inkaer candidates pass their first interview.
+</motion.p>
+
           </motion.div>
 
           {/* Right side - Portfolio certificate */}

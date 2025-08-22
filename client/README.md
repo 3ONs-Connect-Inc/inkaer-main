@@ -25,6 +25,6 @@ Elite
 ccccc
    whitespace-normal break-words 
 
-   inkaer.netlify.app
+   https://inkaer.netlify.app
    https://inkaer-main-backend.onrender.com
    seo description for about page :
