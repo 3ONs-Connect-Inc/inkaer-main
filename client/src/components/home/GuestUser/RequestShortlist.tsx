@@ -72,7 +72,7 @@ const [formData, setFormData] = useState<ShortlistFormData>(initialForm);
       <div className="relative mx-auto max-w-7xl padding">
         <div className="mx-auto max-w-2xl">
           <div className="text-center mb-12">
-            <h2 className="text-bold-white font-bold tracking-tight text-white sm:text-6xl xl:text-7xl mb-12">
+            <h2 className="text-bold-white leading-tight text-white  mb-12">
               Request Your Shortlist
             </h2>
             <p className="mt-6 desc-white max-w-2xl mx-auto">

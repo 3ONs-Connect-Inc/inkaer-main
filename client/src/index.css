@@ -122,7 +122,7 @@
   @apply text-5xl font-bold font-sora tracking-tight text-gray-900 xxs:text-6xl xl:text-7xl ;
 }
 .text-bold-white {
-  @apply text-5xl font-bold font-sora tracking-tight  xxs:text-6xl md:text-7xl ;
+  @apply text-5xl font-bold font-sora tracking-tight  xxs:text-6xl xl:text-7xl ;
 }
 .text-bold-5xl {
   @apply text-2xl font-bold font-sora tracking-tight text-gray-900 xs:text-4xl sm:text-5xl;
