@@ -1,0 +1,75 @@
+import React, { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import Header from "@/components/auth/Header";
+import SocialLogin from "@/components/auth/SocialLogin";
+import { useSignIn } from "@/hooks/auth/useSignIn";
+import SignInForm from "@/components/auth/SignInForm";
+import Seo from "@/components/Seo";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import type { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+
+
+const SignInAccount = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  //after login return to previous page
+const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const user = useSelector((state: RootState) => state.session.user);
+  useEffect(() => {
+    if (user) {
+      const returnTo = searchParams.get("returnTo");
+      navigate(returnTo || "/"); // or your default page
+    }
+  }, [user, navigate, searchParams]);
+
+  const signInMutation = useSignIn();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !password) {
+      return;
+    }
+    signInMutation.mutate({ email, password, remember: rememberMe });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
+   <Seo
+  title="Sign In to Your Account"
+  description="Sign in to your Inkaer account to access powerful hiring tools and manage your profile securely."
+  name="Inkaer"
+  type="website"
+  robots="noindex, nofollow"
+/>
+
+
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-1 xs:p-4">
+        <Card className="w-full max-w-md bg-white/80 backdrop-blur-sm border-gray-200 shadow-xl">
+          <Header  mode="sign-in" />
+          <CardContent className="space-y-6">
+            <SignInForm
+              handleSubmit={handleSubmit}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              showPassword={showPassword}
+              setShowPassword={setShowPassword}
+              rememberMe={rememberMe}
+              setRememberMe={setRememberMe}
+              isLoading={signInMutation.isPending}
+            />
+            <SocialLogin mode="sign-in" />
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default SignInAccount;
