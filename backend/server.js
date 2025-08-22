@@ -9,7 +9,14 @@ import shortlistRoutes from "./routes/shortlistRoutes.js";
 
 
 const app = express();
-app.use(cors());
+// Allow only your frontend domain
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 
 // Routes
