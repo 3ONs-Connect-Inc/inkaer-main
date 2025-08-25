@@ -36,7 +36,7 @@ jobs:
 
       - name: Generate Sitemap
         working-directory: client
-        run: node generate-sitemap.js
+        run: npm run sitemap
 
       - name: Build
         working-directory: client
@@ -45,10 +45,6 @@ jobs:
       - name: Debug build output
         working-directory: client
         run: ls -la && ls -la ./dist
-
-      - name: Move Sitemap to dist
-        working-directory: client
-        run: mv public/sitemap.xml dist/sitemap.xml
 
       - name: Push
         uses: s0/git-publish-subdir-action@develop

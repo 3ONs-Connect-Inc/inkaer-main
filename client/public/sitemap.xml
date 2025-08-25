@@ -1,33 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
-    <loc>https://eventurelly.com/</loc>
+    <loc>https://inkaer.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/sign-in</loc>
+    <loc>https://inkaer.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/sign-up</loc>
+    <loc>https://inkaer.com/careers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/2fa-auth</loc>
+    <loc>https://inkaer.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/verify-email</loc>
+    <loc>https://inkaer.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/forgot-password</loc>
+    <loc>https://inkaer.com/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/password-success</loc>
+    <loc>https://inkaer.com/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/search</loc>
+    <loc>https://inkaer.com/sign-in</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/team-building-events</loc>
+    <loc>https://inkaer.com/sign-up</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
+
   <url>
-    <loc>https://eventurelly.com/demo-request</loc>
+    <loc>https://inkaer.com/forgot-password</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
+
+  <url>
+    <loc>https://inkaer.com/reset-password</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
