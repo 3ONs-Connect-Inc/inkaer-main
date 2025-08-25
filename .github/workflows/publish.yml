@@ -27,27 +27,34 @@ jobs:
       VITE_SERVICE_ACCOUNT_KEY: ${{ secrets.VITE_SERVICE_ACCOUNT_KEY }}
 
     steps:
-      - name: git-checkout
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Install all dependencies
+        working-directory: client
         run: npm install
 
       - name: Generate Sitemap
+        working-directory: client
         run: node generate-sitemap.js
-       
+
       - name: Build
-        run: npm run build # The build command of your project
+        working-directory: client
+        run: npm run build
+
       - name: Debug build output
+        working-directory: client
         run: ls -la && ls -la ./dist
+
       - name: Move Sitemap to dist
+        working-directory: client
         run: mv public/sitemap.xml dist/sitemap.xml
+
       - name: Push
         uses: s0/git-publish-subdir-action@develop
-        
         env:
           REPO: self
-          BRANCH: build # The branch name where you want to push the assets
-          FOLDER: dist # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+          BRANCH: build # The branch where built assets go
+          FOLDER: client/dist # IMPORTANT: point to frontend dist folder
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "Build: ({sha}) {msg}"
