@@ -24,6 +24,7 @@ jobs:
       VITE_CLOUDFLARE_WORKER_URL: ${{ secrets.VITE_CLOUDFLARE_WORKER_URL }}
       VITE_MY_BUCKET: ${{ secrets.VITE_MY_BUCKET }}
       VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
+      VITE_CLIENT_URL: ${{ secrets.VITE_CLIENT_URL }}
       VITE_SERVICE_ACCOUNT_KEY: ${{ secrets.VITE_SERVICE_ACCOUNT_KEY }}
 
     steps:
