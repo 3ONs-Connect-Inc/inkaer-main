@@ -1,0 +1,53 @@
+name: Generate a build and push to another branch
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - mvp
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Push
+    env:
+    VITE_FIREBASE_API_KEY: ${{secrets.VITE_FIREBASE_API_KEY }}
+    VITE_FIREBASE_AUTH_DOMAIN: ${{secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+    VITE_FIREBASE_PROJECT_ID: ${{secrets.VITE_FIREBASE_PROJECT_ID }}
+    VITE_FIREBASE_STORAGE_BUCKET: ${{secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+    VITE_FIREBASE_MESSAGING_SENDER_ID: ${{secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+    VITE_FIREBASE_APP_ID: ${{secrets.VITE_FIREBASE_APP_ID }}
+    VITE_BACKEND_URL: ${{secrets.VITE_BACKEND_URL }}
+    VITE_PORT: ${{secrets.VITE_PORT }}
+    VITE_CLOUDFLARE_WORKER_URL: ${{secrets.VITE_CLOUDFLARE_WORKER_URL }}
+    VITE_MY_BUCKET: ${{secrets.VITE_MY_BUCKET }}
+    VITE_BASE_URL: ${{secrets.VITE_BASE_URL }}
+    VITE_SERVICE_ACCOUNT_KEY: ${{ secrets.VITE_SERVICE_ACCOUNT_KEY }}
+    
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v3
+
+      - name: Install all dependencies
+        run: npm install
+
+      - name: Generate Sitemap
+        run: node generate-sitemap.js
+       
+      - name: Build
+        run: npm run build # The build command of your project
+      - name: Debug build output
+        run: ls -la && ls -la ./dist
+      - name: Move Sitemap to dist
+        run: mv public/sitemap.xml dist/sitemap.xml
+      - name: Push
+        uses: s0/git-publish-subdir-action@develop
+        
+        env:
+          REPO: self
+          BRANCH: build # The branch name where you want to push the assets
+          FOLDER: dist # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "Build: ({sha}) {msg}" # The commit message

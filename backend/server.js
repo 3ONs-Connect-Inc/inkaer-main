@@ -6,10 +6,15 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import shortlistRoutes from "./routes/shortlistRoutes.js";
 
-
-
-const app = express();
 // Allow only your frontend domain
+const CLIENT_URL = process.env.CLIENT_URL || 'https://inkaer.com';
+const app = express();
+app.use(helmet());
+app.use(express.json());
+app.use(cors({
+  origin: [CLIENT_URL, 'http://localhost:5173'],
+  credentials: true
+}));
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
