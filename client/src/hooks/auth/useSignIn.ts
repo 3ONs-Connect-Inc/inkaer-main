@@ -7,7 +7,6 @@ import { auth } from "@/firebase/config";
 import { setUser } from "@/redux/sessionSlice";
 
 
-
 export function useSignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
