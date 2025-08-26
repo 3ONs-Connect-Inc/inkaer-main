@@ -29,8 +29,8 @@ const Privacy = lazy(() => import("./pages/footer/Privacy"));
 // admin pages
 const RootLayout = lazy(() => import("./pages/admin/Layout"));
 const DashboardPage = lazy(() => import("./pages/admin/Home"));
-const Subscribers = lazy(() => import("./pages/admin/Subscribers"));
-const Contacts = lazy(() => import("./pages/admin/Contacts"));
+//const Subscribers = lazy(() => import("./pages/admin/Subscribers"));
+//const Contacts = lazy(() => import("./pages/admin/Contacts"));
 
 const qc = new QueryClient();  
 function App() {
