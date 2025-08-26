@@ -23,7 +23,6 @@ Elite
       Share your rating and feedback. Ratings help the creator improve.
     </DialogDescription>
   </DialogHeader>
-
    whitespace-normal break-words 
    https://inkaer.netlify.app
    https://inkaer-main-backend.onrender.com
