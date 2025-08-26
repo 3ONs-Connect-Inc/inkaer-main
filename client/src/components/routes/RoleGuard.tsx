@@ -10,7 +10,7 @@ const RoleGuard = ({ allowedRoles }: RoleGuardProps) => {
   const { role, loading } = useSelector((state: RootState) => state.session);
 
   if (loading) return <div>Loading...</div>;
-
+ 
   return role && allowedRoles.includes(role) ? (
     <Outlet />
   ) : (

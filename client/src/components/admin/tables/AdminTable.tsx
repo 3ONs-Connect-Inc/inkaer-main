@@ -28,7 +28,7 @@ export function AdminTable<T>({
         <p className="card-title">{title}</p>
       </div>
       <div className="card-body p-0">
-      <div className="relative h-[500px] w-full overflow-auto rounded-none [scrollbar-width:_thin]">
+      <div className="relative h-auto w-full overflow-auto rounded-none [scrollbar-width:_thin]">
           <table className="table table-fixed w-full min-w-[700px]">
             <thead className="table-header">
               <tr className="table-row">
@@ -56,7 +56,7 @@ export function AdminTable<T>({
               ))}
             </tbody>
           </table>
-        </div>
+        </div>  
       </div>
     </div>
   );

@@ -412,7 +412,7 @@ export const navbarLinks = [
             },
             {
                 label: "Manage Users",
-                icon: UserPlus,
+                icon: UserPlus,  
                 path: "/admin/manage-users",
             },
             {

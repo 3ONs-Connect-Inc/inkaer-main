@@ -78,9 +78,10 @@ function App() {
                 <Route index element={<DashboardPage />} />
 
                 {/* Nested admin pages */}
-                <Route path="view-subscribers" element={<Subscribers />} />
-                <Route path="view-contacts" element={<Contacts />} />
-
+                {/* <Route path="view-subscribers" element={<Subscribers />} />
+                <Route path="view-contacts" element={<Contacts />} /> */}
+                
+                
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Route>
@@ -92,7 +93,7 @@ function App() {
         </Routes>
       </Suspense>
     </QueryClientProvider>
-  );
+  );  
 }
 
 export default App;

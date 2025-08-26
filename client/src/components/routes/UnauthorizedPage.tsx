@@ -17,8 +17,9 @@ const UnauthorizedPage = () => {
         <div className="flex flex-col gap-3">
           <Link to="/">
             <Button aria-label="Go to Home"
-            className="w-full bg-primary text-white hover:bg-primary/90"/>
-          
+            className="w-full bg-primary text-white hover:bg-primary/90">
+          Go to Home
+          </Button>
          
           </Link>
           <Link to="/sign-in">

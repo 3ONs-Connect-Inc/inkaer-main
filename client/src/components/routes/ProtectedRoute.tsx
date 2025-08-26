@@ -9,7 +9,7 @@ const ProtectedRoute = () => {
   if (loading) return <div>Loading...</div>;
 
   return user ? (
-    <Outlet />
+    <Outlet /> 
   ) : (
     <Navigate to="/sign-in" replace state={{ from: location.pathname }} />
   );

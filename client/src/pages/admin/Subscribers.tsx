@@ -5,4 +5,4 @@ const Subscribers = () => {
   )
 }
 
-export default Subscribers
+export default Subscribers 

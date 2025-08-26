@@ -15,9 +15,10 @@ export function useGoogleSignIn(returnTo: string) {
     mutationFn: async () => {
       const user = await signInWithGoogle();
 
-      // Check if user exists in Firestore
       const userRef = doc(collection(db, "users"), user.uid);
       const snapshot = await getDoc(userRef);
+
+      let role = "user";
 
       if (!snapshot.exists()) {
         await setDoc(userRef, {
@@ -28,20 +29,22 @@ export function useGoogleSignIn(returnTo: string) {
           role: "user",
           createdAt: new Date().toISOString(),
         });
+      } else {
+        role = snapshot.data().role || "user";
       }
 
-      return user;
+      return { ...user, role };
     },
     onSuccess: (user) => {
       dispatch(setUser({
         uid: user.uid,
         email: user.email!,
         displayName: user.displayName || "",
-          role: "user", 
+        role: "user",
       }));
 
       toast.success("Signed in with Google!");
-      navigate(returnTo || "/");
+      navigate(user.role === "admin" ? "/admin" : returnTo || "/");
     },
     onError: () => {
       toast.error("Google sign-in failed.");
