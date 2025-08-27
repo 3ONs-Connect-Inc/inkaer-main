@@ -17,8 +17,6 @@ import { Loader } from "./components/ui/Spinner";
 // import TechnicalInterviews from "./pages/footer/articles/TechnicalInterviews";
 // import ROIQuality from "./pages/footer/articles/ROIQuality";
 // import RemoteEngineering from "./pages/footer/articles/RemoteEngineering";
-// import ShortlistRequests from "./pages/admin/ShortlistRequests";
-// import Contacts from "./pages/admin/Contacts";
 
 
 const CreateAccount = lazy(() => import("./pages/auth/CreateAccount"));
@@ -36,8 +34,8 @@ const Privacy = lazy(() => import("./pages/footer/Privacy"));
 // admin pages
 const RootLayout = lazy(() => import("./pages/admin/Layout"));
 const DashboardPage = lazy(() => import("./pages/admin/Home"));
-//const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
-//const Contacts = lazy(() => import("./pages/admin/Contacts"));
+// const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
+// const Contacts = lazy(() => import("./pages/admin/Contacts"));
 
 const qc = new QueryClient();  
 function App() {
@@ -89,7 +87,7 @@ function App() {
                 <Route index element={<DashboardPage />} />
 
                 {/* Nested admin pages */}
-                {/* <Route path="view-subscribers" element={<ShortlistRequests />} />
+                {/* <Route path="view-subcribers" element={<ShortlistRequests />} />
                 <Route path="view-contacts" element={<Contacts />} />
                  */}
                 
