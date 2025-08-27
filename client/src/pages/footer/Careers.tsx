@@ -108,7 +108,7 @@ const Careers = () => {
               <motion.p className="mt-4 desc" variants={fadeInUp} custom={1}>
                 Find your next career opportunity with us
               </motion.p>
-            </motion.div>
+            </motion.div> 
 
             <div className="space-y-6">
               {openings.map((job, index) => (

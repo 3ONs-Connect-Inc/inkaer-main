@@ -94,7 +94,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div className="ml-4">
                       <h3 className="text-sm sm:text-lg font-medium text-gray-900">Email</h3>
-                      <p className="text-small">hello@inkaer.com</p>
+                      <p className="text-small">contact@inkaer.com</p>
                       <p className="text-sm text-gray-500 mt-1">We typically respond within 24 hours</p>
                     </div>
                   </div>
@@ -105,8 +105,8 @@ const Contact: React.FC = () => {
                     </div>
                     <div className="ml-4">
                       <h3 className="text-sm sm:text-lg font-medium text-gray-900">Phone</h3>
-                      <p className="text-small">+1 (555) 123-4567</p>
-                      <p className="text-sm text-gray-500 mt-1">Monday to Friday, 9am to 6pm PST</p>
+                      <p className="text-small">+1 (905) 933-8653</p>
+                      <p className="text-sm text-gray-500 mt-1">Monday to Friday, 9am to 6pm EST</p>
                     </div>
                   </div>
                   
@@ -117,9 +117,9 @@ const Contact: React.FC = () => {
                     <div className="ml-4">
                       <h3 className="text-sm sm:text-lg font-medium text-gray-900">Office</h3>
                       <p className="text-small">
-                        123 Innovation Drive<br />
-                        San Francisco, CA 94105<br />
-                        United States
+                        2967 Dundas St W, 546D<br />
+                        Toronto, ON M6P 1Z2<br />
+                        Canada
                       </p>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ const Contact: React.FC = () => {
                     <div className="ml-4">
                       <h3 className="text-sm sm:text-lg font-medium text-gray-900">Business Hours</h3>
                       <p className="text-small">
-                        Monday - Friday: 9:00 AM - 6:00 PM PST<br />
+                        Monday - Friday: 9:00 AM - 6:00 PM EST<br />
                         Saturday - Sunday: Closed
                       </p>
                     </div>

@@ -1,4 +1,4 @@
-import { pdf, vid1 } from "@/assets";
+import { logoDark, vid1 } from "@/assets";
 import { PortfolioViewer } from "@/components/home/GuestUser/CandidatePackage";
 import { Calendar, CalendarCheck, CalendarDays, ChartColumn, CheckCircle,  Clock, Contact, FileCheck, FileText, Home, NotepadText, Package, Play, Rss, Settings, Shield, Tag, Target, TrendingDown, User, UserPlus, Users, UserX, Video } from "lucide-react";
 
@@ -282,41 +282,26 @@ export const faqs = [
 
 //footer
 export const openings = [
-    {
-      title: "Senior Full Stack Engineer",
+      {
+      title: "Mechanical Design Engineer",
       department: "Engineering",
       location: "Remote",
       type: "Full-time",
-      salary: "$120k - $160k",
-      description: "Join our engineering team to build the next generation of our hiring platform."
+      salary: "$90k - $110k",
+      description: "Our client is looking for a skilled mechanical design engineer to join their team."
     },
-    {
-      title: "Product Designer",
-      department: "Design",
-      location: "San Francisco, CA",
-      type: "Full-time",
-      salary: "$100k - $140k",
-      description: "Create beautiful, intuitive experiences for our users and candidates."
-    },
-    {
-      title: "Technical Recruiter",
+      {
+      title: "Technical Recruiter Intern",
       department: "People",
       location: "Remote",
       type: "Full-time",
-      salary: "$80k - $110k",
+      salary: "Unpaid",
       description: "Help us find and vet the best engineering talent for our network."
     },
-    {
-      title: "Customer Success Manager",
-      department: "Customer Success",
-      location: "New York, NY",
-      type: "Full-time",
-      salary: "$75k - $95k",
-      description: "Ensure our clients achieve their hiring goals and have an exceptional experience."
-    }
   ];
 
-export  const blogPosts = [
+
+ export  const blogPosts = [
     {
       title: "The Future of Engineering Hiring: Trends to Watch in 2025",
       excerpt: "Explore the latest trends shaping how companies recruit and hire engineering talent, from AI-powered screening to remote-first strategies.",
@@ -324,7 +309,8 @@ export  const blogPosts = [
       date: "January 15, 2025",
       readTime: "5 min read",
       category: "Industry Trends",
-      image: pdf,
+      image: logoDark,
+      slug: "future-of-engineering-hiring"
     },
     {
       title: "How to Build a Strong Engineering Culture in Remote Teams",
@@ -333,7 +319,8 @@ export  const blogPosts = [
       date: "January 10, 2025",
       readTime: "7 min read",
       category: "Team Building",
-      image: pdf,
+      image: logoDark,
+      slug: "remote-engineering-culture"
     },
     {
       title: "Technical Interview Best Practices: A Guide for Hiring Managers",
@@ -342,7 +329,8 @@ export  const blogPosts = [
       date: "January 5, 2025",
       readTime: "6 min read",
       category: "Hiring",
-      image: pdf,
+      image: logoDark,
+      slug: "technical-interview-best-practices"
     },
     {
       title: "The ROI of Quality Engineering Hires: Why Vetting Matters",
@@ -351,10 +339,10 @@ export  const blogPosts = [
       date: "December 28, 2024",
       readTime: "8 min read",
       category: "ROI Analysis",
-      image: pdf,
+      image: logoDark,
+      slug: "roi-quality-engineering-hires"
     }
   ];
-  
 
 
 

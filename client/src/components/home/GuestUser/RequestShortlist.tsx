@@ -103,7 +103,7 @@ const [formData, setFormData] = useState<ShortlistFormData>(initialForm);
 
                   <div className="space-y-2">
                     <Label htmlFor="company" className="text-sm font-medium text-gray-700">
-                      Company
+                     Your Company
                     </Label>
                     <Input
                       id="company"
@@ -118,7 +118,7 @@ const [formData, setFormData] = useState<ShortlistFormData>(initialForm);
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="roleTitle" className="text-sm font-medium text-gray-700">
-                      Role Title
+                    Job Role Title
                     </Label>
                     <Input
                       id="roleTitle"

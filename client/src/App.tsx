@@ -4,7 +4,6 @@ import AuthLayout from "./layouts/AuthLayout";
 import MainLayout from "./layouts/MainLayout";
 import NotFound from "./pages/NotFound";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-//import useAuthListener from "./hooks/auth/useAuthListener";
 import ScrollToTop from "./components/ScrollToTop";
 import BackToTopButton from "./components/BackToTopButton";
 import { Toaster } from "./components/ui/sonner";
@@ -13,6 +12,14 @@ import ProtectedRoute from "./components/routes/ProtectedRoute";
 import RoleGuard from "./components/routes/RoleGuard";
 import useAuthListener from "./hooks/auth/useAuthListener";
 import { Loader } from "./components/ui/Spinner";
+
+// import FutureOfEngineering from "./pages/footer/articles/FutureOfEngineering";
+// import TechnicalInterviews from "./pages/footer/articles/TechnicalInterviews";
+// import ROIQuality from "./pages/footer/articles/ROIQuality";
+// import RemoteEngineering from "./pages/footer/articles/RemoteEngineering";
+// import ShortlistRequests from "./pages/admin/ShortlistRequests";
+// import Contacts from "./pages/admin/Contacts";
+
 
 const CreateAccount = lazy(() => import("./pages/auth/CreateAccount"));
 const SignInAccount = lazy(() => import("./pages/auth/SignInAccount"));
@@ -29,7 +36,7 @@ const Privacy = lazy(() => import("./pages/footer/Privacy"));
 // admin pages
 const RootLayout = lazy(() => import("./pages/admin/Layout"));
 const DashboardPage = lazy(() => import("./pages/admin/Home"));
-//const Subscribers = lazy(() => import("./pages/admin/Subscribers"));
+//const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
 //const Contacts = lazy(() => import("./pages/admin/Contacts"));
 
 const qc = new QueryClient();  
@@ -58,10 +65,14 @@ function App() {
 
             <Route path="/about" element={<About />} />
             <Route path="/careers" element={<Careers />} />
-            <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
+          <Route path="/blog" element={<Blog />} />
+          {/* <Route path="/blog/future-of-engineering-hiring" element={<FutureOfEngineering />} />
+          <Route path="/blog/remote-engineering-culture" element={<RemoteEngineering />} />
+          <Route path="/blog/technical-interview-best-practices" element={<TechnicalInterviews />} />
+          <Route path="/blog/roi-quality-engineering-hires" element={<ROIQuality />} /> */}
 
             {/* Unauthorized Fallback */}
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
@@ -78,9 +89,9 @@ function App() {
                 <Route index element={<DashboardPage />} />
 
                 {/* Nested admin pages */}
-                {/* <Route path="view-subscribers" element={<Subscribers />} />
-                <Route path="view-contacts" element={<Contacts />} /> */}
-                
+                {/* <Route path="view-subscribers" element={<ShortlistRequests />} />
+                <Route path="view-contacts" element={<Contacts />} />
+                 */}
                 
                 <Route path="*" element={<NotFound />} />
               </Route>
