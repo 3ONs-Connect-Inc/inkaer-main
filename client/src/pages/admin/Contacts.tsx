@@ -10,35 +10,38 @@ export default function Contacts() {
   const { data: contacts = [], isLoading, isError } = useContacts();
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
 
-  if (isLoading) return <PageLoader/>;
+  if (isLoading) return <PageLoader />;
   if (isError) return <p>Failed to load contacts.</p>;
 
   const columns: Column<Contact>[] = [
-    { header: "First Name", accessor: "firstName", className: "max-w-[200px] truncate" },
-    { header: "Last Name", accessor: "lastName", className: "max-w-[200px] truncate" },
-    { header: "Email", accessor: "email", className: "max-w-[200px] truncate" },
-    { header: "Company", accessor: "company", className: "max-w-[200px] truncate" },
-    { header: "Subject", accessor: "subject", className: "max-w-[200px] truncate" },
-    { header: "Message", accessor: "message", className: "max-w-[200px] truncate" },
-    {
-      header: "Date",
-      render: (item) => (
-        <span className="max-w-[200px] truncate block">
-          {format(item.createdAt.toDate(), "PPpp")}
-        </span>
-      ),
-    },
-    {
-      header: "Actions",
-      render: (item) => (
-        <button
-          onClick={() => setSelectedContact(item)}
-          className="p-2 text-blue-600 hover:text-blue-800"
-        >
-          <Eye size={18} />
-        </button>
-      ),
-    },
+    { header: "First Name", accessor: "firstName", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Last Name", accessor: "lastName", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Email", accessor: "email", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Company", accessor: "company", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Subject", accessor: "subject", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Message", accessor: "message", className: "w-[200px] max-w-[300px]  truncate" },
+   {
+  header: "Date",
+  className: "w-[220px] max-w-[280px] truncate",
+  render: (item) => (
+    <span className="truncate block">
+      {format(item.createdAt.toDate(), "PPpp")}
+    </span>
+  ),
+},
+{
+  header: "Actions",
+  className: "w-[80px] text-center",
+  render: (item) => (
+    <button
+      onClick={() => setSelectedContact(item)}
+      className="p-2 text-blue-600 hover:text-blue-800"
+    >
+      <Eye size={18} />
+    </button>
+  ),
+},
+
   ];
 
   return (

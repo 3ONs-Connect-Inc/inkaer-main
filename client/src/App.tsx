@@ -13,10 +13,10 @@ import RoleGuard from "./components/routes/RoleGuard";
 import useAuthListener from "./hooks/auth/useAuthListener";
 import { Loader } from "./components/ui/Spinner";
 
-// import FutureOfEngineering from "./pages/footer/articles/FutureOfEngineering";
-// import TechnicalInterviews from "./pages/footer/articles/TechnicalInterviews";
-// import ROIQuality from "./pages/footer/articles/ROIQuality";
-// import RemoteEngineering from "./pages/footer/articles/RemoteEngineering";
+import FutureOfEngineering from "./pages/footer/articles/FutureOfEngineering";
+import TechnicalInterviews from "./pages/footer/articles/TechnicalInterviews";
+import ROIQuality from "./pages/footer/articles/ROIQuality";
+import RemoteEngineering from "./pages/footer/articles/RemoteEngineering";
 
 
 const CreateAccount = lazy(() => import("./pages/auth/CreateAccount"));
@@ -34,8 +34,8 @@ const Privacy = lazy(() => import("./pages/footer/Privacy"));
 // admin pages
 const RootLayout = lazy(() => import("./pages/admin/Layout"));
 const DashboardPage = lazy(() => import("./pages/admin/Home"));
-// const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
-// const Contacts = lazy(() => import("./pages/admin/Contacts"));
+const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
+const Contacts = lazy(() => import("./pages/admin/Contacts"));
 
 const qc = new QueryClient();  
 function App() {
@@ -67,10 +67,10 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
           <Route path="/blog" element={<Blog />} />
-          {/* <Route path="/blog/future-of-engineering-hiring" element={<FutureOfEngineering />} />
+          <Route path="/blog/future-of-engineering-hiring" element={<FutureOfEngineering />} />
           <Route path="/blog/remote-engineering-culture" element={<RemoteEngineering />} />
           <Route path="/blog/technical-interview-best-practices" element={<TechnicalInterviews />} />
-          <Route path="/blog/roi-quality-engineering-hires" element={<ROIQuality />} /> */}
+          <Route path="/blog/roi-quality-engineering-hires" element={<ROIQuality />} />
 
             {/* Unauthorized Fallback */}
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
@@ -87,9 +87,9 @@ function App() {
                 <Route index element={<DashboardPage />} />
 
                 {/* Nested admin pages */}
-                {/* <Route path="view-subcribers" element={<ShortlistRequests />} />
+                <Route path="view-subscribers" element={<ShortlistRequests />} />
                 <Route path="view-contacts" element={<Contacts />} />
-                 */}
+                
                 
                 <Route path="*" element={<NotFound />} />
               </Route>

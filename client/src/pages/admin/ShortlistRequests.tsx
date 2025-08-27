@@ -30,32 +30,35 @@ export default function ShortlistRequests() {
   };
 
   const columns: Column<ShortlistRequest>[] = [
-    { header: "Name", accessor: "name", className: "max-w-[200px] truncate" },
-    { header: "Email", accessor: "email", className: "max-w-[200px] truncate" },
-    { header: "Company", accessor: "company", className: "max-w-[200px] truncate" },
-    { header: "Role Title", accessor: "roleTitle", className: "max-w-[200px] truncate" },
-    { header: "Industry", accessor: "industry", className: "max-w-[200px] truncate" },
-    { header: "Location", accessor: "location", className: "max-w-[200px] truncate" },
-    { header: "Urgency", accessor: "urgency", className: "max-w-[150px] truncate" },
-    {
-      header: "Date",
-      render: (item) => (
-        <span className="max-w-[200px] truncate block">
-          {format(item.createdAt.toDate(), "PPpp")}
-        </span>
-      ),
-    },
-    {
-      header: "Actions",
-      render: (item) => (
-        <button
-          onClick={() => setSelectedRequest(item)}
-          className="p-2 text-blue-600 hover:text-blue-800"
-        >
-          <Eye size={18} />
-        </button>
-      ),
-    },
+    { header: "Name", accessor: "name", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Email", accessor: "email", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Company", accessor: "company", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Role Title", accessor: "roleTitle", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Industry", accessor: "industry", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Location", accessor: "location", className: "w-[200px] max-w-[300px]  truncate" },
+    { header: "Urgency", accessor: "urgency", className: "w-[200px] max-w-[300px]  truncate" },
+   {
+  header: "Date",
+  className: "w-[220px] max-w-[280px] truncate",
+  render: (item) => (
+    <span className="truncate block">
+      {format(item.createdAt.toDate(), "PPpp")}
+    </span>
+  ),
+},
+{
+  header: "Actions",
+  className: "w-[80px] text-center",
+  render: (item) => (
+    <button
+      onClick={() => setSelectedRequest(item)}
+      className="p-2 text-blue-600 hover:text-blue-800"
+    >
+      <Eye size={18} />
+    </button>
+  ),
+},
+
   ];
 
   return (

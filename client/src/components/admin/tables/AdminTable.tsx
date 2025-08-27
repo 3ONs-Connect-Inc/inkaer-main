@@ -29,7 +29,7 @@ export function AdminTable<T>({
       </div>
       <div className="card-body p-0">
       <div className="relative h-auto w-full overflow-auto rounded-none [scrollbar-width:_thin]">
-          <table className="table table-fixed w-full min-w-[700px]">
+          <table className="table table-fixed w-full min-w-[700px] border-collapse">
             <thead className="table-header">
               <tr className="table-row">
                 {columns.map((col, i) => (
