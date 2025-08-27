@@ -7,6 +7,8 @@ import { db } from "@/firebase/config";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { signInWithGoogle } from "@/api/auth/socialAuth";
 
+type UserRole = "admin" | "user";
+
 export function useGoogleSignIn(returnTo: string) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,7 +20,8 @@ export function useGoogleSignIn(returnTo: string) {
       const userRef = doc(collection(db, "users"), user.uid);
       const snapshot = await getDoc(userRef);
 
-      let role = "user";
+   
+      let role: UserRole = "user";
 
       if (!snapshot.exists()) {
         await setDoc(userRef, {
@@ -30,18 +33,20 @@ export function useGoogleSignIn(returnTo: string) {
           createdAt: new Date().toISOString(),
         });
       } else {
-        role = snapshot.data().role || "user";
+        role = (snapshot.data().role as UserRole) || "user";
       }
 
       return { ...user, role };
     },
     onSuccess: (user) => {
-      dispatch(setUser({
-        uid: user.uid,
-        email: user.email!,
-        displayName: user.displayName || "",
-        role: "user",
-      }));
+      dispatch(
+        setUser({
+          uid: user.uid,
+          email: user.email!,
+          displayName: user.displayName || "",
+          role: user.role, 
+        })
+      );
 
       toast.success("Signed in with Google!");
       navigate(user.role === "admin" ? "/admin" : returnTo || "/");
