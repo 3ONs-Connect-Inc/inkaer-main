@@ -28,7 +28,7 @@ Elite
    whitespace-normal break-words 
    https://inkaer.netlify.app
 
-
+  style={{ display: "none" }}
 
    https://inkaer-main-backend.onrender.com
    seo description for about page :

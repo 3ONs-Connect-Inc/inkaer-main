@@ -1,9 +1,10 @@
-import { logoDark, vid1 } from "@/assets";
-import { PortfolioViewer } from "@/components/home/GuestUser/CandidatePackage";
+import { logoDark } from "@/assets";
 import { Calendar, CalendarCheck, CalendarDays, ChartColumn, CheckCircle,  Clock, Contact, FileCheck, FileText, Home, NotepadText, Package, Play, Rss, Settings, Shield, Tag, Target, TrendingDown, User, UserPlus, Users, UserX, Video } from "lucide-react";
 
 import ProfileImage from "@/assets/profile-image.jpg";
 import ProductImage from "@/assets/product-image.jpg";
+import { VideoTab } from "@/components/home/VideoTab";
+import { PortfolioViewer } from "@/components/home/PortfolioViewer";
 
 
 //navbar
@@ -70,44 +71,11 @@ export   const benefits = [
   ];
 
 export  const tabs = [
- {
+  {
     id: "interview",
     name: "Technical Interview Recording",
     icon: Play,
-    content: (
-      <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 max-w-2xl mx-auto">
-        <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden group mb-4">
-          {/* Video */}
-          <video
-            src={vid1}
-            className="w-full h-full object-cover rounded-lg"
-            controls
-            playsInline
-            onMouseEnter={(e) => e.currentTarget.play()}
-            onMouseLeave={(e) => {
-              e.currentTarget.pause();
-              e.currentTarget.currentTime = 0; // reset to start
-            }}
-          />
-
-          {/* Overlay with Play Icon */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
-            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-              <Play className="w-8 h-8 text-white" />
-            </div>
-          </div>
-        </div>
-
-        <p className="desc mb-2 text-center">
-          Mechanical Engineering Proctored Interview
-        </p>
-        <p className="text-small text-center">Duration: 10 minutes</p>
-        <p className="mt-4 desc text-center">
-          10-minute condensed recording of the candidate answering
-          portfolio-based technical questions.
-        </p>
-      </div>
-    ),
+    content: <VideoTab />,
   },
   {
     id: "portfolio",

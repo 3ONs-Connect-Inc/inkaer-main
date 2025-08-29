@@ -3,38 +3,52 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// __dirname replacement in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Change this to your production site
 const BASE_URL = process.env.VITE_CLIENT_URL || "https://inkaer.com";
 
-// List out your static routes
-const routes = [
-  "/", 
-  "/about",
-  "/careers",
-  "/blog",
-  "/contact",
-  "/terms",
-  "/privacy",
-  "/sign-in",
-  "/sign-up",
-  "/forgot-password",
-  "/reset-password",
-  "/unauthorized",
+// Routes you DO want indexed
+const STATIC_ROUTES = [
+  "/", "/about", "/careers", "/blog", "/contact", "/terms", "/privacy"
 ];
 
-function generateSitemap() {
-  const urls = routes.map(route => {
-    return `
+// Routes to exclude from sitemap & add noindex via meta
+const EXCLUDED = new Set([
+  "/sign-in", "/sign-up", "/forgot-password", "/reset-password", "/unauthorized"
+]);
+
+// If your blog is file-based, scan content folder. Otherwise, plug in your CMS fetch here.
+function getBlogPostSlugs() {
+  const postsDir = path.join(__dirname, "content", "blog"); // adjust to your repo
+  if (!fs.existsSync(postsDir)) return [];
+  return fs.readdirSync(postsDir)
+    .filter(f => f.endsWith(".md") || f.endsWith(".mdx") || f.endsWith(".html"))
+    .map(f => "/blog/" + f.replace(/\.(mdx?|html)$/i, ""));
+}
+
+// Helper to format ISO date (YYYY-MM-DD)
+const isoDate = (d = new Date()) => d.toISOString().split("T")[0];
+
+function urlEntry(loc, lastmod) {
+  return `
   <url>
-    <loc>${BASE_URL}${route}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
   </url>`;
-  }).join("\n");
+}
+
+function generateSitemap() {
+  const blogRoutes = getBlogPostSlugs();
+
+  const allRoutes = [
+    ...STATIC_ROUTES,
+    ...blogRoutes
+  ].filter(r => !EXCLUDED.has(r));
+
+  const today = isoDate();
+
+  const urls = allRoutes.map(route => urlEntry(`${BASE_URL}${route}`, today)).join("\n");
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -42,10 +56,9 @@ ${urls}
 </urlset>`;
 
   const publicDir = path.join(__dirname, "public");
-  if (!fs.existsSync(publicDir)) {
-    fs.mkdirSync(publicDir);
-  }
-  fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap, "utf8");
+  if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
+
+  fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap.trim(), "utf8");
   console.log("✅ Sitemap generated at client/public/sitemap.xml");
 }
 
