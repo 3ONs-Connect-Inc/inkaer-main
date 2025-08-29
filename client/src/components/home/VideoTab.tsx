@@ -167,7 +167,7 @@ export function VideoTab() {
           src={vid1}
           poster={poster || undefined}
           className="w-full h-full object-cover rounded-lg"
-          controls
+          controls 
           preload="metadata"
           playsInline
           onMouseEnter={handleMouseEnter}

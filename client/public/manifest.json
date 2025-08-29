@@ -1,35 +1,35 @@
 {
-  "short_name": "eventurelly",
-  "name": "eventurelly",
+  "short_name": "Inkaer",
+  "name": "Inkaer",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logoIcon.svg",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/svg+xml"
     },
     {
-      "src": "logo32.png",
-      "type": "image/png",
+      "src": "logoIcon.svg",
+      "type": "image/svg+xml",
       "sizes": "32x32"
     },
     {
-      "src": "logo64.png",
-      "type": "image/png",
+      "src": "logoIcon.svg",
+      "type": "image/svg+xml",
       "sizes": "64x64"
     },
     {
-      "src": "logo128.png",
-      "type": "image/png",
+      "src": "logoIcon.svg",
+      "type": "image/svg+xml",
       "sizes": "128x128"
     },
     {
-      "src": "logo256.png",
-      "type": "image/png",
+      "src": "logoIcon.svg",
+      "type": "image/svg+xml",
       "sizes": "256x256"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "logoIcon.svg",
+      "type": "image/svg+xml",
       "sizes": "512x512"
     }
   ],
