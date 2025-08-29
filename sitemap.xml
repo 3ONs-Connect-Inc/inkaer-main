@@ -3,73 +3,36 @@
 
   <url>
     <loc>https://inkaer.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-08-29</lastmod>
   </url>
 
   <url>
     <loc>https://inkaer.com/about</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-08-29</lastmod>
   </url>
 
   <url>
     <loc>https://inkaer.com/careers</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-08-29</lastmod>
   </url>
 
   <url>
     <loc>https://inkaer.com/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-08-29</lastmod>
   </url>
 
   <url>
     <loc>https://inkaer.com/contact</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-08-29</lastmod>
   </url>
 
   <url>
     <loc>https://inkaer.com/terms</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-08-29</lastmod>
   </url>
 
   <url>
     <loc>https://inkaer.com/privacy</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://inkaer.com/sign-in</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://inkaer.com/sign-up</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://inkaer.com/forgot-password</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://inkaer.com/reset-password</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://inkaer.com/unauthorized</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-08-29</lastmod>
   </url>
 </urlset>
