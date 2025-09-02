@@ -1,14 +1,14 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/auth/Header";
-import Seo from "@/components/Seo";
+import Seo from "@/components/seo/Seo";
 import ForgotPasswordForm from "@/components/auth/ForgotPassword";
 
 const ForgotPassword = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
       <Seo
-  title="Forgot Password"
+  title="Forgot Password – Inkaer"
   description="Reset your Inkaer account password securely and quickly. Follow the instructions to regain access to your account."
   name="Inkaer"
   type="website"

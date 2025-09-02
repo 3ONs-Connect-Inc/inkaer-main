@@ -1,7 +1,7 @@
 import { openings } from "@/constants"
 import { Clock, DollarSign, MapPin, Users } from "lucide-react"
 import { motion, type Variants } from "framer-motion"
-import Seo from "@/components/Seo"
+import Seo from "@/components/seo/Seo"
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -16,7 +16,7 @@ const Careers = () => {
   return (
   <div className="min-h-screen bg-white">
      <Seo
-        title="Careers"
+        title="Careers – Inkaer"
        description="Explore career opportunities at Inkaer. Join a passionate team shaping the future of hiring. See open roles and apply today."
         name="Inkaer"
         type="website"

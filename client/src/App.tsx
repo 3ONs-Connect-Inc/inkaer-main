@@ -17,6 +17,7 @@ import FutureOfEngineering from "./pages/footer/articles/FutureOfEngineering";
 import TechnicalInterviews from "./pages/footer/articles/TechnicalInterviews";
 import ROIQuality from "./pages/footer/articles/ROIQuality";
 import RemoteEngineering from "./pages/footer/articles/RemoteEngineering";
+import DefaultSeo from "./components/seo/DefaultSeo";
 
 
 const CreateAccount = lazy(() => import("./pages/auth/CreateAccount"));
@@ -36,6 +37,7 @@ const RootLayout = lazy(() => import("./pages/admin/Layout"));
 const DashboardPage = lazy(() => import("./pages/admin/Home"));
 const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
 const Contacts = lazy(() => import("./pages/admin/Contacts"));
+const AdminBlog =lazy(()=> import ("./pages/admin/AdminBlog"));
 
 const qc = new QueryClient();  
 function App() {
@@ -44,6 +46,7 @@ function App() {
 
   return (
     <QueryClientProvider client={qc}>
+       <DefaultSeo />
       <Toaster />
       <ScrollToTop />
       <BackToTopButton />
@@ -89,6 +92,7 @@ function App() {
                 {/* Nested admin pages */}
                 <Route path="view-subscribers" element={<ShortlistRequests />} />
                 <Route path="view-contacts" element={<Contacts />} />
+                  <Route path="view-bloglist" element={<AdminBlog />} />
                 
                 
                 <Route path="*" element={<NotFound />} />

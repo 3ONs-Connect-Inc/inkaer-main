@@ -1,10 +1,10 @@
-import Seo from "@/components/Seo"
+import Seo from "@/components/seo/Seo"
 
 const Privacy = () => {
   return (
   <div className="min-h-screen bg-white">
      <Seo
-  title="Privacy Policy"
+  title="Privacy Policy – Inkaer"
   description="Read Inkaer's Privacy Policy to learn how we collect, use, and protect your personal information when you visit our website or use our services."
   name="Inkaer"
   type="website"

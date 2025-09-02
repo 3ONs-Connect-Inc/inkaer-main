@@ -1,11 +1,11 @@
-import Seo from "@/components/Seo"
+import Seo from "@/components/seo/Seo"
 
 
 const Terms = () => {
   return (
 <div className="min-h-screen bg-white">  
  <Seo
-  title="Terms of Service"
+  title="Terms of Service – Inkaer"
   description="Review Inkaer's Terms of Service to understand your rights, responsibilities, and the rules governing the use of our website and services."
   name="Inkaer"
   type="website"

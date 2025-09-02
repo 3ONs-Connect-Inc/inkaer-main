@@ -1,5 +1,5 @@
 import Modal from "@/components/Modal";
-import Seo from "@/components/Seo"
+import Seo from "@/components/seo/Seo"
 import { BtnLoader } from "@/components/ui/Spinner";
 import { useContactMutation } from "@/hooks/useContactMutation";
 import type { ContactFormData } from "@/utils/api/contact";
@@ -56,7 +56,7 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
      <Seo
-  title="Contact"
+  title="Contact – Inkaer"
   description="Get in touch with the Inkaer team. Reach out for support, partnership opportunities, or general inquiries—we’re here to help."
   name="Inkaer"
   type="website"

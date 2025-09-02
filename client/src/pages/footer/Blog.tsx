@@ -1,5 +1,5 @@
 import { blogPosts } from "@/constants";
-import Seo from "@/components/Seo";
+import Seo from "@/components/seo/Seo";
 import { ArrowRight, Calendar, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-white">
      <Seo
-        title="Blog"
+        title="Blog – Inkaer"
          description="Explore the latest insights, articles, and updates from Inkaer. Stay informed about engineering, hiring trends, and company news."
         name="Inkaer"
         type="article"
@@ -128,4 +128,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Blog;  

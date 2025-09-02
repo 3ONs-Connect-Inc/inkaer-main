@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/auth/Header";
 import SocialLogin from "@/components/auth/SocialLogin";
 import RegisterForm from "@/components/auth/RegisterForm";
-import Seo from "@/components/Seo";
+import Seo from "@/components/seo/Seo";
 
 const CreateAccount = () => {
 
@@ -11,7 +11,7 @@ const CreateAccount = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
     <Seo
-  title="Create Account"
+  title="Create Account – Inkaer"
   description="Sign up for Inkaer to access powerful hiring tools and connect with top engineering talent. Join our platform in just a few steps."
   name="Inkaer"
   type="website"

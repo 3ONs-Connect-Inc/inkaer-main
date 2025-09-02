@@ -4,7 +4,7 @@ import Header from "@/components/auth/Header";
 import SocialLogin from "@/components/auth/SocialLogin";
 import { useSignIn } from "@/hooks/auth/useSignIn";
 import SignInForm from "@/components/auth/SignInForm";
-import Seo from "@/components/Seo";
+import Seo from "@/components/seo/Seo";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import type { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
@@ -40,7 +40,7 @@ const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
    <Seo
-  title="Sign In to Your Account"
+  title="Sign In to Your Account – Inkaer"
   description="Sign in to your Inkaer account to access powerful hiring tools and manage your profile securely."
   name="Inkaer"
   type="website"

@@ -1,5 +1,5 @@
 import { logoDark } from "@/assets";
-import { Calendar, CalendarCheck, CalendarDays, ChartColumn, CheckCircle,  Clock, Contact, FileCheck, FileText, Home, NotepadText, Package, Play, Rss, Settings, Shield, Tag, Target, TrendingDown, User, UserPlus, Users, UserX, Video } from "lucide-react";
+import { Calendar, CalendarCheck, CalendarDays, ChartColumn, CheckCircle,   Clock, Contact, FileCheck, FileText, Home, NotebookPen, NotepadText, Package, Play, Rss, Settings, Shield, Tag, Target, TrendingDown, User, UserPlus, Users, UserX, Video } from "lucide-react";
 
 import ProfileImage from "@/assets/profile-image.jpg";
 import ProductImage from "@/assets/product-image.jpg";
@@ -338,6 +338,16 @@ export const navbarLinks = [
             },
         ],
     },  
+        {
+        title: "Posts & Pages",
+        links: [
+            {
+                label: "View Blogs",
+                icon: NotebookPen,
+                path: "/admin/view-bloglist",
+            },  
+        ],
+    },
     {
         title: "Events",
         links: [

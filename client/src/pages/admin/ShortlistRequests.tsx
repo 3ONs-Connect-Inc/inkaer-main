@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Eye, Download } from "lucide-react";
 import { useShortlistRequests, type ShortlistRequest } from "@/components/admin/hooks/useShortlistRequests";
-import { AdminTable, type Column } from "@/components/admin/tables/AdminTable";
+import { AdminTable, type Column } from "@/components/admin/AdminTable";
 import { format } from "date-fns";
 import Modal from "@/components/admin/ui/Modal";
 import { PageLoader } from "@/components/ui/Spinner";

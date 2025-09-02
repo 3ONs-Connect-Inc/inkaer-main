@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Eye } from "lucide-react";
 import { useContacts, type Contact } from "@/components/admin/hooks/useContacts";
-import { AdminTable, type Column } from "@/components/admin/tables/AdminTable";
+import { AdminTable, type Column } from "@/components/admin/AdminTable";
 import { format } from "date-fns";
 import Modal from "@/components/admin/ui/Modal";
 import { PageLoader } from "@/components/ui/Spinner";

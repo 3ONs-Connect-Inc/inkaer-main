@@ -1,6 +1,6 @@
 import GuestUser from "@/components/home/GuestUser";
 import LoggedInUser from "@/components/home/LoggedInUser";
-import Seo from "@/components/Seo";
+import Seo from "@/components/seo/Seo";
 import type { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
   <Seo
-  title="Home"
+  title="Home – Inkaer"
   description="Inkaer helps companies hire top engineering talent faster and smarter. Discover our platform, mission, and how we're redefining tech hiring."
   name="Inkaer"
   type="website"

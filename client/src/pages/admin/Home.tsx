@@ -6,13 +6,14 @@ import { Footer } from "@/components/admin/layouts/footer";
 import OverViewChart from "@/components/admin/Charts/OverViewCharts";
 import { CreditCard, DollarSign, Package, PencilLine, Star, Trash, TrendingUp, Users } from "lucide-react";
 import { recentSalesData, topProducts } from "@/constants";
+import { useDashboardStats } from "@/components/admin/hooks/useDashboardStats";
 
 
 const DashboardPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext); 
-
+  const { data: stats, isLoading } = useDashboardStats();
 
   useEffect(() => {
     if (location.state?.openFromSidebar) {
@@ -20,6 +21,8 @@ const DashboardPage = () => {
     }
   }, [location.pathname, location.state, navigate]);
 
+
+   if (isLoading) return <p>Loading dashboard...</p>;
 
   return (
     <div className="flex flex-col gap-y-4">
@@ -45,17 +48,33 @@ const DashboardPage = () => {
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <DollarSign size={26} />
                         </div>
-                        <p className="card-title">Total Paid Orders</p>
+                        <p className="card-title">Total Contacted Customers</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">$16,000</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50"> {stats.totalContactedCustomers}</p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
                             <TrendingUp size={18} />
-                            12%
+                           {stats.contactedChange}%
                         </span>
                     </div>
                 </div>
+        
                 <div className="card">
+                    <div className="card-header">
+                        <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
+                            <CreditCard size={26} />
+                        </div>
+                        <p className="card-title">Total Subscribers</p>
+                    </div>
+                    <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50"> {stats.totalSubscribers}</p>
+                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
+                            <TrendingUp size={18} />
+                            {stats.subscribersChange}%
+                        </span>
+                    </div>
+                </div>
+                   <div className="card">
                     <div className="card-header">
                         <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
                             <Users size={26} />
@@ -70,21 +89,7 @@ const DashboardPage = () => {
                         </span>
                     </div>
                 </div>
-                <div className="card">
-                    <div className="card-header">
-                        <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
-                            <CreditCard size={26} />
-                        </div>
-                        <p className="card-title">Sales</p>
-                    </div>
-                    <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">12,340</p>
-                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
-                            <TrendingUp size={18} />
-                            19%
-                        </span>
-                    </div>
-                </div>
+
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
       <OverViewChart theme={theme === "system" ? "light" : theme} />

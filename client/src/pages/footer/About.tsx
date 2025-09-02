@@ -1,6 +1,6 @@
 import { CheckCircle, Globe, Target, Users } from "lucide-react";
 import { motion } from "framer-motion";
-import Seo from "@/components/Seo";
+import Seo from "@/components/seo/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -20,7 +20,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-white">
        <Seo
-        title="About"
+        title="About – Inkaer"
        description="Learn about Inkaer’s mission, values, and the team behind our platform. Discover how we’re transforming the way companies hire top engineering talent."
         name="Inkaer"
         type="website"
