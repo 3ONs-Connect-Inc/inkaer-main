@@ -21,7 +21,8 @@ const Home = lazy(() => import("./pages/Home"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const About = lazy(() => import("./pages/footer/About"));
-
+const Careers = lazy(() => import("./pages/careers/Careers"));
+const Application =lazy(()=>import("./pages/careers/Application"));
 const Blog = lazy(() => import("./pages/blog/Blog"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Terms = lazy(() => import("./pages/footer/Terms"));
@@ -34,6 +35,8 @@ const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
 const Contacts = lazy(() => import("./pages/admin/Contacts"));
 const AdminBlog =lazy(()=> import ("./pages/admin/AdminBlog"));
 const BlogDetail= lazy(() => import("./pages/blog/BlogDetail"));
+const CareerList= lazy(() => import("./pages/admin/career/CareerList"));
+const AdminCareer= lazy(() => import("./pages/admin/career/AdminCareer"));
 
 
 const qc = new QueryClient();  
@@ -62,7 +65,8 @@ function App() {
             <Route path="/" element={<Home />} />
 
             <Route path="/about" element={<About />} />
-      
+            <Route path="/careers" element={<Careers />} />
+                 <Route path="/application" element={<Application />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
@@ -87,7 +91,9 @@ function App() {
                 <Route path="view-subscribers" element={<ShortlistRequests />} />
                 <Route path="view-contacts" element={<Contacts />} />
                   <Route path="view-bloglist" element={<AdminBlog />} />
-          
+                <Route path="view-careerlist" element={<AdminCareer />} />
+                <Route path="view-career-request" element={<CareerList />} />
+                
                 
                 <Route path="*" element={<NotFound />} />
               </Route>

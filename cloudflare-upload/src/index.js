@@ -10,7 +10,7 @@ async function handleRequest(request) {
       status: 204,
       headers: corsHeaders(),
     });
-  }
+  }    
 
   // GET: Serve uploaded file from R2
   if (request.method === "GET" && url.pathname.startsWith("/files/")) {
@@ -88,13 +88,31 @@ async function handleRequest(request) {
     });
   }
 
+// DELETE: Remove file from R2
+if (request.method === "DELETE" && url.pathname.startsWith("/files/")) {
+  const key = url.pathname.replace("/files/", "");
+  try {
+    await MY_BUCKET.delete(key);
+    return new Response("File deleted", {
+      status: 200,
+      headers: corsHeaders(),
+    });
+  } catch (err) {
+    return new Response("Error deleting file: " + err.message, {
+      status: 500,
+      headers: corsHeaders(),
+    });
+  }
+}
+
+
   return new Response("Invalid request", { status: 400 });
 }
 
 function corsHeaders() {
   return {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
 }

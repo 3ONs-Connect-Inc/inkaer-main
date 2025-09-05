@@ -1,12 +1,14 @@
-import { logoDark } from "@/assets";
-import { Calendar, CalendarCheck, CalendarDays, ChartColumn, CheckCircle,   Clock, Contact, FileCheck, FileText, Home, NotebookPen, NotepadText, Package, Play, Rss, Settings, Shield, Tag, Target, TrendingDown, User, UserPlus, Users, UserX, Video } from "lucide-react";
+
+import { Calendar, 
+//  CalendarCheck, CalendarDays, 
+  ChartColumn, CheckCircle,   Clock, Contact, FileCheck, FileText, Home, Mars, NotebookPen, NotepadText, Play, Rss, Settings, Shield, Tag, Target, TrendingDown, User, UserPlus, Users, UserSearch, UserX, Video } from "lucide-react";
 
 import ProfileImage from "@/assets/profile-image.jpg";
 import ProductImage from "@/assets/product-image.jpg";
 import { VideoTab } from "@/components/home/VideoTab";
 import { PortfolioViewer } from "@/components/home/PortfolioViewer";
 
-
+  
 //navbar
   export const navigation = [
     { name: 'How it Works', href: '#how-it-works' },
@@ -248,72 +250,6 @@ export const faqs = [
   ];
 
 
-//footer
-export const openings = [
-      {
-      title: "Mechanical Design Engineer",
-      department: "Engineering",
-      location: "Remote",
-      type: "Full-time",
-      salary: "$90k - $110k",
-      description: "Our client is looking for a skilled mechanical design engineer to join their team."
-    },
-      {
-      title: "Technical Recruiter Intern",
-      department: "People",
-      location: "Remote",
-      type: "Full-time",
-      salary: "Unpaid",
-      description: "Help us find and vet the best engineering talent for our network."
-    },
-  ];
-
-
- export  const blogPosts = [
-    {
-      title: "The Future of Engineering Hiring: Trends to Watch in 2025",
-      excerpt: "Explore the latest trends shaping how companies recruit and hire engineering talent, from AI-powered screening to remote-first strategies.",
-      author: "Sarah Chen",
-      date: "January 15, 2025",
-      readTime: "5 min read",
-      category: "Industry Trends",
-      image: logoDark,
-      slug: "future-of-engineering-hiring"
-    },
-    {
-      title: "How to Build a Strong Engineering Culture in Remote Teams",
-      excerpt: "Learn practical strategies for fostering collaboration, communication, and innovation in distributed engineering teams.",
-      author: "Mike Rodriguez",
-      date: "January 10, 2025",
-      readTime: "7 min read",
-      category: "Team Building",
-      image: logoDark,
-      slug: "remote-engineering-culture"
-    },
-    {
-      title: "Technical Interview Best Practices: A Guide for Hiring Managers",
-      excerpt: "Discover effective techniques for conducting technical interviews that accurately assess candidate skills while providing a positive experience.",
-      author: "Emily Thompson",
-      date: "January 5, 2025",
-      readTime: "6 min read",
-      category: "Hiring",
-      image: logoDark,
-      slug: "technical-interview-best-practices"
-    },
-    {
-      title: "The ROI of Quality Engineering Hires: Why Vetting Matters",
-      excerpt: "Analyze the long-term impact of thorough candidate vetting on team productivity, project success, and company growth.",
-      author: "David Kim",
-      date: "December 28, 2024",
-      readTime: "8 min read",
-      category: "ROI Analysis",
-      image: logoDark,
-      slug: "roi-quality-engineering-hires"
-    }
-  ];
-
-
-
 
 //admin
 export const navbarLinks = [
@@ -342,32 +278,37 @@ export const navbarLinks = [
         title: "Posts & Pages",
         links: [
             {
-                label: "View Blogs",
+                label: "Add Blogs",
                 icon: NotebookPen,
                 path: "/admin/view-bloglist",
             },  
+             {
+                label: "Add Career",
+                icon: UserSearch,
+                path: "/admin/view-careerlist",
+            }, 
         ],
     },
-    {
-        title: "Events",
-        links: [
-            {
-                label: "Events",
-                icon: CalendarCheck,
-                path: "/admin/view-events",
-            },  
-            {
-                label: "Add Event",
-                icon: CalendarDays,
-                path: "/admin/add-events",
-            },
-            {
-                label: "Bookings",
-                icon: Package,
-                path: "/admin/view/bookings",
-            },
-        ],
-    },
+    // {
+    //     title: "Events",
+    //     links: [
+    //         {
+    //             label: "Events",
+    //             icon: CalendarCheck,
+    //             path: "/admin/view-events",
+    //         },  
+    //         {
+    //             label: "Add Event",
+    //             icon: CalendarDays,
+    //             path: "/admin/add-events",
+    //         },
+    //         {
+    //             label: "Bookings",
+    //             icon: Package,
+    //             path: "/admin/view/bookings",
+    //         },
+    //     ],
+    // },
     {
         title: "Customers",
         links: [
@@ -381,6 +322,11 @@ export const navbarLinks = [
                 icon: UserPlus,  
                 path: "/admin/manage-users",
             },
+             {
+                label: "View Careers",
+                icon:  Mars,
+                path: "/admin/view-career-request",
+            }, 
             {
                 label: "View Contacts",
                 icon: Contact,
@@ -602,7 +548,6 @@ export const topProducts = [
         rating: 4.5,
     },
 ];
-
 
 
 

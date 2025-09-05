@@ -1,20 +1,18 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import  react  from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
-   assetsInclude: ['**/*.wasm'], // treat .wasm as asset
+  assetsInclude: ['**/*.wasm'],
   server: {
     fs: {
-      allow: ['.'] // allow project root
+      allow: ['.']
     }
   },
-    resolve: {
+  resolve: {
     alias: {
       '@': '/src',
     },
   },
- 
   plugins: [react()],
-  
 })

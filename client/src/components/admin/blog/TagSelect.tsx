@@ -1,29 +1,22 @@
-
 import { classNames, TAG_OPTIONS } from "@/types";
 import { Tag } from "lucide-react";
-
 
 export default function TagSelect({
   value,
   onChange,
 }: {
-  value: string[];
-  onChange: (tags: string[]) => void;
+  value: string; // single tag
+  onChange: (tags: string) => void;
 }) {
-  const toggle = (tag: string) => {
-    if (value.includes(tag)) onChange(value.filter((t) => t !== tag));
-    else onChange([...value, tag]);
-  };
-
   return (
     <div className="flex flex-wrap gap-2">
       {TAG_OPTIONS.map((tag) => {
-        const active = value.includes(tag);
+        const active = value === tag;
         return (
           <button
             key={tag}
             type="button"
-            onClick={() => toggle(tag)}
+            onClick={() => onChange(tag)} // just set the tag directly
             className={classNames(
               "px-3 py-1 rounded-full text-sm border transition-all",
               active

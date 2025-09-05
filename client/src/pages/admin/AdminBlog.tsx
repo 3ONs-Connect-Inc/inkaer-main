@@ -1,28 +1,75 @@
-
-import BlogHeaderForm from "@/components/admin/blog/BlogHeaderForm";
-import BlogPostForm from "@/components/admin/blog/BlogPostForm";
+import BlogHeaderForm from "@/components/admin/Blog/BlogHeaderForm";
 import type { BlogHeader, BlogPost } from "@/types";
-import { useState } from "react";
-
+import { addBlogPost, deleteBlogPost, getBlogHeader, saveBlogHeader } from "@/firebase/blogService";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { BlogPostForm } from "@/components/admin/Blog";
+import { useBlogPosts } from "@/components/admin/hooks/useAdminBlog";
+import { toast } from "sonner";
 
 export default function AdminBlog() {
-  const [header, setHeader] = useState<BlogHeader>({
-    heroTitle: "Inkaer Blog",
-    heroSubtitle:
-      "Insights, trends, and best practices for engineering hiring and team building. Stay ahead with expert advice from industry leaders.",
-    heroBadge: "Featured",
-    latestTitle: "Latest Articles",
-    latestSubtitle: "Stay updated with the latest insights and trends",
+  const queryClient = useQueryClient();
+
+  const { data: header, isLoading: headerLoading } = useQuery({
+    queryKey: ["blogHeader"],
+    queryFn: getBlogHeader,
   });
 
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const { data: posts, isLoading: postsLoading } = useBlogPosts();
+
+  const saveHeaderMutation = useMutation({
+    mutationFn: (header: BlogHeader) => saveBlogHeader(header),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["blogHeader"] }),
+  });
+
+  const addPostMutation = useMutation({
+    mutationFn: (post: BlogPost) => addBlogPost(post),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["blogPosts"] }),
+  });
+
+  const deletePostMutation = useMutation({
+    mutationFn: deleteBlogPost,
+    onSuccess: () => {
+      toast.success("Post deleted successfully");
+      queryClient.invalidateQueries({ queryKey: ["blogPosts"] });
+    },
+    onError: () => {
+      toast.error("Failed to delete post");
+    },
+  });
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto p-6 lg:p-10">
         <h1 className="text-2xl font-bold mb-6">Admin · Blog Manager</h1>
-        <BlogHeaderForm header={header} setHeader={setHeader} />
-        <BlogPostForm posts={posts} setPosts={setPosts} />
+
+        {/* Header Form */}
+        {headerLoading ? (
+          <p>Loading header...</p>
+        ) : (
+          <BlogHeaderForm
+            header={
+              header || {
+                heroTitle: "",
+                heroSubtitle: "",
+                footerTitle: "",
+                footerSubtitle: "",
+              }
+            }
+            setHeader={(h) => saveHeaderMutation.mutate(h)}
+            onSave={(h) => saveHeaderMutation.mutateAsync(h)}
+          />
+        )}
+
+        {/* Posts Table */}
+        {postsLoading ? (
+          <p>Loading posts...</p>
+        ) : (
+          <BlogPostForm
+            posts={posts ?? []}
+            onAddPost={(p) => addPostMutation.mutate(p)}
+            onDeletePost={(p) => deletePostMutation.mutate(p)}
+          />
+        )}
       </div>
     </div>
   );

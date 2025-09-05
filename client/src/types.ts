@@ -1,25 +1,19 @@
-// /components/admin/blog/types.ts
+
 export type BlogPost = {
-  id: number;
+  id: string;
   title: string;
   slug: string;
   category: string;
-  tags: string[];
+  tags: string;
   excerpt: string;
-  description: string;
+  content: string;
   author: string;
-  date: string;
   readTime: string;
   image: string;
+  timestamp: any;
 };
 
-export interface BlogHeader {
-  heroTitle: string;
-  heroSubtitle: string;
-  heroBadge: string;
-  latestTitle: string;
-  latestSubtitle: string;
-}
+
 
 export const CATEGORIES = [
   "Engineering",
@@ -48,3 +42,40 @@ export const generateSlug = (title: string) =>
 
 export const classNames = (...c: (string | false | null | undefined)[]) =>
   c.filter(Boolean).join(" ");
+
+
+export type CareerPost = {
+  id: string;
+  title: string;
+  description: string;
+  tagline: string;
+  department: string;
+  location: string;
+  type: string;
+  salary?: string;
+  fullDescription: string;
+  responsibilities: string[];
+  requirements: string[];
+  benefits: string[];
+  createdAt: number;
+  updatedAt: number;
+};
+
+  
+
+export type CareersMeta = {
+id?: string
+heroTitle: string
+heroSubtitle: string
+footerTitle: string
+footerSubtitle: string
+updatedAt: number
+}
+export interface BlogHeader {
+  heroTitle: string;
+  heroSubtitle: string;
+  footerTitle: string;
+  footerSubtitle: string;
+}
+
+
