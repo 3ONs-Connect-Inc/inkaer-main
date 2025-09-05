@@ -1,40 +1,36 @@
-// client/generate-sitemap.js
+
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import admin from "firebase-admin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const BASE_URL = process.env.VITE_CLIENT_URL || "https://inkaer.com";
 
-// ✅ Firebase config (must match your project)
-const firebaseConfig = {
-  apiKey: process.env.VITE_FIREBASE_API_KEY,
-  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.VITE_FIREBASE_APP_ID,
-};
+// ✅ Parse Firebase service account key from GitHub secret
+const serviceAccount = JSON.parse(process.env.VITE_SERVICE_ACCOUNT_KEY || "{}");
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+}
 
-// Routes you DO want indexed
+const db = admin.firestore();
+
+// Static routes
 const STATIC_ROUTES = [
-  "/", "/about", "/careers", "/blog", "/contact", "/terms", "/privacy"
+  "/", "/about", "/careers", "/blog", "/contact", "/terms", "/privacy",
 ];
 
-// Routes to exclude from sitemap
+// Excluded routes
 const EXCLUDED = new Set([
-  "/sign-in", "/sign-up", "/forgot-password", "/reset-password", "/unauthorized"
+  "/sign-in", "/sign-up", "/forgot-password", "/reset-password", "/unauthorized",
 ]);
 
-// Format ISO date (YYYY-MM-DD)
+// ISO date
 const isoDate = (d = new Date()) => d.toISOString().split("T")[0];
 
 function urlEntry(loc, lastmod) {
@@ -45,9 +41,9 @@ function urlEntry(loc, lastmod) {
   </url>`;
 }
 
-// ✅ Fetch blog posts from Firestore
+// ✅ Fetch blog posts
 async function getBlogRoutes() {
-  const snap = await getDocs(collection(db, "blogs"));
+  const snap = await db.collection("blogs").get();
   return snap.docs.map((doc) => {
     const data = doc.data();
     const slug = data.slug || data.title?.toLowerCase().replace(/\s+/g, "-") || "post";
@@ -55,9 +51,9 @@ async function getBlogRoutes() {
   });
 }
 
-// ✅ Fetch job applications (job postings) from Firestore
+// ✅ Fetch jobs
 async function getApplicationRoutes() {
-  const snap = await getDocs(collection(db, "jobs"));
+  const snap = await db.collection("jobs").get();
   return snap.docs.map((doc) => `/application?jobId=${doc.id}`);
 }
 
