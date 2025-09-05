@@ -1,10 +1,10 @@
-import BlogHeaderForm from "@/components/admin/Blog/BlogHeaderForm";
+import BlogHeaderForm from "@/components/admin/blog/BlogHeaderForm";
 import type { BlogHeader, BlogPost } from "@/types";
 import { addBlogPost, deleteBlogPost, getBlogHeader, saveBlogHeader } from "@/firebase/blogService";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { BlogPostForm } from "@/components/admin/Blog";
 import { useBlogPosts } from "@/components/admin/hooks/useAdminBlog";
 import { toast } from "sonner";
+import BlogPostForm from "@/components/admin/blog/BlogPostForm";
 
 export default function AdminBlog() {
   const queryClient = useQueryClient();
