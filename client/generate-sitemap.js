@@ -1,4 +1,3 @@
-
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -10,7 +9,15 @@ const __dirname = path.dirname(__filename);
 const BASE_URL = process.env.VITE_CLIENT_URL || "https://inkaer.com";
 
 // ✅ Parse Firebase service account key from GitHub secret
-const serviceAccount = JSON.parse(process.env.VITE_SERVICE_ACCOUNT_KEY || "{}");
+let serviceAccount = {};
+if (process.env.VITE_SERVICE_ACCOUNT_KEY) {
+  serviceAccount = JSON.parse(process.env.VITE_SERVICE_ACCOUNT_KEY);
+
+  // Fix private key formatting if it's on one line
+  if (serviceAccount.private_key) {
+    serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
+  }
+}
 
 if (!admin.apps.length) {
   admin.initializeApp({
