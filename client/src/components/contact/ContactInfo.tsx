@@ -2,7 +2,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 const ContactInfo: React.FC = () => {
   return (
-    <div>
+    <div>  
       <h2 className="text-bold-3xl mb-8">Get in Touch</h2>
       <div className="space-y-6">
         {/* Email */}
@@ -26,7 +26,7 @@ const ContactInfo: React.FC = () => {
             <h3 className="text-sm sm:text-lg font-medium text-gray-900">
               Phone
             </h3>
-            <p className="text-small">+1 (905) 933-8653</p>
+            <p className="text-small">+1 (647) 696-3447</p>
             <p className="text-sm text-gray-500 mt-1">
               Monday to Friday, 9am to 6pm EST
             </p>
