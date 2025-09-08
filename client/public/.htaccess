@@ -3,12 +3,11 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Choose ONE of these canonicalizations:
-
-# (A) Redirect non-www -> www
-# RewriteCond %{HTTP_HOST} !^www\.
-# RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# (B) Redirect www -> non-www
+# Redirect www -> non-www (optional, uncomment if needed)
 # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 # RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# React Router SPA fallback
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
