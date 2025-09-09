@@ -1,0 +1,1 @@
+import{K as e,M as o,N as t,a}from"./index-DgZA0KzG.js";const w=async s=>{await e(a,s,{url:`${window.location.origin}/reset-password`})},n=async({oobCode:s,newPassword:r})=>{await o(a,s),await t(a,s,r)};export{n as c,w as r};
