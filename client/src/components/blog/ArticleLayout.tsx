@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
+
 
 interface ArticleLayoutProps {
   title: string;
