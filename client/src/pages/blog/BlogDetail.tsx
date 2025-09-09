@@ -37,7 +37,7 @@ const BlogDetail: React.FC = () => {
       title={post.title}
       excerpt={post.excerpt}
       author={post.author}
-      date={moment(post.timestamp).fromNow()} // ⏳ "3 hours ago"
+      timestamp={moment(post.timestamp).fromNow()}
       readTime={post.readTime}
       category={post.category}
       image={post.image}

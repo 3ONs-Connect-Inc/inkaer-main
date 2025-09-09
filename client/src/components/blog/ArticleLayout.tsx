@@ -7,7 +7,7 @@ interface ArticleLayoutProps {
   title: string;
   excerpt: string;
   author: string;
-  date: string;
+  timestamp: string;
   readTime: string;
   category: string;
   image: string;
@@ -18,7 +18,7 @@ const ArticleLayout: React.FC<ArticleLayoutProps> = ({
   title,
   excerpt,
   author,
-  date,
+  timestamp,
   readTime,
   category,
   image,
@@ -55,13 +55,13 @@ const ArticleLayout: React.FC<ArticleLayoutProps> = ({
                 </span>
                 <span className="flex items-center">
                   <Calendar className="w-4 h-4 mr-2" />
-                 {moment(date).fromNow()}  
+                 {timestamp}  
                 </span>
                 <span>{readTime}</span>
               </div>
             </div>
           </div>
-        </section>
+        </section>  
 
         {/* Article Image */}
         <section className="py-8">
