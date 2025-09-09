@@ -1,4 +1,4 @@
-name: Generate a build and push to another branch
+name: Build frontend and deploy worker
 
 permissions:
   contents: write
@@ -11,7 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Push
+    name: Build and Deploy
+
     env:
       VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
       VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
@@ -31,7 +32,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install all dependencies
+      # ─────── FRONTEND BUILD ───────
+      - name: Install frontend dependencies
         working-directory: client
         run: npm install
 
@@ -39,7 +41,7 @@ jobs:
         working-directory: client
         run: npm run sitemap
 
-      - name: Build
+      - name: Build frontend
         working-directory: client
         run: npm run build
 
@@ -47,11 +49,21 @@ jobs:
         working-directory: client
         run: ls -la && ls -la ./dist
 
-      - name: Push
+      - name: Push frontend build
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
-          BRANCH: build # The branch where built assets go
-          FOLDER: client/dist # IMPORTANT: point to frontend dist folder
+          BRANCH: build
+          FOLDER: client/dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "Build: ({sha}) {msg}"
+
+      # ─────── CLOUDFLARE WORKER DEPLOY ───────
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Deploy Cloudflare Worker
+        working-directory: cloudflare-upload
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: wrangler deploy
