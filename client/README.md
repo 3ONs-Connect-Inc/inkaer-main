@@ -24,7 +24,6 @@ Elite
     </DialogDescription>
   </DialogHeader>
 
-
    whitespace-normal break-words 
    https://inkaer.netlify.app
 
@@ -32,7 +31,5 @@ Elite
 
    https://inkaer-main-backend.onrender.com
    seo description for about page :
-
-
 
    sanitize
