@@ -6,11 +6,12 @@ async function handleRequest(request) {
   const url = new URL(request.url);
 
   if (request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: corsHeaders(),
-    });
-  }    
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders(request.headers.get("Origin") || "*"),
+  });
+}
+
 
   // GET: Serve uploaded file from R2
   if (request.method === "GET" && url.pathname.startsWith("/files/")) {
@@ -49,8 +50,7 @@ async function handleRequest(request) {
     }
   }
 
-  // POST: Upload file to R2
-// POST: Upload file to R2 (only on /upload path)
+// POST: Upload file to R2
 if (request.method === "POST" && url.pathname === "/upload") {
   const formData = await request.formData();
   const file = formData.get("file");
@@ -67,15 +67,16 @@ if (request.method === "POST" && url.pathname === "/upload") {
   const fileKey = `uploads/${Date.now()}_${cleanName}`;
   const ext = cleanName.split(".").pop();
 
-  let contentType = file.type;
-  if (!contentType) {
+  let contentType = file.type || "application/octet-stream";
+  if (!file.type) {
     if (ext === "step" || ext === "stp") contentType = "application/step";
     else if (ext === "wasm") contentType = "application/wasm";
     else if (ext === "pdf") contentType = "application/pdf";
-    else contentType = "application/octet-stream";
   }
 
-  await MY_BUCKET.put(fileKey, file.stream(), {
+  // Use arrayBuffer instead of stream()
+  const buffer = await file.arrayBuffer();
+  await MY_BUCKET.put(fileKey, buffer, {
     httpMetadata: { contentType },
   });
 
@@ -83,11 +84,12 @@ if (request.method === "POST" && url.pathname === "/upload") {
   return new Response(JSON.stringify({ url: publicUrl }), {
     status: 200,
     headers: {
-      ...corsHeaders(),
+      ...corsHeaders(request.headers.get("Origin") || "*"),
       "Content-Type": "application/json",
     },
   });
 }
+
 
 
 // DELETE: Remove file from R2
@@ -111,10 +113,11 @@ if (request.method === "DELETE" && url.pathname.startsWith("/files/")) {
   return new Response("Invalid request", { status: 400 });
 }
 
-function corsHeaders() {
+
+function corsHeaders(origin = "*") {
   return {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": origin,
     "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, *",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
   };
 }
