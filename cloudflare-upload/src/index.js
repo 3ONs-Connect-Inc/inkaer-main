@@ -50,43 +50,45 @@ async function handleRequest(request) {
   }
 
   // POST: Upload file to R2
-  if (request.method === "POST") {
-    const formData = await request.formData();
-    const file = formData.get("file");
+// POST: Upload file to R2 (only on /upload path)
+if (request.method === "POST" && url.pathname === "/upload") {
+  const formData = await request.formData();
+  const file = formData.get("file");
 
-    if (!file || typeof file !== "object" || !file.name) {
-      return new Response("Invalid file upload", { status: 400 });
-    }
-
-    const cleanName = file.name
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9.\-_]/g, "");
-
-    const fileKey = `uploads/${Date.now()}_${cleanName}`;
-    const ext = cleanName.split(".").pop();
-
-    let contentType = file.type;
-    if (!contentType) {
-      if (ext === "step" || ext === "stp") contentType = "application/step";
-      else if (ext === "wasm") contentType = "application/wasm";
-      else if (ext === "pdf") contentType = "application/pdf";
-      else contentType = "application/octet-stream";
-    }
-
-    await MY_BUCKET.put(fileKey, file.stream(), {
-      httpMetadata: { contentType },
-    });
-
-    const publicUrl = `${url.origin}/files/${fileKey}`;
-    return new Response(JSON.stringify({ url: publicUrl }), {
-      status: 200,
-      headers: {
-        ...corsHeaders(),
-        "Content-Type": "application/json",
-      },
-    });
+  if (!file || typeof file !== "object" || !file.name) {
+    return new Response("Invalid file upload", { status: 400 });
   }
+
+  const cleanName = file.name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9.\-_]/g, "");
+
+  const fileKey = `uploads/${Date.now()}_${cleanName}`;
+  const ext = cleanName.split(".").pop();
+
+  let contentType = file.type;
+  if (!contentType) {
+    if (ext === "step" || ext === "stp") contentType = "application/step";
+    else if (ext === "wasm") contentType = "application/wasm";
+    else if (ext === "pdf") contentType = "application/pdf";
+    else contentType = "application/octet-stream";
+  }
+
+  await MY_BUCKET.put(fileKey, file.stream(), {
+    httpMetadata: { contentType },
+  });
+
+  const publicUrl = `${url.origin}/files/${fileKey}`;
+  return new Response(JSON.stringify({ url: publicUrl }), {
+    status: 200,
+    headers: {
+      ...corsHeaders(),
+      "Content-Type": "application/json",
+    },
+  });
+}
+
 
 // DELETE: Remove file from R2
 if (request.method === "DELETE" && url.pathname.startsWith("/files/")) {
