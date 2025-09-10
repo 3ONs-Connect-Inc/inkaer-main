@@ -10,7 +10,7 @@ const modules = {
     [{ color: [] }, { background: [] }],
     [{ align: [] }],
     [{ font: [] }, { size: [] }],
-    ['link' ],//'image'],
+    ['link', 'image'],
     ['clean'],
   ],
 }
@@ -23,7 +23,7 @@ const formats = [
   'align',
   'font', 'size',
   'link', 
-  //'image',
+  'image',  
 ]
 
 export default function RichTextEditor({

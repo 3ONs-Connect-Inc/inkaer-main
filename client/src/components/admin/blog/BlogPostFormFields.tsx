@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function BlogPostFormFields({
-  newPost,
+  newPost,  
   setNewPost,
   errors,
   isUploading,

@@ -41,13 +41,8 @@ const BlogDetail: React.FC = () => {
       readTime={post.readTime}
       category={post.category}
       image={post.image}
-      content={
-        <div
-          className="space-y-4"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-      }
-    />
+      content={post.content}
+    />  
     </>
   );
 };

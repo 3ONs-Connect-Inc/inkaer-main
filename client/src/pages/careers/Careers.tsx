@@ -1,11 +1,12 @@
 import Seo from "@/components/seo/Seo"
 import HeroSection from "@/components/careers/HeroSection"
 import WhyWorkSection from "@/components/careers/WhyWorkSection"
-import OpenPositions from "@/components/careers/OpenPositions"
-import { useCareerPosts, useCareersMeta } from "@/hooks/useCareers"
+//import OpenPositions from "@/components/careers/OpenPositions"
+import { //useCareerPosts,
+   useCareersMeta } from "@/hooks/useCareers"
 
 const Careers = () => {
-  const { data: openings = [] } = useCareerPosts()
+  //const { data: openings = [] } = useCareerPosts()
   const { data: meta } = useCareersMeta()
 
   return (  
@@ -20,11 +21,11 @@ const Careers = () => {
       <main className="py-16">
         <HeroSection title={meta?.heroTitle} subtitle={meta?.heroSubtitle} />
         <WhyWorkSection />
-        <OpenPositions
+        {/* <OpenPositions
           jobs={openings}
           footerTitle={meta?.footerTitle}
           footerSubtitle={meta?.footerSubtitle}
-        />
+        /> */}
       </main>
     </div>
   )

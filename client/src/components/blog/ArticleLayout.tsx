@@ -11,7 +11,7 @@ interface ArticleLayoutProps {
   readTime: string;
   category: string;
   image: string;
-  content: React.ReactNode;
+  content: string;
 }
 
 const ArticleLayout: React.FC<ArticleLayoutProps> = ({
@@ -78,7 +78,7 @@ const ArticleLayout: React.FC<ArticleLayoutProps> = ({
         <section className="py-8">
           <div className="mx-auto max-w-4xl padding">
             <div className="prose prose-lg prose-blue max-w-none">
-              {content}
+               <div dangerouslySetInnerHTML={{ __html: content }} />
             </div>
           </div>
         </section>

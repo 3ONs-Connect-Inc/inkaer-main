@@ -283,7 +283,7 @@ export const navbarLinks = [
                 path: "/admin/view-bloglist",
             },  
              {
-                label: "Add Career",
+                label: "Add Career", 
                 icon: UserSearch,
                 path: "/admin/view-careerlist",
             }, 

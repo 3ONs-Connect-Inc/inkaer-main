@@ -8,6 +8,7 @@ import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User } from "lucide-react";
 import { ApplicationSchema, useSubmitApplication } from "@/hooks/useApplications";
 import type z from "zod";
+import { Link } from "react-router-dom";
 
 interface Props {
   jobId: string;
@@ -103,13 +104,13 @@ const validateField = (field: keyof FormState, value: any) => {
       },
     });
   };
-
+  
   return (
     <>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-gray-900">
           <User className="w-5 h-5 text-blue-600" />
-          Application Form
+          Application Form  
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -122,6 +123,8 @@ const validateField = (field: keyof FormState, value: any) => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
+                     required
+                      placeholder="Enter your first name"
               />
               {errors.firstName && (
                 <p className="text-sm text-red-500">{errors.firstName}</p>
@@ -133,6 +136,8 @@ const validateField = (field: keyof FormState, value: any) => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
+                 required
+                      placeholder="Enter your last name"
               />
               {errors.lastName && (
                 <p className="text-sm text-red-500">{errors.lastName}</p>
@@ -142,12 +147,15 @@ const validateField = (field: keyof FormState, value: any) => {
 
           {/* Email */}
           <div>
-            <Label>Email *</Label>
+            <Label>Email Address*</Label>
             <Input
               name="email"
               type="email"
               value={formData.email}
               onChange={handleChange}
+                required
+                      className="pl-10"
+                      placeholder="your.email@example.com"
             />
             {errors.email && (
               <p className="text-sm text-red-500">{errors.email}</p>
@@ -156,24 +164,32 @@ const validateField = (field: keyof FormState, value: any) => {
 
           {/* Phone */}
           <div>
-            <Label>Phone</Label>
+            <Label>Phone Number *</Label>
             <Input
               name="phone"
               type="tel"
               value={formData.phone}
               onChange={handleChange}
+                  required
+                      className="pl-10"
+                      placeholder="(555) 123-4567"
             />
           </div>
 
           {/* Resume */}
           <div>
-            <Label>Resume *</Label>
+            <Label>Resume/CV *</Label>
             <Input
               ref={fileInputRef}
               type="file"
               accept=".pdf,.doc,.docx"
               onChange={handleFile}
+              required
+                    className="file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-muted file:text-muted-foreground hover:file:bg-muted/80"
             />
+               <p className="text-sm text-muted-foreground">
+                    Accepted formats: PDF, DOC, DOCX (Max 10MB)
+                  </p>
             {errors.resume && (
               <p className="text-sm text-red-500">{errors.resume}</p>
             )}
@@ -186,25 +202,61 @@ const validateField = (field: keyof FormState, value: any) => {
               name="coverLetter"
               value={formData.coverLetter}
               onChange={handleChange}
-            />
+            rows={5}
+                    placeholder="Tell us why you're interested in this position and what makes you a great fit..."
+           />
           </div>
 
           {/* Terms */}
-          <div className="flex items-center gap-2">
-            <Checkbox
+                 <div className="space-y-1 leading-none ">
+                <div className=" flex items-center gap-2">
+                     <Checkbox
               id="terms"
               checked={formData.agreedToTerms}
               onCheckedChange={handleCheckbox}
             />
-            <Label htmlFor="terms">I agree to Terms and Privacy Policy *</Label>
-          </div>
+                      <Label
+                        htmlFor="terms"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        I agree to Inkaer's{' '}
+                        <Link to="/terms" className="text-primary hover:underline">
+                          Terms and Conditions
+                        </Link>{' '}
+                        and{' '}
+                        <Link to="/privacy" className="text-primary hover:underline">
+                          Privacy Policy
+                        </Link>
+                        *
+                      </Label>
+                </div>
+                      <p className="text-xs text-muted-foreground">
+                        You must agree to our terms and privacy policy to submit your application.
+                      </p>
+                    </div>
+       
           {errors.agreedToTerms && (
             <p className="text-sm text-red-500">{errors.agreedToTerms}</p>
           )}
 
-          <Button type="submit" className="w-full" disabled={isPending}>
-            {isPending ? "Submitting..." : "Submit Application"}
-          </Button>
+            
+                <div className="flex xxs:flex-row flex-col gap-4 pt-6">
+                  <Button
+                    type="submit"
+                    disabled={isPending}
+                    className="flex-1"
+                  >
+                       {isPending ? "Submitting..." : "Submit Application"}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => window.history.back()}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+         
         </form>
       </CardContent>
     </>

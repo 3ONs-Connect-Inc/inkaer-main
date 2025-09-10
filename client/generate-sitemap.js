@@ -50,7 +50,7 @@ function urlEntry(loc, lastmod) {
 
 // ✅ Fetch blog posts
 async function getBlogRoutes() {
-  const snap = await db.collection("blogs").get();
+  const snap = await db.collection("posts").get();
   return snap.docs.map((doc) => {
     const data = doc.data();
     const slug = data.slug || data.title?.toLowerCase().replace(/\s+/g, "-") || "post";
@@ -60,7 +60,7 @@ async function getBlogRoutes() {
 
 // ✅ Fetch jobs
 async function getApplicationRoutes() {
-  const snap = await db.collection("jobs").get();
+  const snap = await db.collection("applications").get();
   return snap.docs.map((doc) => `/application?jobId=${doc.id}`);
 }
 

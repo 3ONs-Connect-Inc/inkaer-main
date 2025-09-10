@@ -1,5 +1,5 @@
 import type { CareerPost, CareersMeta } from '@/types'
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, getDoc,  onSnapshot, orderBy, query, updateDoc } from 'firebase/firestore'
 import { db } from './config'
 
 
@@ -8,12 +8,22 @@ const CAREERS_COL = 'careers'
 const CAREERS_META_DOC = 'careersMeta'
 
 
-export async function listCareerPosts(): Promise<CareerPost[]> {
-const q = query(collection(db, CAREERS_COL), orderBy('createdAt', 'desc'))
-const snap = await getDocs(q)
-return snap.docs.map((d) => ({ id: d.id, ...(d.data() as any) }))
-}
+export function listCareerPosts(): Promise<CareerPost[]> {
+  return new Promise((resolve) => {
+    const q = query(collection(db, CAREERS_COL), orderBy("createdAt", "desc"))
 
+    // subscribe once, resolve on first snapshot
+    const unsub = onSnapshot(q, (snap) => {
+      const posts = snap.docs.map(
+        (d) => ({ id: d.id, ...(d.data() as any) }) as CareerPost
+      )
+      resolve(posts)
+    })
+
+    // immediately unsubscribe after first result (React Query expects a one-shot fetcher)
+    return () => unsub()
+  })
+}
 
 export async function createCareerPost(payload: Omit<CareerPost, 'id' | 'createdAt' | 'updatedAt'>) {
 const ref = await addDoc(collection(db, CAREERS_COL), {

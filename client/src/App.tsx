@@ -26,6 +26,8 @@ const Blog = lazy(() => import("./pages/blog/Blog"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Terms = lazy(() => import("./pages/footer/Terms"));
 const Privacy = lazy(() => import("./pages/footer/Privacy"));
+const Careers =lazy(()=> import ("./pages/careers/Careers"));
+const Application =lazy(()=>import ("./pages/careers/Application"));
 
 // admin pages
 const RootLayout = lazy(() => import("./pages/admin/Layout"));
@@ -34,6 +36,8 @@ const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
 const Contacts = lazy(() => import("./pages/admin/Contacts"));
 const AdminBlog =lazy(()=> import ("./pages/admin/AdminBlog"));
 const BlogDetail= lazy(() => import("./pages/blog/BlogDetail"));
+//const CareerList= lazy (() => import("./pages/admin/career/CareerList"));
+//const AdminCareer= lazy(()=>import("./pages/admin/career/AdminCareer"));
 
 
 const qc = new QueryClient();  
@@ -68,7 +72,9 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id/:slug" element={<BlogDetail />} />
-
+              <Route path="/careers" element={<Careers />} />
+                  <Route path="/application" element={<Application/>} />
+  
             {/* Unauthorized Fallback */}
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
@@ -87,7 +93,8 @@ function App() {
                 <Route path="view-subscribers" element={<ShortlistRequests />} />
                 <Route path="view-contacts" element={<Contacts />} />
                   <Route path="view-bloglist" element={<AdminBlog />} />
-          
+              {/* <Route path="view-careerlist" element={<AdminCareer />} />
+             <Route path="view-career-request" element={<CareerList />} /> */}
                 
                 <Route path="*" element={<NotFound />} />
               </Route>
