@@ -7,3 +7,4 @@ export const useShortlistMutation = () => {
     mutationFn: (data: ShortlistFormData) => submitShortlist(data),
   });
 };
+  

@@ -5,7 +5,7 @@ import { AdminTable, type Column } from "@/components/admin/AdminTable";
 import { format } from "date-fns";
 import Modal from "@/components/admin/ui/Modal";
 import { PageLoader } from "@/components/ui/Spinner";
-
+  
 export default function ShortlistRequests() {
   const { data: requests = [], isLoading, isError } = useShortlistRequests();
   const [selectedRequest, setSelectedRequest] = useState<ShortlistRequest | null>(null);
@@ -97,6 +97,7 @@ export default function ShortlistRequests() {
             <p><strong>Location:</strong> {selectedRequest.location}</p>
             <p><strong>Tools:</strong> {selectedRequest.tools}</p>
             <p><strong>Urgency:</strong> {selectedRequest.urgency}</p>
+            <p><strong>Domain:</strong> {selectedRequest.domain}</p>
             <p>
               <strong>Date:</strong>{" "}
               {format(selectedRequest.createdAt.toDate(), "PPpp")}

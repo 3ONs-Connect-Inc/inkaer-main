@@ -47,7 +47,7 @@ export default function Contacts() {
   return (
     <>
       <AdminTable<Contact>
-        title="All Contacts"
+        title="All Contacted Users"
         data={contacts}
         columns={columns}
         rowKey={(item) => item.id}

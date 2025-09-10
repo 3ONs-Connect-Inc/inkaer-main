@@ -11,6 +11,7 @@ import { useShortlistMutation } from '@/hooks/useShortlistMutation';
 const initialForm: ShortlistFormData = {
   name: "",
   company: "",
+  domain: "",
   roleTitle: "",
   tools: "",
   industry: "",
@@ -55,6 +56,7 @@ const [formData, setFormData] = useState<ShortlistFormData>(initialForm);
     company: "",
     roleTitle: "",
     tools: "",
+    domain:"",
     industry: "",
     location: "",
     urgency: "",

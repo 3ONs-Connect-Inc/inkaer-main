@@ -22,6 +22,7 @@ const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const About = lazy(() => import("./pages/footer/About"));
 
+const CaseStudyUtterVision =lazy(()=>import("./pages/CaseStudyUtterVision"));
 const Blog = lazy(() => import("./pages/blog/Blog"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Terms = lazy(() => import("./pages/footer/Terms"));
@@ -74,7 +75,7 @@ function App() {
           <Route path="/blog/:id/:slug" element={<BlogDetail />} />
               <Route path="/careers" element={<Careers />} />
                   <Route path="/application" element={<Application/>} />
-  
+   <Route path="/case-study/utter-vision" element={<CaseStudyUtterVision />} />
             {/* Unauthorized Fallback */}
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
 

@@ -10,6 +10,7 @@ export interface ShortlistRequest {
   email: string;
   industry: string;
   location: string;
+  domain: string;
   name: string;
   roleTitle: string;
   tools: string;

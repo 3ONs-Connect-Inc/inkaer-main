@@ -249,6 +249,97 @@ export const faqs = [
     }
   ];
 
+  
+export const testimonials = [
+  {  
+    role: "Inkaer Candidate",
+    location: "Toronto, Canada",
+    content: "Inkaer helped me land my dream job at a top engineering company. The verification process gave employers confidence in my skills, and I received multiple offers within weeks.",
+    rating: 5
+  },
+  {
+    role: "Inkaer Business Customer",
+    location: "Vancouver, Canada", 
+    content: "We've hired 5 engineers through Inkaer this year. The pre-verified candidates saved us months of screening time and every hire has been exceptional.",
+    rating: 5
+  },
+  {
+    role: "Inkaer Candidate",
+    location: "Montreal, Canada",
+    content: "The detailed portfolio and verification report helped me showcase my expertise beyond just a resume. Employers could see exactly what I was capable of before even meeting me.",
+    rating: 5
+  },
+  {
+    role: "Inkaer Business Customer",
+    location: "Calgary, Canada",
+    content: "As a startup, we couldn't afford long hiring cycles. Inkaer's verified talent pool allowed us to scale our engineering team 3x faster than traditional recruiting.",
+    rating: 5
+  },
+  {
+    role: "Inkaer Candidate",
+    location: "Ottawa, Canada",
+    content: "The comprehensive skill assessment gave me credibility. I was able to negotiate better offers knowing my skills were independently validated.",
+    rating: 5
+  },
+  {
+    role: "Inkaer Business Customer - CTO",
+    location: "Winnipeg, Canada",
+    content: "Remote hiring was always a challenge until we found Inkaer. The verified portfolios and skill assessments eliminated our hiring risk completely.",
+    rating: 5
+  }
+];
+export  const domainOptions = [
+    { value: 'mechanical', label: 'Mechanical Engineering', available: true },
+    { value: 'electrical', label: 'Electrical & Mechatronics', available: false },
+    { value: 'software', label: 'Software', available: false },
+    { value: 'rf', label: 'Radio Frequency (RF)', available: false },
+    { value: 'antenna', label: 'Antenna', available: false },
+    { value: 'embedded', label: 'Embedded', available: false },
+    { value: 'aerospace', label: 'Aerospace', available: false },
+    { value: 'civil', label: 'Civil / Structural', available: false },
+    { value: 'uiux', label: 'UI/UX', available: false },
+    { value: 'others', label: 'Others', available: true },
+  ];
+
+ export const locationOptions = [
+    { value: 'toronto-canada', label: 'Toronto, Canada' },
+    { value: 'vancouver-canada', label: 'Vancouver, Canada' },
+    { value: 'montreal-canada', label: 'Montreal, Canada' },
+    { value: 'calgary-canada', label: 'Calgary, Canada' },
+    { value: 'ottawa-canada', label: 'Ottawa, Canada' },
+    { value: 'new-york-usa', label: 'New York, USA' },
+    { value: 'san-francisco-usa', label: 'San Francisco, USA' },
+    { value: 'los-angeles-usa', label: 'Los Angeles, USA' },
+    { value: 'chicago-usa', label: 'Chicago, USA' },
+    { value: 'boston-usa', label: 'Boston, USA' },
+    { value: 'london-uk', label: 'London, UK' },
+    { value: 'manchester-uk', label: 'Manchester, UK' },
+    { value: 'berlin-germany', label: 'Berlin, Germany' },
+    { value: 'munich-germany', label: 'Munich, Germany' },
+    { value: 'paris-france', label: 'Paris, France' },
+    { value: 'amsterdam-netherlands', label: 'Amsterdam, Netherlands' },
+    { value: 'sydney-australia', label: 'Sydney, Australia' },
+    { value: 'melbourne-australia', label: 'Melbourne, Australia' },
+    { value: 'singapore-singapore', label: 'Singapore, Singapore' },
+    { value: 'tokyo-japan', label: 'Tokyo, Japan' },
+    { value: 'others', label: 'Others' },
+  ];
+
+export const commonDomains = [
+  "gmail.com",
+  "yahoo.com",
+  "hotmail.com",
+  "outlook.com",
+  "icloud.com",
+  "aol.com",
+  "protonmail.com",
+  "zoho.com",
+  "yandex.com",
+  "mail.com",
+  "company.com", 
+  "work.com", 
+];
+
 
 
 //admin

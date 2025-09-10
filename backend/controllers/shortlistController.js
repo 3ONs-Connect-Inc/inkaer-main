@@ -3,7 +3,7 @@ import sgMail from "../config/sendgrid.js";
 
 export const submitShortlist = async (req, res) => {
 
-    const { name, company, roleTitle, tools, industry, location, urgency, email } = req.body;
+    const { name, company, roleTitle, tools, domain, industry, location, urgency, email } = req.body;
 
     // Save to Firestore
     const docRef = await db.collection("shortlistRequests").add({
@@ -11,6 +11,7 @@ export const submitShortlist = async (req, res) => {
       company,
       roleTitle,
       tools,
+      domain,
       industry,
       location,
       urgency,
