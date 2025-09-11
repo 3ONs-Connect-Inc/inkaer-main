@@ -10,7 +10,7 @@ interface SEOProps {
   twitterCard?: string;
 }
 
-export const Seo: React.FC<SEOProps> = ({
+const Seo: React.FC<SEOProps> = ({
   title,
   description,
   name = "Inkaer",
@@ -36,3 +36,4 @@ export const Seo: React.FC<SEOProps> = ({
   </Helmet>
 );
 
+export default Seo;
