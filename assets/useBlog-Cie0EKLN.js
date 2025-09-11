@@ -1,1 +1,0 @@
-import{u as o}from"./useQuery-10v7OTWB.js";import{c as r,g as s,f as t}from"./blogService-DiwnnKd4.js";const g=()=>o({queryKey:["blogHeader"],queryFn:r}),l=()=>o({queryKey:["blogPosts"],queryFn:s}),n=e=>o({queryKey:["blogPost",e],queryFn:()=>t(e),enabled:!!e,initialData:null});export{l as a,n as b,g as u};
