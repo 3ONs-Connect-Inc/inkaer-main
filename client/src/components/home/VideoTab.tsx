@@ -9,6 +9,7 @@ export function VideoTab() {
     localStorage.getItem("videoPoster")
   );
   const [isPlaying, setIsPlaying] = useState(false);
+const [hasStarted, setHasStarted] = useState(false);
 
   const hiddenVideoRef = useRef<HTMLVideoElement | null>(null);
   const visibleVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -137,26 +138,33 @@ export function VideoTab() {
       return;
     }
 
-    // user-initiated play: ensure playback starts from 0 per your spec
+    if (!hasStarted) {
+    // first user-initiated play → reset to 0
     await seekTo(v, 0);
-    v.play().catch(() => {});
-    setIsPlaying(true);
-  };
+    setHasStarted(true);
+  }
+
+  v.play().catch(() => {});
+  setIsPlaying(true);
+};
 
   const handlePause = () => {
     setIsPlaying(false);
   };
 
+  
   const handleEnded = async () => {
-    const v = visibleVideoRef.current;
-    if (!v) return;
+  const v = visibleVideoRef.current;
+  if (!v) return;
 
-    setIsPlaying(false);
-    // after finish, snap back to capture time and show poster
-    await seekTo(v, captureTime);
-    v.pause();
-    if (poster) v.setAttribute("poster", poster);
-  };
+  setIsPlaying(false);
+  setHasStarted(false); // reset state so next play goes from 0 again
+
+  await seekTo(v, captureTime);
+  v.pause();
+  if (poster) v.setAttribute("poster", poster);
+};
+
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 max-w-2xl mx-auto">

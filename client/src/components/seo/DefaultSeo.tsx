@@ -7,15 +7,16 @@ const DefaultSeo = () => {
       {/* Basic meta */}
       <meta
         name="description"
-        content="Inkaer helps companies hire top engineering talent faster and smarter. Discover our platform, mission, and how we're redefining tech hiring."
-      />
+        content="Inkaer connects companies with verified engineering talent. Hire faster, reduce risk, and build stronger teams with confidence." />
       <meta name="robots" content="index, follow" />
 
       {/* Open Graph */}
-      <meta property="og:title" content="Inkaer – Get Hired Based on Real Skills" />
+      <meta property="og:title" 
+     content="Inkaer – Hiring the Best Engineers, Made Simple" 
+       />
       <meta
         property="og:description"
-        content="Get hired based on real skills, not resumes. Tackle engineering challenges and showcase your true potential."
+      content="Inkaer connects companies with verified engineering talent - helping you hire faster, build stronger teams, and stay ahead." 
       />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://inkaer.com/" />
@@ -26,7 +27,7 @@ const DefaultSeo = () => {
       <meta name="twitter:title" content="Inkaer – Get Hired Based on Real Skills" />
       <meta
         name="twitter:description"
-        content="Inkaer helps companies hire top engineering talent faster and smarter."
+       content="Inkaer connects companies with verified engineering talent - helping you hire faster, build stronger teams, and stay ahead." 
       />
       <meta name="twitter:image" content="https://inkaer.com/twitter-image.png" />
       <meta name="twitter:creator" content="@inkaer" />

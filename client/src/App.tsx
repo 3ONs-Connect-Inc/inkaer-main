@@ -12,8 +12,6 @@ import ProtectedRoute from "./components/routes/ProtectedRoute";
 import RoleGuard from "./components/routes/RoleGuard";
 import useAuthListener from "./hooks/auth/useAuthListener";
 import { Loader } from "./components/ui/Spinner";
-import DefaultSeo from "./components/seo/DefaultSeo";
-
 
 const CreateAccount = lazy(() => import("./pages/auth/CreateAccount"));
 const SignInAccount = lazy(() => import("./pages/auth/SignInAccount"));
@@ -37,8 +35,6 @@ const ShortlistRequests = lazy(() => import("./pages/admin/ShortlistRequests"));
 const Contacts = lazy(() => import("./pages/admin/Contacts"));
 const AdminBlog =lazy(()=> import ("./pages/admin/AdminBlog"));
 const BlogDetail= lazy(() => import("./pages/blog/BlogDetail"));
-//const CareerList= lazy (() => import("./pages/admin/career/CareerList"));
-//const AdminCareer= lazy(()=>import("./pages/admin/career/AdminCareer"));
 
 
 const qc = new QueryClient();  
@@ -48,7 +44,6 @@ function App() {
 
   return (
     <QueryClientProvider client={qc}>
-       <DefaultSeo />
       <Toaster />
       <ScrollToTop />
       <BackToTopButton />
@@ -94,9 +89,7 @@ function App() {
                 <Route path="view-subscribers" element={<ShortlistRequests />} />
                 <Route path="view-contacts" element={<Contacts />} />
                   <Route path="view-bloglist" element={<AdminBlog />} />
-              {/* <Route path="view-careerlist" element={<AdminCareer />} />
-             <Route path="view-career-request" element={<CareerList />} /> */}
-                
+            
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Route>   

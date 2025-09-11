@@ -2,10 +2,10 @@
 import React from 'react';
 
 const HowItWorks: React.FC = () => {
-  const steps = [
+   const steps = [
     {
       number: '1',
-      title: 'Share your role. We align on tools, domain,etc.',
+      title: 'Share your role. We align on requirements.',
       description: 'Tell us about your engineering role requirements, tech stack, and team culture fit.',
       color: 'from-blue-500 to-blue-600'
     },
@@ -22,7 +22,6 @@ const HowItWorks: React.FC = () => {
       color: 'from-orange-500 to-orange-600'
     }
   ];
-
   return (
     <section id="how-it-works" className="py-6  bg-gray-50">
       <div className="mx-auto max-w-7xl padding">
