@@ -36,7 +36,7 @@ export const submitShortlist = async (req, res) => {
     await sgMail.send(msg);
     res.status(200).json({ success: true, id: docRef.id });
   } catch (error) {
-    console.error('SendGrid error:', error.response?.body || error.message);
+    console.error('SendGrid error:', error);//.response?.body || error.message);
     res.status(500).json({ error: 'Email failed to send' });
   }
 };

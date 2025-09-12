@@ -5,11 +5,12 @@ export interface ShortlistFormData {
   company: string;
   roleTitle: string;
   tools: string;
+   domain: string;  
   industry: string;
   location: string;  
   urgency: string;
   email: string;
-    domain: string;    
+     
 }
 
 export const submitShortlist = async (data: ShortlistFormData) => {

@@ -336,8 +336,8 @@ export const commonDomains = [
   "zoho.com",
   "yandex.com",
   "mail.com",
-  "company.com", 
-  "work.com", 
+  // "company.com", 
+  // "work.com", 
 ];
 
 
