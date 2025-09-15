@@ -3,7 +3,7 @@ import { db } from "@/firebase/config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import DOMPurify from "dompurify";
 import { z } from "zod";
-import { uploadFileToR2 } from "@/utils/lib/r2Upload";
+import { uploadFileToR2 } from "@/utils/api/r2Upload";
 
 
 export const ApplicationSchema = z.object({

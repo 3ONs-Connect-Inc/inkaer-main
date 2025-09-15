@@ -8,7 +8,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { toast } from "sonner";
 import Modal from "@/components/admin/ui/Modal";
 import ConfirmDialog from "@/components/admin/ui/ConfirmDialog";
-import { deleteFileFromR2 } from "@/utils/lib/r2Delete";
+import { deleteFileFromR2 } from "@/utils/api/r2Delete";
 
 const CareerList: React.FC = () => {
   const { data = [], isLoading, isError } = useApplications();

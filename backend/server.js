@@ -6,7 +6,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import shortlistRoutes from "./routes/shortlistRoutes.js";
 
-// Allow only your frontend domain
+// Allow only your frontend domain  
 const CLIENT_URL = process.env.CLIENT_URL || 'https://inkaer.com';
 const app = express();
 app.use(helmet());

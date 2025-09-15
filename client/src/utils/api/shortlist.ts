@@ -1,4 +1,4 @@
-import { api } from "../lib/api";
+import { api } from "./api";
 
 export interface ShortlistFormData {
   name: string;
@@ -17,3 +17,4 @@ export const submitShortlist = async (data: ShortlistFormData) => {
   const res = await api.post("/shortlist", data);
   return res.data;
 };
+  

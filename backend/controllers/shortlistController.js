@@ -20,23 +20,30 @@ export const submitShortlist = async (req, res) => {
     });
 
    
+   // Use SendGrid Dynamic Template
   const msg = {
     to: email,
     from: process.env.FROM_EMAIL,
-    subject: 'Thank You for Subscribing!',
-    text: `Hi ${name || 'there'},\n\nThank you for subscribing!`,
-    html: `
-      <p>Hi ${name || 'there'},</p>
-      <p>Thank you for subscribing!</p>
-      <p>Best regards,<br/><strong>Inkaer Team</strong></p>
-    `,
+    templateId: process.env.SENDGRID_TEMPLATE_ID, 
+    dynamicTemplateData: {
+      name,
+      company,
+      roleTitle,
+      tools,
+      domain,
+      industry,
+      location,
+      urgency,
+     email,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    },
   };
 
   try {
     await sgMail.send(msg);
     res.status(200).json({ success: true, id: docRef.id });
   } catch (error) {
-    console.error('SendGrid error:', error);//.response?.body || error.message);
+    console.error('SendGrid error:', error);
     res.status(500).json({ error: 'Email failed to send' });
   }
 };

@@ -16,7 +16,7 @@ import {
 } from "firebase/firestore";
 import type { BlogHeader, BlogPost } from "@/types";
 import { db } from "./config";
-import { deleteFileFromR2 } from "@/utils/lib/r2Delete";
+import { deleteFileFromR2 } from "@/utils/api/r2Delete";
 
 // ---------------------
 // Blog Header
