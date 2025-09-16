@@ -1,27 +1,44 @@
 import { BtnLoader } from "@/components/ui/Spinner";
+import { useContactMutation } from "@/hooks/useContactMutation";
 import type { ContactFormData } from "@/utils/api/contact";
 
 interface ContactFormProps {
   formData: ContactFormData;
-  handleChange: (
+    handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   handleSubmit: (e: React.FormEvent) => void;
   isPending: boolean;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({
-  formData,
-  handleChange,
-  handleSubmit,
-  isPending,
-}) => {
+const ContactForm:React.FC<ContactFormProps> = () => {
+  const {
+    formData,
+    handleChange,
+    handleSubmit,
+    isPending,  
+    isSuccess,
+    isError,
+  } = useContactMutation();
+
   return (
     <div className="mt-12 lg:mt-0">
       <div className="bg-white p-3 sm:p-8 rounded-lg shadow-lg border border-gray-200">
         <h3 className="text-bold-2xl font-semibold text-gray-900 mb-6">
           Send us a message
         </h3>
+        
+        {isSuccess && (
+          <p className="text-green-600 font-medium mb-4">
+            ✅ Thank you! Your message has been sent.
+          </p>
+        )}
+        {isError && (
+          <p className="text-red-600 font-medium mb-4">
+            ❌ Something went wrong. Please try again.
+          </p>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>

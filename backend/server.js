@@ -4,22 +4,27 @@ import helmet from "helmet";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import shortlistRoutes from "./routes/shortlistRoutes.js";
 
-// Allow only your frontend domain  
-const CLIENT_URL = process.env.CLIENT_URL || 'https://inkaer.com';
+import shortlistRoutes from "./routes/shortlistRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+
+const CLIENT_URL = process.env.CLIENT_URL || "https://inkaer.com";
 const app = express();
+
 app.use(helmet());
 app.use(express.json());
-app.use(cors({
-  origin: [CLIENT_URL, 'http://localhost:5173'],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [CLIENT_URL, "http://localhost:5173"],
+    credentials: true,
+  })
+);
 
 app.use(bodyParser.json());
 
 // Routes
 app.use("/api/shortlist", shortlistRoutes);
+app.use("/api/contact", contactRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

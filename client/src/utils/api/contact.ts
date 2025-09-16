@@ -1,5 +1,4 @@
-import { db } from "@/firebase/config";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { api } from "./api";
 
 export interface ContactFormData {
   firstName: string;
@@ -11,9 +10,6 @@ export interface ContactFormData {
 }
 
 export const submitContactForm = async (data: ContactFormData) => {
-  const docRef = await addDoc(collection(db, "contactMessages"), {
-    ...data,
-    createdAt: serverTimestamp(),
-  });
-  return { id: docRef.id };
+  const response = await api.post("/contact", data);
+  return response.data;
 };
